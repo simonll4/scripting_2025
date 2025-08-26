@@ -1,0 +1,11 @@
+a)Crear un módulo llamado fetchDB que contenga:
+setPágina(num)
+setFile(pathToFile)
+fetch()
+
+Cuando se llama a fetch(), el módulo deberá:
+1) Crear el archivo definido en pathToFile si no existe, el contenido por defecto es [] o leerlo y parsearlo si existe
+2) Hacer un fetch a `https://randomuser.me/api/ pidiendo tantos datos como indique cantidad
+3) Agregar (append) lo obtenido de 2  al arreglo del archivo leído o creado en 1, y actualizar el archivo
+
+b) Crear un programa que reciba como parámetros -c cantidad -f pathToFile, ambos opcionales y con valores por defecto: c=3 f=./db.json
