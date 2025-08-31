@@ -1,0 +1,57 @@
+import { PROTOCOL } from "./standard.js";
+
+export function makeHello({ maxFrame, heartbeat }) {
+  return {
+    v: PROTOCOL.VERSION,
+    t: PROTOCOL.TYPES.HELLO,
+    data: { maxFrame, heartbeat },
+  };
+}
+
+export function makeRes(id, act, data) {
+  return { v: PROTOCOL.VERSION, t: PROTOCOL.TYPES.RES, id, act, data };
+}
+
+export function makeErr(id, act, code, msg, details) {
+  return {
+    v: PROTOCOL.VERSION,
+    t: PROTOCOL.TYPES.ERR,
+    id,
+    act,
+    code,
+    msg,
+    details,
+  };
+}
+
+/**
+ * Validación mínima del envelope antes de AJV.
+ * Lanza Error con {code,msg} si no pasa.
+ */
+export function assertEnvelope(msg) {
+  if (!msg || typeof msg !== "object") {
+    const e = new Error("invalid message");
+    e.code = PROTOCOL.ERROR_CODES.BAD_REQUEST;
+    throw e;
+  }
+  if (msg.v !== PROTOCOL.VERSION) {
+    const e = new Error("unsupported version");
+    e.code = PROTOCOL.ERROR_CODES.BAD_REQUEST;
+    throw e;
+  }
+  if (msg.t !== PROTOCOL.TYPES.REQ) {
+    const e = new Error("expected req");
+    e.code = PROTOCOL.ERROR_CODES.BAD_REQUEST;
+    throw e;
+  }
+  if (!msg.id || typeof msg.id !== "string") {
+    const e = new Error("missing id");
+    e.code = PROTOCOL.ERROR_CODES.BAD_REQUEST;
+    throw e;
+  }
+  if (!msg.act || typeof msg.act !== "string") {
+    const e = new Error("missing act");
+    e.code = PROTOCOL.ERROR_CODES.BAD_REQUEST;
+    throw e;
+  }
+}

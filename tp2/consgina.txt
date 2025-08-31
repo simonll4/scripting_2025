@@ -1,0 +1,86 @@
+
+----------------------
+Server Agent:
+
+Crear un agente que se ejecute en un host que soporte los siguientes comandos.
+
+-----------
+getosinfo time (segundos anteriores al momento actual):
+    - respuesta-> arreglo [[cpu:data, mem:free, time:timestamp}]
+    (el agente toma data cada 30 segundos, solo la última hora))
+watch path [time](segs que se controlará el directorio, 60 segundos default, 3600 máximo) (
+    - respuesta-> token_de_seguimiento (lo genera el agente y lo asocia al watch en particular, solo se accederá mediante ese token)
+getwatches token_de_seguimiento
+    - respuesta-> arreglo [{tipoEvento:"nnn", archivo:"path/archivo", tiempo:timestamp}]
+    (algunos eventos, dependiendo de la implentación, pueden ser: delete, rename, new, etc))
+ps 
+    - lista de procesos remotos
+oscmd "comando y argumentos del SO" (OJO con esta implementación, 
+                                     pensar en algún mecanismo de seguridad, 
+                                     ej: cmd whitelist, remoteip whitelist, etc)
+    - respuesta: salida del comando real
+quit: se corta la conexión con el agente
+
+Autenticación:
+- El agente solo habilita la ejecución de comandos si se le envía un token previamente existente
+
+Flow de uso:
+- El cliente obtiene el token de alguna manera no especificada.
+- El Server mantiene cierta cantidad de tokens de acceso: archivo de texto, base de datos, otro mecanismo no especificado 
+
+CLIENTE               AGENTE 
+token --------------> check token - +
+                                    | 
+<-----------------------------------+ OK // Se habilita al cliente (TIP: socket a ejecutar comandos en el server)
+comando -------------> proceso   ---+
+                                    | 
+        <-------------- respuesta---+
+comando -------------> proceso   ---+
+                                    | 
+        <-------------- respuesta---+
+comando -------------> proceso   ---+
+                                    | 
+        <-------------- respuesta---+
+
+Entrega: 
+- implementación funcional (crear cliente)
+- documentación del protocolo
+*/
+
+Propuesta de interface de mensaje
+
+Request:
+list [path]
+get path
+
+Response:
+{
+"err":false,
+"command":"list",
+"content":[{path:"path/to/file.txt",type:"file",size:100}]
+}
+
+
+
+NOTAS:
+- el agente se ejecuta en un servidor y se encarga de recolectar datos (cpu,mem,timestamp) y los guarda por una hora.
+- la data la toma cada 30 seg y lo guarda lo de la ultima hora.
+
+- en el watch ver que exista el path para escuchar el archivo
+- getWatches: lleno de implmentaciones del tipo watch, dependiendo de la que usemos los tipos de eventos que lanza al realizar cosas sobre un directorio
+
+- ps lista todos los procesos remoto, hay varias formas de hacerlo
+
+- oscmd: le voy a estar mandando al agente remoto un comando para que ejecute sobre el sistema operativo. 
+- hay que plantear mecanismos de seguridad, ejemplo white list de comandos, 
+
+- auth: no puede ejecutar ningun comando sin antes envviarle un token
+- no importa como se obtenga el token, pero tiene que ser con un mecanismo previamente. el token puede ser de un solo uso, o cosas de ese estilo. o un clienSecretId
+
+- hay que crear un cliente, aca no nos sirve un telnet
+- docuemntacion del protocolo, por ejemplo requests y responses estandarizadas, para facilitarle la vida al cliente
+- tratar de no programar cada comando como si fuera diferente, siempre hay que tratar de estandarizar, peticion y respuesta es lo ideal para dejar algo bien estandarizado
+
+
+
+- 
