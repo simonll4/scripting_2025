@@ -1,6 +1,8 @@
 import crypto from "crypto";
-import { MessageDeframer, sendMessage, makeHello } from "../utils/index.js";
+import { setupTransportPipeline, sendMessage } from "../utils/index.js";
+import { makeHello } from "../../protocol/index.js";
 import { CONFIG } from "../config.js";
+import { logger } from "../utils/logger.js";
 
 /**
  * Connection Manager - Gestiona el ciclo de vida de conexiones TCP
@@ -19,9 +21,8 @@ export class ConnectionManager {
   create(socket) {
     const connectionId = crypto.randomBytes(8).toString("hex");
 
-    // Setup framing
-    const deframer = new MessageDeframer({ maxFrameSize: CONFIG.MAX_FRAME });
-    socket.pipe(deframer);
+    // Setup transport pipeline (framing + JSON parsing + eventos)
+    const deframer = setupTransportPipeline(socket, { maxFrameSize: CONFIG.MAX_FRAME });
 
     const connection = new Connection({
       id: connectionId,
@@ -119,7 +120,7 @@ class Connection {
     });
 
     this.socket.on("error", (err) => {
-      console.error(`Connection ${this.id} error:`, err.message);
+      logger.error(`Connection ${this.id} error`, { error: err.message });
     });
   }
 

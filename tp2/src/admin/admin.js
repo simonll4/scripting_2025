@@ -2,11 +2,7 @@ import sqlite3 from "sqlite3";
 import { open } from "sqlite";
 import crypto from "crypto";
 import argon2 from "argon2";
-
-const roleScopes = {
-  user: ["getosinfo", "watch", "getwatches"],
-  admin: ["*"],
-};
+import { ROLE_SCOPES } from "../server/utils/auth/scopes.js";
 
 async function initDB() {
   const db = await open({
@@ -28,7 +24,7 @@ async function initDB() {
 }
 
 async function createToken(role, expiresSec) {
-  const scopes = roleScopes[role];
+  const scopes = ROLE_SCOPES[role];
   if (!scopes) throw new Error(`Unknown role: ${role}`);
   const db = await initDB();
 
@@ -59,8 +55,8 @@ async function revokeToken(tokenId) {
   const res = await db.run("UPDATE tokens SET revoked=1 WHERE tokenId=?", [
     tokenId,
   ]);
-  if (res.changes === 0) console.log("⚠️ tokenId no encontrado");
-  else console.log("⛔ Token revocado:", tokenId);
+  if (res.changes === 0) console.log("tokenId no encontrado");
+  else console.log("Token revocado:", tokenId);
 }
 
 async function main() {
@@ -84,75 +80,3 @@ async function main() {
   }
 }
 main();
-
-// TODO: Legacy admin code - Old implementation - Not used anymore
-// This was the previous version before the current refactored code above
-// Could be removed entirely
-
-// import sqlite3 from "sqlite3";
-// import { open } from "sqlite";
-// import crypto from "crypto";
-
-// // roles -> scopes predefinidos
-// const roleScopes = {
-//   user: ["getosinfo", "watch", "getwatches"],
-//   admin: ["*"],
-// };
-
-// async function initDB() {
-//   return open({
-//     filename: "../db/db.sqlite",
-//     driver: sqlite3.Database,
-//   });
-// }
-
-// async function createToken(role, expires) {
-//   const db = await initDB();
-//   const token = crypto.randomBytes(16).toString("hex");
-//   const scopes = roleScopes[role];
-//   if (!scopes) {
-//     console.error("Unknown role:", role);
-//     process.exit(1);
-//   }
-//   const expiresAt = expires
-//     ? new Date(Date.now() + expires * 1000).toISOString()
-//     : null;
-
-//   await db.run(
-//     "INSERT INTO tokens (token, scopes, expires_at) VALUES (?, ?, ?)",
-//     [token, JSON.stringify(scopes), expiresAt]
-//   );
-//   console.log("Token created:", token);
-//   console.log(
-//     "   Role:",
-//     role,
-//     "Scopes:",
-//     scopes,
-//     "Expires:",
-//     expiresAt || "never"
-//   );
-// }
-
-// async function revokeToken(token) {
-//   const db = await initDB();
-//   await db.run("UPDATE tokens SET revoked=1 WHERE token=?", [token]);
-//   console.log("Token revoked:", token);
-// }
-
-// async function main() {
-//   const [, , cmd, ...args] = process.argv;
-//   if (cmd === "create") {
-//     const role = args[0];
-//     const expires = args[1] ? parseInt(args[1]) : null; // segundos
-//     await createToken(role, expires);
-//   } else if (cmd === "revoke") {
-//     const token = args[0];
-//     await revokeToken(token);
-//   } else {
-//     console.log("Usage:");
-//     console.log("  node admin.js create <role> [expiresSeconds]");
-//     console.log("  node admin.js revoke <token>");
-//   }
-// }
-
-// main();

@@ -1,31 +1,26 @@
-import { PROTOCOL, makeErr, assertEnvelope } from "../../utils/index.js";
+import { PROTOCOL, makeErr, assertEnvelope, ErrorTemplates } from "../../../protocol/index.js";
 
 /**
  * Message Parser Middleware
- * Responsabilidad: Parsear JSON y validar envelope básico
+ * Responsabilidad: Validar envelope básico (JSON ya viene parseado por setupTransportPipeline)
  */
 export class MessageParser {
   async process(context) {
     try {
-      // Parse JSON
-      const rawMessage = JSON.parse(context.payload.toString("utf8"));
+      // El mensaje ya viene parseado por setupTransportPipeline
+      const rawMessage = context.message;
+
+      if (!rawMessage) {
+        throw new Error("No message received");
+      }
 
       // Validar envelope mínimo
       assertEnvelope(rawMessage);
 
-      // Añadir al context para próximos middlewares
-      context.message = rawMessage;
-
       return true; // Continuar pipeline
     } catch (error) {
-      // Error de parsing o envelope inválido
-      const errorResponse = makeErr(
-        "0",
-        "PARSE",
-        PROTOCOL.ERROR_CODES.BAD_REQUEST,
-        error.message || "Invalid message format"
-      );
-
+      // Error de envelope inválido
+      const errorResponse = ErrorTemplates.badRequest("0", "PARSE", error.message || "Invalid message format");
       context.reply(errorResponse);
       return false; // Cortar pipeline
     }

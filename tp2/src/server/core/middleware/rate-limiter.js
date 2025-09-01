@@ -1,5 +1,5 @@
 import { CONFIG } from "../../config.js";
-import { PROTOCOL, makeErr } from "../../utils/index.js";
+import { PROTOCOL, makeErr, ErrorTemplates } from "../../../protocol/index.js";
 
 /**
  * Rate Limiter Middleware
@@ -23,23 +23,13 @@ export class RateLimiter {
     
     // 1. Rate limit por socket (global)
     if (!buckets.socket.take(1)) {
-      context.reply(makeErr(
-        message.id,
-        message.act,
-        PROTOCOL.ERROR_CODES.RATE_LIMITED,
-        "Rate limit exceeded (socket)"
-      ));
+      context.reply(ErrorTemplates.rateLimited(message.id, message.act));
       return false;
     }
 
     // 2. Rate limit por acción específica
     if (!buckets.getActionBucket(message.act).take(1)) {
-      context.reply(makeErr(
-        message.id,
-        message.act,
-        PROTOCOL.ERROR_CODES.RATE_LIMITED,
-        `Rate limit exceeded (action: ${message.act})`
-      ));
+      context.reply(ErrorTemplates.rateLimited(message.id, message.act));
       return false;
     }
 

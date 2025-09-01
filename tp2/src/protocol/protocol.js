@@ -5,6 +5,9 @@
  * 
  * Definiciones centralizadas del protocolo de comunicación.
  * Contiene constantes, códigos de error, versiones y límites.
+ * 
+ * Este módulo es independiente y puede ser usado tanto por el cliente
+ * como por el servidor para mantener consistencia en el protocolo.
  */
 
 export const PROTOCOL = Object.freeze({
@@ -49,19 +52,4 @@ export const PROTOCOL = Object.freeze({
     MIN_CLIENT_VERSION: 1,
     MIN_SERVER_VERSION: 1,
   }),
-});
-
-export const SCOPES = Object.freeze({
-  // Scopes para comandos específicos
-  GET_OS_INFO: "getosinfo",
-  WATCH: "watch", 
-  GET_WATCHES: "getwatches",
-  PS: "ps",
-  OSCMD: "oscmd",
-  
-  // Scope administrativo
-  ADMIN: "admin",
-  
-  // Scope universal
-  ALL: "*",
 });

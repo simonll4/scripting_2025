@@ -8,8 +8,8 @@
 import Ajv from "ajv";
 
 // Importaciones directas de módulos business
-import * as getOsInfoModule from "./business/getosinfo/index.js";
-import * as quitModule from "./business/quit/index.js";
+import * as getOsInfoModule from "./commands/getosinfo/index.js";
+import * as quitModule from "./commands/quit/index.js";
 
 // Configuración de validador JSON Schema
 const ajv = new Ajv({ allErrors: true });
@@ -47,16 +47,6 @@ export function initializeModules() {
   // Registrar todos los módulos business
   registerModule(getOsInfoModule);
   registerModule(quitModule);
-
-  console.log(`✓ Module system ready: ${commands.size} commands loaded`);
-
-  // TODO: Return value not used anywhere - only kept for potential debugging
-  // Could be removed to simplify the function
-  return {
-    loaded: commands.size,
-    failed: [],
-    commands: Array.from(commands.keys()),
-  };
 }
 
 /**

@@ -1,5 +1,10 @@
-import { PROTOCOL, makeErr, makeRes, validateAuth } from "../../utils/index.js";
-import { validateToken } from "../../utils/index.js";
+import {
+  PROTOCOL,
+  makeErr,
+  makeRes,
+  ErrorTemplates,
+} from "../../../protocol/index.js";
+import { validateAuth, validateToken } from "../../utils/index.js";
 
 /**
  * Auth Guard Middleware
@@ -29,14 +34,7 @@ export class AuthGuard {
 
     // Si no hay sesión pero se requiere para este comando, denegar
     if (!session) {
-      context.reply(
-        makeErr(
-          message.id,
-          message.act,
-          PROTOCOL.ERROR_CODES.UNAUTHORIZED,
-          "Authentication required"
-        )
-      );
+      context.reply(ErrorTemplates.unauthorized(message.id, message.act));
       return false;
     }
 
@@ -53,15 +51,13 @@ export class AuthGuard {
 
     if (!validation.valid) {
       const errorDetails = validation.errors
-        ?.map(err => `${err.instancePath || '/'}: ${err.message}`)
+        ?.map((err) => `${err.instancePath || "/"}: ${err.message}`)
         .slice(0, 5);
 
       context.reply(
-        makeErr(
+        ErrorTemplates.badRequest(
           message.id,
           PROTOCOL.CORE_ACTS.AUTH,
-          PROTOCOL.ERROR_CODES.BAD_REQUEST,
-          "Invalid AUTH payload",
           errorDetails
         )
       );

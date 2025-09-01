@@ -1,5 +1,5 @@
-import { validatePayload } from "../../modules/index.js";
-import { PROTOCOL, makeErr } from "../../utils/index.js";
+import { validatePayload } from "../../business/index.js";
+import { PROTOCOL, makeErr, ErrorTemplates } from "../../../protocol/index.js";
 
 /**
  * Payload Validator Middleware
@@ -19,15 +19,7 @@ export class PayloadValidator {
         ?.map(err => `${err.instancePath || '/'}: ${err.message}`)
         .slice(0, 5);
 
-      context.reply(
-        makeErr(
-          message.id,
-          message.act,
-          PROTOCOL.ERROR_CODES.BAD_REQUEST,
-          "Invalid payload",
-          errorDetails
-        )
-      );
+      context.reply(ErrorTemplates.badRequest(message.id, message.act, errorDetails));
       return false;
     }
 

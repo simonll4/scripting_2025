@@ -1,12 +1,13 @@
-import { PROTOCOL, makeErr } from "../../utils/index.js";
+import { PROTOCOL, makeErr, ErrorTemplates } from "../../../protocol/index.js";
+import { logger } from "../../utils/logger.js";
 
 /**
  * Error Handler
  * Responsabilidad: Manejar errores no capturados en el pipeline
  */
 export class ErrorHandler {
-  handle(connection, error) {
-    console.error(`Pipeline error for connection ${connection.id}:`, {
+  handle(connection, error, messageId = null) {
+    logger.error(`Pipeline error for connection ${connection.id}`, {
       error: error.message,
       stack: error.stack,
       connectionId: connection.id,
@@ -14,16 +15,12 @@ export class ErrorHandler {
     });
 
     try {
-      const errorResponse = makeErr(
-        "0",
-        "PIPELINE",
-        PROTOCOL.ERROR_CODES.INTERNAL_ERROR,
-        "Internal pipeline error"
-      );
-      
+      // Usar messageId si está disponible, sino usar timestamp único
+      const errorId = messageId || `error_${Date.now()}`;
+      const errorResponse = ErrorTemplates.internalError(errorId, "PIPELINE");
       connection.send(errorResponse);
     } catch (sendError) {
-      console.error("Failed to send error response:", sendError);
+      logger.error("Failed to send error response", { sendError: sendError.message });
       connection.close();
     }
   }

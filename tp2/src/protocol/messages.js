@@ -2,18 +2,20 @@
  * ============================================================================
  * MESSAGE UTILITIES
  * ============================================================================
- * 
+ *
  * Helpers para construir y validar mensajes del protocolo.
- * Responsabilidades:
- * - Factory functions para mensajes estándar
- * - Validación de envelope de mensajes
- * - Manejo consistente de errores
+ * Este módulo proporciona funciones para crear mensajes estándar
+ * y validar el formato de los mensajes entrantes.
  */
 
 import { PROTOCOL } from "./protocol.js";
 
 /**
  * Construye mensaje de saludo inicial
+ * @param {Object} options - Opciones del saludo
+ * @param {number} options.maxFrame - Tamaño máximo de frame 
+ * @param {number} options.heartbeat - Intervalo de heartbeat
+ * @returns {Object} Mensaje de saludo
  */
 export function makeHello({ maxFrame, heartbeat }) {
   return {
@@ -25,19 +27,29 @@ export function makeHello({ maxFrame, heartbeat }) {
 
 /**
  * Construye mensaje de respuesta exitosa
+ * @param {string} id - ID del mensaje
+ * @param {string} action - Acción que se está respondiendo
+ * @param {*} data - Datos de respuesta
+ * @returns {Object} Mensaje de respuesta
  */
 export function makeResponse(id, action, data = null) {
-  return { 
-    v: PROTOCOL.VERSION, 
-    t: PROTOCOL.TYPES.RES, 
-    id, 
-    act: action, 
-    data 
+  return {
+    v: PROTOCOL.VERSION,
+    t: PROTOCOL.TYPES.RES,
+    id,
+    act: action,
+    data,
   };
 }
 
 /**
  * Construye mensaje de error
+ * @param {string} id - ID del mensaje
+ * @param {string} action - Acción que generó el error
+ * @param {string} code - Código de error
+ * @param {string} message - Mensaje de error
+ * @param {*} details - Detalles adicionales del error
+ * @returns {Object} Mensaje de error
  */
 export function makeError(id, action, code, message, details = null) {
   return {
@@ -53,6 +65,10 @@ export function makeError(id, action, code, message, details = null) {
 
 /**
  * Construye mensaje de request
+ * @param {string} id - ID del mensaje
+ * @param {string} action - Acción solicitada
+ * @param {*} data - Datos del request
+ * @returns {Object} Mensaje de request
  */
 export function makeRequest(id, action, data = null) {
   return {
@@ -105,26 +121,57 @@ export function validateMessageEnvelope(msg) {
  * Helper para crear errores estándar comunes
  */
 export const ErrorTemplates = {
-  unauthorized: (id, action) => 
-    makeError(id, action, PROTOCOL.ERROR_CODES.UNAUTHORIZED, "Authentication required"),
-    
-  forbidden: (id, action, requiredScope) => 
-    makeError(id, action, PROTOCOL.ERROR_CODES.FORBIDDEN, `Required scope: ${requiredScope}`),
-    
-  unknownAction: (id, action) => 
-    makeError(id, action, PROTOCOL.ERROR_CODES.UNKNOWN_ACTION, `Unknown action: ${action}`),
-    
-  badRequest: (id, action, details) => 
-    makeError(id, action, PROTOCOL.ERROR_CODES.BAD_REQUEST, "Invalid request", details),
-    
-  rateLimited: (id, action) => 
-    makeError(id, action, PROTOCOL.ERROR_CODES.RATE_LIMITED, "Rate limit exceeded"),
-    
-  internalError: (id, action) => 
-    makeError(id, action, PROTOCOL.ERROR_CODES.INTERNAL_ERROR, "Internal server error"),
+  unauthorized: (id, action) =>
+    makeError(
+      id,
+      action,
+      PROTOCOL.ERROR_CODES.UNAUTHORIZED,
+      "Authentication required"
+    ),
+
+  forbidden: (id, action, requiredScope) =>
+    makeError(
+      id,
+      action,
+      PROTOCOL.ERROR_CODES.FORBIDDEN,
+      `Required scope: ${requiredScope}`
+    ),
+
+  unknownAction: (id, action) =>
+    makeError(
+      id,
+      action,
+      PROTOCOL.ERROR_CODES.UNKNOWN_ACTION,
+      `Unknown action: ${action}`
+    ),
+
+  badRequest: (id, action, details) =>
+    makeError(
+      id,
+      action,
+      PROTOCOL.ERROR_CODES.BAD_REQUEST,
+      "Invalid request",
+      details
+    ),
+
+  rateLimited: (id, action) =>
+    makeError(
+      id,
+      action,
+      PROTOCOL.ERROR_CODES.RATE_LIMITED,
+      "Rate limit exceeded"
+    ),
+
+  internalError: (id, action) =>
+    makeError(
+      id,
+      action,
+      PROTOCOL.ERROR_CODES.INTERNAL_ERROR,
+      "Internal server error"
+    ),
 };
 
-// Backward compatibility - mantener nombres antiguos
+// Aliases para compatibilidad hacia atrás
 export const makeRes = makeResponse;
 export const makeErr = makeError;
 export const assertEnvelope = validateMessageEnvelope;

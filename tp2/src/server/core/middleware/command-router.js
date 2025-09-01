@@ -1,5 +1,7 @@
-import { getCommand } from "../../modules/index.js";
-import { hasScope, PROTOCOL, makeErr, makeRes } from "../../utils/index.js";
+import { getCommand } from "../../business/index.js";
+import { PROTOCOL, makeErr, makeRes, ErrorTemplates } from "../../../protocol/index.js";
+import { hasScope } from "../../utils/index.js";
+import { logger } from "../../utils/logger.js";
 
 /**
  * Command Router Middleware
@@ -16,27 +18,13 @@ export class CommandRouter {
     // 1. Resolver definición del comando
     const commandDef = getCommand(message.act);
     if (!commandDef) {
-      context.reply(
-        makeErr(
-          message.id,
-          message.act,
-          PROTOCOL.ERROR_CODES.UNKNOWN_ACTION,
-          `Command '${message.act}' not implemented`
-        )
-      );
+      context.reply(ErrorTemplates.unknownAction(message.id, message.act));
       return false;
     }
 
     // 2. Verificar autorización por scope
     if (commandDef.scope && !hasScope(session, commandDef.scope)) {
-      context.reply(
-        makeErr(
-          message.id,
-          message.act,
-          PROTOCOL.ERROR_CODES.FORBIDDEN,
-          `Required scope: ${commandDef.scope}`
-        )
-      );
+      context.reply(ErrorTemplates.forbidden(message.id, message.act, commandDef.scope));
       return false;
     }
 
@@ -61,16 +49,14 @@ export class CommandRouter {
       }
     } catch (error) {
       // 6. Manejar errores del handler
-      console.error(`Command ${message.act} failed:`, error);
+      logger.error(`Command ${message.act} failed`, {
+        error: error.message,
+        stack: error.stack,
+        messageId: message.id,
+        connectionId: connection.id
+      });
 
-      context.reply(
-        makeErr(
-          message.id,
-          message.act,
-          PROTOCOL.ERROR_CODES.INTERNAL_ERROR,
-          error.message || "Internal server error"
-        )
-      );
+      context.reply(ErrorTemplates.internalError(message.id, message.act));
     }
 
     return false; // Router siempre termina el pipeline

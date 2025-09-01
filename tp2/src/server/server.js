@@ -8,6 +8,7 @@
  */
 
 import { TCPServer } from "./core/server.js";
+import { logger } from "./utils/logger.js";
 
 /**
  * Bootstrap del servidor
@@ -19,20 +20,22 @@ async function main() {
 
     // Graceful shutdown
     process.on("SIGINT", async () => {
-      console.log("\nShutting down server...");
+      logger.info("Shutting down server...");
       await server.stop();
       process.exit(0);
     });
 
     process.on("SIGTERM", async () => {
-      console.log("\nReceived SIGTERM, shutting down...");
+      logger.info("Received SIGTERM, shutting down...");
       await server.stop();
       process.exit(0);
     });
   } catch (error) {
-    console.error("Failed to start server:", error);
+    logger.error("Failed to start server", { error: error.message, stack: error.stack });
     process.exit(1);
   }
 }
 
-main().catch(console.error);
+main().catch((error) => {
+  logger.error("Unhandled error in main", { error: error.message, stack: error.stack });
+});

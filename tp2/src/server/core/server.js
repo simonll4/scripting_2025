@@ -2,7 +2,8 @@ import net from "net";
 
 import { CONFIG } from "../config.js";
 import { initDB } from "../db/db.js";
-import { initializeModules } from "../modules/index.js";
+import { initializeModules } from "../business/index.js";
+import { logger } from "../utils/logger.js";
 
 import { ConnectionManager } from "./connection-manager.js";
 import { MessagePipeline } from "./message-pipeline.js";
@@ -40,7 +41,7 @@ export class TCPServer {
     });
 
     this.server.listen(CONFIG.PORT, () => {
-      console.log(`TCP Server listening on port ${CONFIG.PORT}`);
+      logger.info(`TCP Server listening on port ${CONFIG.PORT}`);
     });
 
     return this.server;
