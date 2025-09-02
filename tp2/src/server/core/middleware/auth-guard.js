@@ -1,25 +1,28 @@
 import {
   PROTOCOL,
-  makeErr,
-  makeRes,
+  makeResponse,
   ErrorTemplates,
 } from "../../../protocol/index.js";
 import { validateAuth, validateToken } from "../../utils/index.js";
 
 /**
- * Auth Guard Middleware
+ * ============================================================================
+ * AUTH GUARD MIDDLEWARE
+ * ============================================================================
  * Responsabilidades:
- * - Interceptar y procesar requests de AUTH
- * - Verificar que conexiones no-autenticadas solo puedan hacer AUTH
- * - Gestionar ciclo de vida de sesiones
- * - Validar payload AUTH usando helper directo (no módulo)
+ * - Procesar requests de AUTH (autenticación)
+ * - Bloquear requests no-autenticados (excepto AUTH)
+ * - Crear sesiones para tokens válidos
+ * - Gestionar ciclo de vida de autenticación
  */
 export class AuthGuard {
   constructor() {
-    // Inyección de dependencia del ConnectionManager para crear sesiones
     this.connectionManager = null;
   }
 
+  /**
+   * Inyecta el ConnectionManager para crear sesiones
+   */
   setConnectionManager(connectionManager) {
     this.connectionManager = connectionManager;
   }
@@ -27,71 +30,69 @@ export class AuthGuard {
   async process(context) {
     const { message, session } = context;
 
-    // Si es una request de AUTH, procesarla
+    // Procesar request de autenticación
     if (message.act === PROTOCOL.CORE_ACTS.AUTH) {
       return await this._processAuth(context);
     }
 
-    // Si no hay sesión pero se requiere para este comando, denegar
+    // Denegar acceso si no está autenticado
     if (!session) {
       context.reply(ErrorTemplates.unauthorized(message.id, message.act));
       return false;
     }
 
-    // Autenticado - continuar
+    // Usuario autenticado - continuar pipeline
     return true;
   }
 
+  // ====================================
+  // PRIVATE METHODS
+  // ====================================
+
+  /**
+   * Procesa una request de autenticación (AUTH)
+   */
   async _processAuth(context) {
     const { connection, message, db } = context;
     const authData = message.data ?? {};
 
-    // Validar payload de AUTH usando el helper directo
+    // Validar estructura del payload AUTH
     const validation = validateAuth(authData);
-
     if (!validation.valid) {
-      const errorDetails = validation.errors
+      const errors = validation.errors
         ?.map((err) => `${err.instancePath || "/"}: ${err.message}`)
-        .slice(0, 5);
+        .slice(0, 3); // Max 3 errores para evitar spam
 
       context.reply(
-        ErrorTemplates.badRequest(
-          message.id,
-          PROTOCOL.CORE_ACTS.AUTH,
-          errorDetails
-        )
+        ErrorTemplates.badRequest(message.id, PROTOCOL.CORE_ACTS.AUTH, errors)
       );
       return false;
     }
 
-    // Validar token
+    // Validar token contra la base de datos
     const tokenData = await validateToken(db, authData.token);
     if (!tokenData) {
-      const errorResponse = makeErr(
-        message.id,
-        PROTOCOL.CORE_ACTS.AUTH,
-        PROTOCOL.ERROR_CODES.INVALID_TOKEN,
-        "Invalid, expired, or revoked token"
+      context.reply(
+        ErrorTemplates.unauthorized(message.id, PROTOCOL.CORE_ACTS.AUTH)
       );
-      context.close(errorResponse);
+      context.close(); // Cerrar conexión por token inválido
       return false;
     }
 
-    // Crear sesión
+    // Crear sesión autenticada
     const session = this.connectionManager.createSession(connection, {
       tokenId: tokenData.tokenId,
       scopes: tokenData.scopes,
     });
 
-    // Responder exitosamente
+    // Responder con datos de sesión
     context.reply(
-      makeRes(message.id, PROTOCOL.CORE_ACTS.AUTH, {
+      makeResponse(message.id, PROTOCOL.CORE_ACTS.AUTH, {
         sessionId: session.id,
-        scopes: session.scopes,
       })
     );
 
-    // AUTH se procesa completamente aquí - no continuar el pipeline
+    // AUTH procesa completamente - no continuar pipeline
     return false;
   }
 }

@@ -1,6 +1,6 @@
-import { PROTOCOL } from "../../../../protocol/index.js";
+import { SERVER_COMMANDS } from "../constants.js";
 import command from "./command.js";
 import schema from "./schema.js";
 
-export const act = PROTOCOL.CORE_ACTS.GET_OS_INFO;
+export const act = SERVER_COMMANDS.GET_OS_INFO;
 export { command, schema };

@@ -1,4 +1,4 @@
-import { PROTOCOL, makeErr, ErrorTemplates } from "../../../protocol/index.js";
+import { ErrorTemplates } from "../../../protocol/index.js";
 import { logger } from "../../utils/logger.js";
 
 /**
@@ -11,7 +11,7 @@ export class ErrorHandler {
       error: error.message,
       stack: error.stack,
       connectionId: connection.id,
-      sessionId: connection.session?.id
+      sessionId: connection.session?.id,
     });
 
     try {
@@ -20,7 +20,9 @@ export class ErrorHandler {
       const errorResponse = ErrorTemplates.internalError(errorId, "PIPELINE");
       connection.send(errorResponse);
     } catch (sendError) {
-      logger.error("Failed to send error response", { sendError: sendError.message });
+      logger.error("Failed to send error response", {
+        sendError: sendError.message,
+      });
       connection.close();
     }
   }

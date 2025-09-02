@@ -10,8 +10,8 @@ import { MessagePipeline } from "./message-pipeline.js";
 import { HealthService } from "./health-service.js";
 
 /**
- * TCP Server Core - Responsabilidad: gestionar conexiones TCP.
- * Delega toda la lógica al pipeline de mensajes.
+ * TCP Server Core
+ * Gestiona conexiones TCP y delega procesamiento al pipeline de mensajes
  */
 export class TCPServer {
   constructor() {
@@ -23,16 +23,10 @@ export class TCPServer {
   }
 
   async start() {
-    // Inicializar base de datos
     this.db = await initDB();
-
-    // Inicializar sistema de módulos
     await initializeModules();
 
-    // Crear pipeline con dependencias inicializadas
     this.pipeline = new MessagePipeline(this.connectionManager, this.db);
-
-    // Inicializar y comenzar monitoring de salud
     this.healthService = new HealthService(this.connectionManager);
     this.healthService.startMonitoring();
 
@@ -51,7 +45,7 @@ export class TCPServer {
     if (this.healthService) {
       this.healthService.stopMonitoring();
     }
-    
+
     if (this.server) {
       this.server.close();
       this.connectionManager.closeAll();
@@ -59,22 +53,16 @@ export class TCPServer {
   }
 
   _handleConnection(socket) {
-    // Configuración TCP básica
-    socket.setNoDelay(true); // Nagle off
+    socket.setNoDelay(true);
     socket.setKeepAlive(true, CONFIG.HEARTBEAT_MS);
 
-    // Delegar manejo de conexión al ConnectionManager
     const connection = this.connectionManager.create(socket);
 
-    // Log nueva conexión
     this.healthService.logConnectionEstablished(connection);
-
-    // Configurar evento de cierre para logging
-    socket.on('close', () => {
+    socket.on("close", () => {
       this.healthService.logConnectionClosed(connection);
     });
 
-    // Configurar pipeline de procesamiento de mensajes
     this.pipeline.setup(connection);
   }
 }

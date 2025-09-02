@@ -1,31 +1,39 @@
 import { validatePayload } from "../../business/index.js";
-import { PROTOCOL, makeErr, ErrorTemplates } from "../../../protocol/index.js";
+import { PROTOCOL, ErrorTemplates } from "../../../protocol/index.js";
 
 /**
- * Payload Validator Middleware
- * Responsabilidad: Validar payloads usando esquemas AJV
+ * ============================================================================
+ * PAYLOAD VALIDATOR MIDDLEWARE
+ * ============================================================================
+ * Responsabilidad: Validar payloads de comandos usando esquemas AJV.
+ * Si no hay schema definido para un comando, se omite la validación.
  */
 export class PayloadValidator {
   async process(context) {
     const { message } = context;
-    const data = message.data ?? {};
 
-    // Validar usando el nuevo sistema
-    const validation = validatePayload(message.act, data);
-
-    // Si la validación falla, enviar error
-    if (!validation.valid) {
-      const errorDetails = validation.errors
-        ?.map(err => `${err.instancePath || '/'}: ${err.message}`)
-        .slice(0, 5);
-
-      context.reply(ErrorTemplates.badRequest(message.id, message.act, errorDetails));
-      return false;
+    // Saltear AUTH - ya validado en AuthGuard
+    if (message.act === PROTOCOL.CORE_ACTS.AUTH) {
+      return true;
     }
 
-    // Añadir data validada al context
+    const data = message.data ?? {};
+
+    // Validar payload contra schema del comando
+    const validation = validatePayload(message.act, data);
+
+    if (!validation.valid) {
+      const errors = validation.errors
+        ?.map((err) => `${err.instancePath || "/"}: ${err.message}`)
+        .slice(0, 3); // Limitar errores mostrados
+
+      context.reply(ErrorTemplates.badRequest(message.id, message.act, errors));
+      return false; // Cortar pipeline por validación fallida
+    }
+
+    // Agregar data validada al contexto para CommandRouter
     context.validatedData = data;
 
-    return true;
+    return true; // Continuar pipeline
   }
 }

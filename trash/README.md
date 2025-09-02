@@ -61,9 +61,13 @@ if (!hasScope(session, SCOPES.GET_OS_INFO)) { /* denied */ }
 
 ```javascript
 import { PROTOCOL, makeRequest } from "../protocol/index.js";
+import { SERVER_COMMANDS } from "../server/business/commands.js";
 
-// Crear request
-const request = makeRequest(id, PROTOCOL.CORE_ACTS.GET_OS_INFO, { seconds: 60 });
+// Crear request de autenticación (protocolo)
+const authRequest = makeRequest(id, PROTOCOL.CORE_ACTS.AUTH, { token: "mytoken" });
+
+// Crear request de comando del servidor
+const osInfoRequest = makeRequest(id, SERVER_COMMANDS.GET_OS_INFO, { seconds: 60 });
 ```
 
 ## Ventajas

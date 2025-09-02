@@ -32,4 +32,4 @@ export {
   MessageFramer,
   sendMessage,
   setupTransportPipeline,
-} from "./transport/transport.js";
+} from "../../protocol/index.js";

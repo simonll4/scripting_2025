@@ -1,13 +1,14 @@
 /**
  * ============================================================================
- * TRANSPORT UTILITIES
+ * SHARED TRANSPORT UTILITIES
  * ============================================================================
  *
- * Utilidades para el transporte de datos sobre TCP.
+ * Utilidades de transporte compartidas entre cliente y servidor.
  * Responsabilidades:
  * - Framing/Deframing de mensajes
  * - Serialización JSON
  * - Control de tamaño de frame
+ * - Pipeline de transporte neutro
  */
 
 import { Transform } from "stream";
@@ -94,7 +95,6 @@ export class MessageFramer extends Transform {
 
 /**
  * Helper para enviar mensajes de forma sencilla
- * Crea un framer automáticamente si no existe
  */
 export function sendMessage(socket, messageObject) {
   // Crear framer lazy si no existe
@@ -113,7 +113,6 @@ export function sendMessage(socket, messageObject) {
 export function setupTransportPipeline(socket, options = {}) {
   const deframer = new MessageDeframer(options);
 
-  // Pipeline: socket -> deframer -> JSON parser -> eventos
   socket.pipe(deframer);
 
   deframer.on("data", (payload) => {

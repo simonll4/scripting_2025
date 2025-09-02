@@ -8,14 +8,10 @@
  * y validar el formato de los mensajes entrantes.
  */
 
-import { PROTOCOL } from "./protocol.js";
+import { PROTOCOL } from "./constants.js";
 
 /**
  * Construye mensaje de saludo inicial
- * @param {Object} options - Opciones del saludo
- * @param {number} options.maxFrame - Tamaño máximo de frame 
- * @param {number} options.heartbeat - Intervalo de heartbeat
- * @returns {Object} Mensaje de saludo
  */
 export function makeHello({ maxFrame, heartbeat }) {
   return {
@@ -27,10 +23,6 @@ export function makeHello({ maxFrame, heartbeat }) {
 
 /**
  * Construye mensaje de respuesta exitosa
- * @param {string} id - ID del mensaje
- * @param {string} action - Acción que se está respondiendo
- * @param {*} data - Datos de respuesta
- * @returns {Object} Mensaje de respuesta
  */
 export function makeResponse(id, action, data = null) {
   return {
@@ -44,12 +36,6 @@ export function makeResponse(id, action, data = null) {
 
 /**
  * Construye mensaje de error
- * @param {string} id - ID del mensaje
- * @param {string} action - Acción que generó el error
- * @param {string} code - Código de error
- * @param {string} message - Mensaje de error
- * @param {*} details - Detalles adicionales del error
- * @returns {Object} Mensaje de error
  */
 export function makeError(id, action, code, message, details = null) {
   return {
@@ -65,10 +51,6 @@ export function makeError(id, action, code, message, details = null) {
 
 /**
  * Construye mensaje de request
- * @param {string} id - ID del mensaje
- * @param {string} action - Acción solicitada
- * @param {*} data - Datos del request
- * @returns {Object} Mensaje de request
  */
 export function makeRequest(id, action, data = null) {
   return {
@@ -82,8 +64,6 @@ export function makeRequest(id, action, data = null) {
 
 /**
  * Valida el envelope básico de un mensaje antes del procesamiento
- * @param {Object} msg - Mensaje a validar
- * @throws {Error} Si el mensaje no es válido
  */
 export function validateMessageEnvelope(msg) {
   if (!msg || typeof msg !== "object") {
@@ -104,7 +84,7 @@ export function validateMessageEnvelope(msg) {
     throw error;
   }
 
-  if (!msg.id || typeof msg.id !== "string") {
+ if (!msg.id || typeof msg.id !== "string") {
     const error = new Error("Missing or invalid message ID");
     error.code = PROTOCOL.ERROR_CODES.BAD_REQUEST;
     throw error;
@@ -171,7 +151,4 @@ export const ErrorTemplates = {
     ),
 };
 
-// Aliases para compatibilidad hacia atrás
-export const makeRes = makeResponse;
-export const makeErr = makeError;
-export const assertEnvelope = validateMessageEnvelope;
+

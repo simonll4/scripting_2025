@@ -1,35 +1,25 @@
-/**
- * SISTEMA DE MÓDULOS SIMPLIFICADO
- *
- * Importa y registra comandos de negocio.
- * Solo incluye lo que realmente se usa.
- */
-
 import Ajv from "ajv";
 
-// Importaciones directas de módulos business
 import * as getOsInfoModule from "./commands/getosinfo/index.js";
 import * as quitModule from "./commands/quit/index.js";
+import * as watchModule from "./commands/watch/index.js";
+import * as getWatchesModule from "./commands/getwatches/index.js";
+import * as psModule from "./commands/ps/index.js";
+import * as osCmdModule from "./commands/oscmd/index.js";
 
-// Configuración de validador JSON Schema
+import { startSampler } from "./metrics/sampler.js";
+
 const ajv = new Ajv({ allErrors: true });
 
-// Registry de comandos y validadores
-const commands = new Map();
-const validators = new Map();
+const commands = new Map(); // act -> command handler
+const validators = new Map(); // act -> ajv validator
 
-/**
- * Registra un módulo en el sistema
- */
 function registerModule(module) {
   const { act, command, schema } = module;
 
   if (!act || !command) {
     throw new Error(
-      `Module missing required exports: ${JSON.stringify({
-        act: !!act,
-        command: !!command,
-      })}`
+      `Module missing exports: act=${!!act}, command=${!!command}`
     );
   }
 
@@ -40,24 +30,23 @@ function registerModule(module) {
   }
 }
 
-/**
- * Inicializa el sistema de módulos
- */
 export function initializeModules() {
-  // Registrar todos los módulos business
-  registerModule(getOsInfoModule);
-  registerModule(quitModule);
+  [
+    getOsInfoModule,
+    quitModule,
+    watchModule,
+    getWatchesModule,
+    psModule,
+    osCmdModule,
+  ].forEach(registerModule); // Registrar todos los módulos de comandos
+  startSampler(); // Iniciar muestreo de métricas de sistema
 }
 
-/**
- * API pública del sistema de módulos
- */
 export const getCommand = (act) => commands.get(act);
 
 export const validatePayload = (act, payload) => {
   const validator = validators.get(act);
   if (!validator) return { valid: true };
-
   const valid = validator(payload);
   return { valid, errors: valid ? null : validator.errors };
 };
