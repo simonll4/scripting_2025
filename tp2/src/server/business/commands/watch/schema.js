@@ -3,7 +3,7 @@ export default {
   additionalProperties: false,
   properties: {
     path: { type: "string", minLength: 1 },
-    durationSeconds: {
+    time: {
       type: "integer",
       minimum: 1,
       maximum: 3600,

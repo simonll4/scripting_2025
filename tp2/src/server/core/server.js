@@ -9,6 +9,8 @@ import { ConnectionManager } from "./connection-manager.js";
 import { MessagePipeline } from "./message-pipeline.js";
 import { HealthService } from "./health-service.js";
 
+import { rehydrateActiveWatches } from "../business/services/watchRuntime.js";
+
 /**
  * TCP Server Core
  * Gestiona conexiones TCP y delega procesamiento al pipeline de mensajes
@@ -24,6 +26,9 @@ export class TCPServer {
 
   async start() {
     this.db = await initDB();
+
+    await rehydrateActiveWatches(this.db);
+
     await initializeModules();
 
     this.pipeline = new MessagePipeline(this.connectionManager, this.db);

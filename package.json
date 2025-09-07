@@ -4,6 +4,7 @@
     "ajv": "^8.17.1",
     "ajv-formats": "^3.0.1",
     "argon2": "^0.44.0",
+    "chokidar": "^4.0.3",
     "node-fetch": "^3.3.2",
     "sqlite": "^5.1.1",
     "sqlite3": "^5.1.7",

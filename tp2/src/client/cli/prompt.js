@@ -111,10 +111,43 @@ Autenticación OK | Escriba 'help' para ver comandos.
   _displayServerResponse(message) {
     const data = message.data;
 
-    if (data && typeof data === "object") {
-      console.log(JSON.stringify(data, null, 2));
+    // Formato especial para respuestas de oscmd
+    if (data && typeof data === "object" && 
+        ('ok' in data || 'exitCode' in data || 'stdout' in data || 'stderr' in data)) {
+      
+      if (data.error) {
+        console.log(`❌ Error: ${data.error}`);
+        if (data.message) console.log(`   ${data.message}`);
+      } else if (data.ok === false) {
+        console.log(`❌ Command failed (exit code: ${data.exitCode || 'unknown'})`);
+        if (data.timedOut) console.log(`   ⏱️  Command timed out`);
+        if (data.stderr) {
+          console.log(`   stderr: ${data.stderr.trim()}`);
+        }
+        if (data.stdout) {
+          console.log(`   stdout: ${data.stdout.trim()}`);
+        }
+      } else if (data.ok === true) {
+        console.log(`✅ Command executed successfully (exit code: ${data.exitCode})`);
+        if (data.stdout) {
+          console.log(''); // Línea en blanco
+          console.log(data.stdout.trim());
+        }
+        if (data.stderr && data.stderr.trim()) {
+          console.log(''); // Línea en blanco
+          console.log(`stderr: ${data.stderr.trim()}`);
+        }
+      } else {
+        // Fallback para otras respuestas estructuradas
+        console.log(JSON.stringify(data, null, 2));
+      }
     } else {
-      console.log(data ?? "(sin datos)");
+      // Para otros tipos de respuestas
+      if (data && typeof data === "object") {
+        console.log(JSON.stringify(data, null, 2));
+      } else {
+        console.log(data ?? "(sin datos)");
+      }
     }
 
     console.log(""); // Línea en blanco para separación

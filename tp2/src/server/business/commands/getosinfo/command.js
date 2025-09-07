@@ -1,5 +1,5 @@
 import { SCOPES } from "../../../utils/index.js";
-import { getLastSeconds } from "../../metrics/sampler.js";
+import { getLastSeconds } from "../../services/sampler.js";
 
 export default {
   scope: SCOPES.GET_OS_INFO,

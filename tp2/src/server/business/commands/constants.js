@@ -5,7 +5,6 @@
  *
  * Definiciones de los comandos específicos que soporta el servidor.
  * Estos comandos son implementaciones del business logic del servidor,
- * no parte del protocolo de comunicación base.
  */
 
 export const SERVER_COMMANDS = Object.freeze({

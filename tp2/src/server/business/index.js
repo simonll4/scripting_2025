@@ -7,7 +7,7 @@ import * as getWatchesModule from "./commands/getwatches/index.js";
 import * as psModule from "./commands/ps/index.js";
 import * as osCmdModule from "./commands/oscmd/index.js";
 
-import { startSampler } from "./metrics/sampler.js";
+import { startSampler } from "./services/sampler.js";
 
 const ajv = new Ajv({ allErrors: true });
 

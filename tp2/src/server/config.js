@@ -3,6 +3,7 @@
  * Centraliza toda la configuración del servidor
  */
 import { PROTOCOL } from "../protocol/index.js";
+import { OS_CMD_POLICY } from "./business/commands/oscmd/config.js";
 
 export const CONFIG = {
   // --- Core Server Settings ---
@@ -21,13 +22,7 @@ export const CONFIG = {
     capacity: parseInt(process.env.RL_SOCKET_CAPACITY || "30", 10),
     refillPerSec: parseInt(process.env.RL_SOCKET_REFILL || "10", 10),
   },
-
-  // --- Development & Debug ---
-  NODE_ENV: process.env.NODE_ENV || "development",
-  LOG_LEVEL: process.env.LOG_LEVEL || "info",
-  DEBUG_PIPELINE: process.env.DEBUG_PIPELINE === "true",
-
-  // --- Connection Limits ---
-  MAX_CONNECTIONS: parseInt(process.env.MAX_CONNECTIONS || "1000", 10),
-  CONNECTION_TIMEOUT: parseInt(process.env.CONNECTION_TIMEOUT || "300000", 10), // 5min
 };
+
+// Export command-specific configurations
+export { OS_CMD_POLICY };
