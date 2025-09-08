@@ -1,5 +1,5 @@
 import { validatePayload } from "../../business/index.js";
-import { PROTOCOL, ErrorTemplates } from "../../../protocol/index.js";
+import { PROTOCOL, makeError } from "../../../protocol/index.js";
 
 /**
  * ============================================================================
@@ -10,7 +10,7 @@ import { PROTOCOL, ErrorTemplates } from "../../../protocol/index.js";
  */
 export class PayloadValidator {
   async process(context) {
-    const { message } = context;
+    const { message, startedAt } = context;
 
     // Saltear AUTH - ya validado en AuthGuard
     if (message.act === PROTOCOL.CORE_ACTS.AUTH) {
@@ -27,7 +27,15 @@ export class PayloadValidator {
         ?.map((err) => `${err.instancePath || "/"}: ${err.message}`)
         .slice(0, 3); // Limitar errores mostrados
 
-      context.reply(ErrorTemplates.badRequest(message.id, message.act, errors));
+      context.reply(
+        makeError(
+          message.id,
+          message.act,
+          PROTOCOL.ERROR_CODES.BAD_REQUEST,
+          "Invalid request payload",
+          { details: errors, startedAt }
+        )
+      );
       return false; // Cortar pipeline por validación fallida
     }
 

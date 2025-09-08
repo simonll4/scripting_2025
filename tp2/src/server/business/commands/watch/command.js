@@ -1,4 +1,4 @@
-import { SCOPES } from "../../../utils/index.js";
+import { SCOPES } from "../../../security/index.js";
 import { startNewWatch } from "../../services/watchRuntime.js";
 
 export default {

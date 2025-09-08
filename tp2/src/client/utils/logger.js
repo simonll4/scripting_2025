@@ -17,4 +17,11 @@ export const logger = {
     console.error(`[${ts()}] ${msg}`);
     if (data) console.error("   ", JSON.stringify(data, null, 2));
   },
+  debug(msg, data) {
+    // Debug logging - controlled via environment variables
+    if (process.env.DEBUG || process.env.NODE_ENV === 'development') {
+      console.debug(`[${ts()}] DEBUG: ${msg}`);
+      if (data) console.debug("   ", JSON.stringify(data, null, 2));
+    }
+  },
 };

@@ -1,5 +1,5 @@
 import Ajv from 'ajv';
-import { authSchema } from './auth-schema.js';
+import { authSchema } from './schema.js';
 
 // Instancia de AJV para validación de schemas
 const ajv = new Ajv({ allErrors: true });

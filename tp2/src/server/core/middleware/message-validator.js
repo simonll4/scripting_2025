@@ -1,39 +1,43 @@
 import {
-  validateMessageEnvelope,
-  ErrorTemplates,
+  validateRequestEnvelope,
+  makeError,
+  PROTOCOL,
 } from "../../../protocol/index.js";
 
 /**
  * ============================================================================
- * MESSAGE VALIDATOR MIDDLEWARE
+ * MESSAGE VALIDATOR
  * ============================================================================
  * Responsabilidad: Validar que el mensaje tenga la estructura correcta
- * del protocolo (envelope básico: id, act, data, etc.)
  */
 export class MessageValidator {
   async process(context) {
-    const { message } = context;
+    const { message, startedAt } = context;
 
     // Verificar que existe el mensaje
     if (!message) {
-      const errorResponse = ErrorTemplates.badRequest(
-        "0", 
-        "VALIDATE", 
-        "No message received"
+      const errorResponse = makeError(
+        "0",
+        "VALIDATE",
+        PROTOCOL.ERROR_CODES.BAD_REQUEST,
+        "No message received",
+        { startedAt }
       );
       context.reply(errorResponse);
       return false;
     }
 
-    // Validar envelope del protocolo (id, act, data structure)
+    // Validar envelope del protocolo 
     try {
-      validateMessageEnvelope(message);
+      validateRequestEnvelope(message);
       return true; // Continuar al siguiente middleware
     } catch (error) {
-      const errorResponse = ErrorTemplates.badRequest(
+      const errorResponse = makeError(
         message.id || "0",
-        "VALIDATE",
-        error.message || "Invalid message structure"
+        message.act || "VALIDATE",
+        PROTOCOL.ERROR_CODES.BAD_REQUEST,
+        error.message || "Invalid message structure",
+        { startedAt }
       );
       context.reply(errorResponse);
       return false; // Cortar pipeline

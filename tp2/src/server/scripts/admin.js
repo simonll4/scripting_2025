@@ -3,7 +3,7 @@ import { open } from "sqlite";
 import fs from "fs";
 import crypto from "crypto";
 import argon2 from "argon2";
-import { ROLE_SCOPES } from "../utils/auth/scopes.js";
+import { ROLE_SCOPES } from "../security/scopes.js";
 
 const DB_PATH = "../../../db/db.sqlite";
 

@@ -1,98 +1,163 @@
-import {
-  PROTOCOL,
-  makeResponse,
-  ErrorTemplates,
-} from "../../../protocol/index.js";
-import { validateAuth, validateToken } from "../../utils/index.js";
+import { PROTOCOL, makeResponse, makeError } from "../../../protocol/index.js";
+import { validateAuth, validateToken } from "../../security/index.js";
 
 /**
  * ============================================================================
- * AUTH GUARD MIDDLEWARE
+ * AUTH GUARD
  * ============================================================================
  * Responsabilidades:
- * - Procesar requests de AUTH (autenticación)
- * - Bloquear requests no-autenticados (excepto AUTH)
- * - Crear sesiones para tokens válidos
- * - Gestionar ciclo de vida de autenticación
+ * - Procesar requests de AUTH (autenticación inicial).
+ * - Bloquear requests no autenticadas (excepto AUTH).
+ * - Crear sesiones para tokens válidos.
  */
 export class AuthGuard {
   constructor() {
     this.connectionManager = null;
   }
 
-  /**
-   * Inyecta el ConnectionManager para crear sesiones
-   */
+  // Inyectar ConnectionManager para poder crear sesiones
   setConnectionManager(connectionManager) {
     this.connectionManager = connectionManager;
   }
 
+  /**
+   * Entrada principal del middleware
+   */
   async process(context) {
-    const { message, session } = context;
+    const { message, session, startedAt } = context;
 
-    // Procesar request de autenticación
+    // --- Caso 1: request de AUTH ---
     if (message.act === PROTOCOL.CORE_ACTS.AUTH) {
       return await this._processAuth(context);
     }
 
-    // Denegar acceso si no está autenticado
+    // --- Caso 2: request normal sin sesión → denegar ---
     if (!session) {
-      context.reply(ErrorTemplates.unauthorized(message.id, message.act));
+      context.reply(
+        makeError(
+          message.id,
+          message.act,
+          PROTOCOL.ERROR_CODES.UNAUTHORIZED,
+          "Authentication required",
+          { startedAt }
+        )
+      );
       return false;
     }
 
-    // Usuario autenticado - continuar pipeline
+    // --- Caso 3: autenticado → continuar pipeline ---
     return true;
   }
 
-  // ====================================
+  // ==========================================================================
   // PRIVATE METHODS
-  // ====================================
+  // ==========================================================================
 
   /**
-   * Procesa una request de autenticación (AUTH)
+   * Procesa específicamente una request de AUTH
    */
   async _processAuth(context) {
-    const { connection, message, db } = context;
+    const { connection, message, db, startedAt } = context;
     const authData = message.data ?? {};
 
-    // Validar estructura del payload AUTH
+    // 1) Validar payload con schema AJV
     const validation = validateAuth(authData);
     if (!validation.valid) {
       const errors = validation.errors
         ?.map((err) => `${err.instancePath || "/"}: ${err.message}`)
-        .slice(0, 3); // Max 3 errores para evitar spam
+        .slice(0, 3); // limitar ruido
 
       context.reply(
-        ErrorTemplates.badRequest(message.id, PROTOCOL.CORE_ACTS.AUTH, errors)
+        makeError(
+          message.id,
+          PROTOCOL.CORE_ACTS.AUTH,
+          PROTOCOL.ERROR_CODES.BAD_REQUEST,
+          "Invalid AUTH payload",
+          { details: errors, startedAt }
+        )
       );
       return false;
     }
 
-    // Validar token contra la base de datos
-    const tokenData = await validateToken(db, authData.token);
-    if (!tokenData) {
+    // 2) Validar token contra la DB
+    let tokenResult = null;
+    try {
+      tokenResult = await validateToken(db, authData.token);
+    } catch {
+      // Error interno al consultar DB
       context.reply(
-        ErrorTemplates.unauthorized(message.id, PROTOCOL.CORE_ACTS.AUTH)
+        makeError(
+          message.id,
+          PROTOCOL.CORE_ACTS.AUTH,
+          PROTOCOL.ERROR_CODES.INTERNAL_ERROR,
+          "Auth backend error",
+          { startedAt }
+        )
       );
-      context.close(); // Cerrar conexión por token inválido
       return false;
     }
 
-    // Crear sesión autenticada
+    // --- Validar resultado del token ---
+    if (!tokenResult.ok) {
+      // Mapear razones específicas a códigos de error apropiados
+      switch (tokenResult.reason) {
+        case "expired":
+          context.reply(
+            makeError(
+              message.id,
+              PROTOCOL.CORE_ACTS.AUTH,
+              PROTOCOL.ERROR_CODES.TOKEN_EXPIRED,
+              "Token expired",
+              {
+                retryAfterMs: 3600000, // 1 hora por defecto
+                startedAt,
+              }
+            )
+          );
+          break;
+
+        case "not_found":
+        case "revoked":
+        case "invalid_secret":
+        default:
+          context.reply(
+            makeError(
+              message.id,
+              PROTOCOL.CORE_ACTS.AUTH,
+              PROTOCOL.ERROR_CODES.INVALID_TOKEN,
+              "Invalid token",
+              { startedAt }
+            )
+          );
+          break;
+      }
+      return false;
+    }
+
+    // 3) Crear sesión autenticada asociada a la conexión
     const session = this.connectionManager.createSession(connection, {
-      tokenId: tokenData.tokenId,
-      scopes: tokenData.scopes,
+      tokenId: tokenResult.tokenId,
+      scopes: tokenResult.scopes || [],
+      expiresAt:
+        typeof tokenResult.expiresAt === "number"
+          ? tokenResult.expiresAt
+          : undefined,
     });
 
-    // Responder con datos de sesión
+    // 4) Responder OK → AUTH consume la request
     context.reply(
-      makeResponse(message.id, PROTOCOL.CORE_ACTS.AUTH, {
-        sessionId: session.id,
-      })
+      makeResponse(
+        message.id,
+        PROTOCOL.CORE_ACTS.AUTH,
+        {
+          sessionId: session.id,
+          scopes: session.scopes,
+          expiresAt: session.expiresAt ?? null,
+        },
+        startedAt
+      )
     );
 
-    // AUTH procesa completamente - no continuar pipeline
-    return false;
+    return false; // cortamos el pipeline (ya respondimos)
   }
 }

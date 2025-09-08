@@ -7,7 +7,7 @@ import * as getWatchesModule from "./commands/getwatches/index.js";
 import * as psModule from "./commands/ps/index.js";
 import * as osCmdModule from "./commands/oscmd/index.js";
 
-import { startSampler } from "./services/sampler.js";
+import { startSampler, setDatabase } from "./services/sampler.js";
 
 const ajv = new Ajv({ allErrors: true });
 
@@ -30,7 +30,7 @@ function registerModule(module) {
   }
 }
 
-export function initializeModules() {
+export function initializeModules(db) {
   [
     getOsInfoModule,
     quitModule,
@@ -39,6 +39,9 @@ export function initializeModules() {
     psModule,
     osCmdModule,
   ].forEach(registerModule); // Registrar todos los módulos de comandos
+
+  // Configurar el sampler con la instancia de DB
+  setDatabase(db);
   startSampler(); // Iniciar muestreo de métricas de sistema
 }
 

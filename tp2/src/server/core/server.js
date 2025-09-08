@@ -25,11 +25,14 @@ export class TCPServer {
   }
 
   async start() {
+    // Inicializar DB
     this.db = await initDB();
 
+    // Restaurar estado de watches activos
     await rehydrateActiveWatches(this.db);
 
-    await initializeModules();
+    // Inicializar módulos de negocio
+    await initializeModules(this.db);
 
     this.pipeline = new MessagePipeline(this.connectionManager, this.db);
     this.healthService = new HealthService(this.connectionManager);
@@ -37,6 +40,10 @@ export class TCPServer {
 
     this.server = net.createServer((socket) => {
       this._handleConnection(socket);
+    });
+
+    this.server.on("error", (err) => {
+      logger.error("TCP Server error", { err });
     });
 
     this.server.listen(CONFIG.PORT, () => {
@@ -47,19 +54,46 @@ export class TCPServer {
   }
 
   async stop() {
+    logger.info("Server shutdown initiated");
+
     if (this.healthService) {
       this.healthService.stopMonitoring();
     }
 
     if (this.server) {
+      // Enviar SRV_CLOSE a todas las conexiones antes de cerrar
+      this.connectionManager.broadcastServerClose({ reason: "shutdown" });
+
+      // Pequeño delay para asegurar que los mensajes SRV_CLOSE se envíen
+      // antes de cerrar las conexiones (flush de buffers TCP)
+      logger.debug("Waiting for SRV_CLOSE messages to flush...");
+      await new Promise((resolve) => setTimeout(resolve, 50)); // 50ms
+
       this.server.close();
       this.connectionManager.closeAll();
     }
+
+    logger.info("Server shutdown completed");
   }
 
   _handleConnection(socket) {
-    socket.setNoDelay(true);
+    // Capa TCP
+    socket.setNoDelay(true); // desactivar Nagle
     socket.setKeepAlive(true, CONFIG.HEARTBEAT_MS);
+
+    // Observabilidad del socket
+    socket.on("error", (err) => {
+      // Errores del socket
+      logger.warn("Socket error", { err });
+    });
+
+    // Si el deframer / pipeline de transporte emite `transport-error`,
+    // cerramos de inmediato para evitar estados inconsistentes.
+    socket.on("transport-error", (err) => {
+      logger.warn("Transport error — closing socket defensively", { err });
+      // destroy() aborta ambos sentidos y evita que quede zombie
+      socket.destroy(err);
+    });
 
     const connection = this.connectionManager.create(socket);
 
@@ -68,6 +102,8 @@ export class TCPServer {
       this.healthService.logConnectionClosed(connection);
     });
 
+    // El pipeline configura framing/deframing, validación y dispatch,
+    // además de heartbeats de aplicación, MAX_IN_FLIGHT y deadlines.
     this.pipeline.setup(connection);
   }
 }

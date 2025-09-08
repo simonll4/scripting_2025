@@ -2,8 +2,6 @@
  * ============================================================================
  * TCP SERVER - MAIN ENTRY POINT
  * ============================================================================
- * Flujo de procesamiento:
- * TCP Socket → ConnectionManager → MessagePipeline → Middlewares → Commands
  */
 
 import { TCPServer } from "./core/server.js";

@@ -1,6 +1,7 @@
 import crypto from "crypto";
+
 import { setupTransportPipeline, sendMessage } from "../utils/index.js";
-import { makeHello } from "../../protocol/index.js";
+import { PROTOCOL } from "../../protocol/index.js";
 import { CONFIG } from "../config.js";
 import { logger } from "../utils/logger.js";
 
@@ -43,13 +44,7 @@ export class ConnectionManager {
     // Registrar conexión en el mapa
     this.connections.set(connectionId, connection);
 
-    // Enviar mensaje HELLO inicial con configuración del servidor
-    connection.send(
-      makeHello({
-        maxFrame: CONFIG.MAX_FRAME,
-        heartbeat: CONFIG.HEARTBEAT_MS,
-      })
-    );
+    // HELLO message is handled by message pipeline, not here
 
     logger.debug(`Connection created`, {
       connectionId,
@@ -78,6 +73,36 @@ export class ConnectionManager {
     connection.setSession(session);
 
     return session;
+  }
+
+  /**
+   * Envía mensaje SRV_CLOSE a todas las conexiones
+   */
+  broadcastServerClose(data = {}) {
+    const srvCloseMessage = {
+      v: PROTOCOL.VERSION,
+      t: PROTOCOL.TYPES.SRV_CLOSE,
+      data: {
+        reason: "shutdown",
+        timestamp: Date.now(),
+        ...data,
+      },
+    };
+
+    logger.info(
+      `Broadcasting SRV_CLOSE to ${this.connections.size} connections`
+    );
+
+    for (const connection of this.connections.values()) {
+      try {
+        connection.send(srvCloseMessage);
+      } catch (error) {
+        logger.warn("Failed to send SRV_CLOSE", {
+          connectionId: connection.id,
+          error: error.message,
+        });
+      }
+    }
   }
 
   /**

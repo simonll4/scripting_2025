@@ -6,7 +6,13 @@ export {
   makeResponse,
   makeError,
   makeRequest,
-  validateMessageEnvelope,
+  makePing,
+  makePong,
+  validateRequestEnvelope,
+  isResponse,
+  isError,
+  isPing,
+  isPong,
   ErrorTemplates,
 } from "./modules/messages.js";
 

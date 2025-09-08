@@ -1,4 +1,4 @@
-import { SCOPES } from "../../../utils/index.js";
+import { SCOPES } from "../../../security/index.js";
 import { getLastSeconds } from "../../services/sampler.js";
 
 export default {
@@ -8,7 +8,7 @@ export default {
     const seconds = Number(data?.seconds ?? 60);
     const clamped = Math.min(Math.max(seconds, 1), 3600);
 
-    const raw = getLastSeconds(clamped);
+    const raw = await getLastSeconds(clamped);
 
     // Mapeo de respuesta:
     // - cpu: % de uso de CPU

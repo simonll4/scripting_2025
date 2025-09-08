@@ -1,5 +1,10 @@
 import { createSocket } from "./socket.js";
-import { PROTOCOL, makeRequest, sendMessage } from "../../protocol/index.js";
+import {
+  PROTOCOL,
+  makeRequest,
+  makePong,
+  sendMessage,
+} from "../../protocol/index.js";
 import { logger } from "../utils/logger.js";
 
 /**
@@ -18,9 +23,12 @@ export class Client {
       sessionId: null,
     };
 
-    // Manejo de requests pendientes
+    // Manejo de requests pendientes y control de flujo
     this.ids = 1;
     this.pending = new Map(); // id -> { action, timer }
+    this.queue = []; // [{ action, data, resolve, reject }]
+    this.inFlight = 0;
+    this.maxInFlight = PROTOCOL.LIMITS.MAX_IN_FLIGHT;
 
     // Callbacks públicos (configurables desde afuera)
     this.onAuthenticated = null;
@@ -34,13 +42,14 @@ export class Client {
   // ============================================================================
 
   connect() {
-    const { host, port, keepAliveMs } = this.cfg;
+    const { host, port, keepAliveMs, connectTimeoutMs } = this.cfg;
 
     // Crear socket y configurar transporte
     const { socket, reconfigureTransport } = createSocket({
       host,
       port,
       keepAliveMs,
+      connectTimeoutMs,
     });
 
     this.socket = socket;
@@ -61,6 +70,10 @@ export class Client {
     }
   }
 
+  /**
+   * Encola (si es necesario) y envía un request respetando MAX_IN_FLIGHT.
+   * Devuelve el id del request (o null si no se pudo encolar).
+   */
   send(action, data = null) {
     // Validaciones de estado
     if (!this.state.connected) {
@@ -73,26 +86,20 @@ export class Client {
       return null;
     }
 
-    // Crear request
     const id = `c${this.ids++}`;
-    const request = makeRequest(id, action, data);
+    const item = { id, action, data };
 
-    try {
-      // Configurar timeout para el request
-      this._setupRequestTimeout(id, action);
-
-      // Enviar mensaje
-      sendMessage(this.socket, request);
-
-      return id;
-    } catch (error) {
-      this.pending.delete(id);
-      logger.error("Error enviando mensaje", {
-        action,
-        error: error.message,
-      });
-      return null;
+    // Si hay capacidad, se envía de inmediato; si no, a la cola FIFO
+    if (this.inFlight < this.maxInFlight) {
+      this._dispatch(item);
+    } else {
+      this.queue.push(item);
+      logger.debug?.(
+        `Encolado ${id}; inFlight=${this.inFlight}/${this.maxInFlight}`
+      );
     }
+
+    return id;
   }
 
   // ============================================================================
@@ -123,6 +130,8 @@ export class Client {
     // Errores de transporte
     socket.on("transport-error", (error) => {
       logger.error("Error de transporte", { error: error.message });
+      // Ante error de transporte, el socket se destruye desde el transport layer
+      // Aquí sólo dejamos trazabilidad adicional si hiciera falta.
     });
 
     // Errores generales del socket
@@ -136,11 +145,23 @@ export class Client {
 
   _setupRequestTimeout(id, action) {
     const timer = setTimeout(() => {
-      this.pending.delete(id);
-      logger.error(`Timeout esperando respuesta`, {
+      // Timeout por request: liberamos slot y avisamos
+      this._onReplySettled(id);
+      const errMsg = `Timeout esperando respuesta`;
+      logger.error(errMsg, {
         requestId: id,
         action,
         timeout: this.cfg.requestTimeoutMs,
+      });
+      // Callback de error de capa aplicación
+      this.onError?.({
+        v: PROTOCOL.VERSION,
+        t: PROTOCOL.TYPES.ERR,
+        id,
+        act: action,
+        ok: false,
+        code: PROTOCOL.ERROR_CODES.CONNECTION,
+        msg: errMsg,
       });
     }, this.cfg.requestTimeoutMs);
 
@@ -158,8 +179,18 @@ export class Client {
       return;
     }
 
+    // PING/PONG del servidor
+    if (msg.t === PROTOCOL.TYPES.PING) {
+      sendMessage(this.socket, makePong());
+      return;
+    }
+    if (msg.t === PROTOCOL.TYPES.PONG) {
+      // noop: sólo confirmación de latido
+      return;
+    }
+
     // Limpiar timeout si es respuesta a un request pendiente
-    this._clearPendingRequest(msg.id);
+    if (msg.id) this._onReplySettled(msg.id);
 
     // Procesar según tipo de mensaje
     switch (msg.t) {
@@ -172,24 +203,39 @@ export class Client {
       case PROTOCOL.TYPES.ERR:
         this._handleError(msg);
         break;
+      case PROTOCOL.TYPES.SRV_CLOSE:
+        // cierre controlado desde el servidor
+        logger.warn(
+          `Servidor cerró la conexión: ${msg?.data?.reason || "sin razón"}`
+        );
+        this.disconnect();
+        break;
       default:
         logger.error(`Tipo de mensaje desconocido: ${msg.t}`);
     }
   }
 
   _handleHello(msg) {
-    const { heartbeat, maxFrame } = msg?.data || {};
+    const { maxFrame, maxInFlight, heartbeatMs } = msg?.data || {};
 
-    // Configurar heartbeat si el servidor lo especifica
-    if (typeof heartbeat === "number" && heartbeat > 0) {
-      this.socket.setKeepAlive(true, heartbeat);
-      logger.info(`Heartbeat configurado: ${heartbeat}ms`);
+    // Configurar heartbeat TCP si el servidor lo especifica
+    if (typeof heartbeatMs === "number" && heartbeatMs > 0) {
+      this.socket.setKeepAlive(true, heartbeatMs);
+      logger.info(`Heartbeat TCP configurado: ${heartbeatMs}ms`);
     }
 
     // Reconfigurar maxFrame si es diferente al default
     if (typeof maxFrame === "number" && maxFrame > 0) {
       this.reconfigureTransport(maxFrame);
     }
+
+    // Actualizar maxInFlight si el servidor lo informa
+    if (typeof maxInFlight === "number" && maxInFlight > 0) {
+      this.maxInFlight = maxInFlight;
+      logger.info(`MAX_IN_FLIGHT (server hint): ${this.maxInFlight}`);
+    }
+
+    // (Opcional) podrías usar heartbeatMs para timers propios si quisieras.
 
     // Iniciar autenticación automáticamente
     logger.info("HELLO recibido. Iniciando autenticación...");
@@ -205,6 +251,9 @@ export class Client {
 
     // Respuesta genérica de comando
     this.onResponse?.(msg);
+
+    // Intentar despachar más pendientes si hay slots libres
+    this._flushQueue();
   }
 
   _handleAuthResponse(msg) {
@@ -220,8 +269,11 @@ export class Client {
     this.state.authenticated = true;
     this.state.sessionId = sessionId;
 
-    logger.ok(`Autenticado exitosamente. Session ID: ${sessionId}`);
+    logger.ok?.(`Autenticado exitosamente. Session ID: ${sessionId}`);
     this.onAuthenticated?.(sessionId);
+
+    // Tras autenticación, intentar enviar lo que haya quedado en cola
+    this._flushQueue();
   }
 
   _handleError(msg) {
@@ -235,23 +287,54 @@ export class Client {
     });
 
     // Errores críticos de autenticación -> desconectar
-    if (this._isCriticalAuthError(code)) {
+    if (act === PROTOCOL.CORE_ACTS.AUTH && this._isCriticalAuthError(code)) {
       logger.error("Error crítico de autenticación. Desconectando...");
       this.disconnect();
-    } else {
-      this.onError?.(msg);
+      return;
     }
+
+    // Propaga al callback de app
+    this.onError?.(msg);
+
+    // Intentar despachar más pendientes si hay slots libres
+    this._flushQueue();
   }
 
   // ============================================================================
   // UTILIDADES INTERNAS
   // ============================================================================
 
-  _clearPendingRequest(messageId) {
+  _dispatch({ id, action, data }) {
+    try {
+      const request = makeRequest(id, action, data);
+      this._setupRequestTimeout(id, action);
+      sendMessage(this.socket, request);
+      this.inFlight += 1;
+      logger.debug?.(
+        `Enviado ${id}; inFlight=${this.inFlight}/${this.maxInFlight}`
+      );
+    } catch (error) {
+      // En caso de error al enviar, liberamos cualquier timer residual
+      this._onReplySettled(id);
+      logger.error("Error enviando mensaje", { action, error: error.message });
+    }
+  }
+
+  _flushQueue() {
+    while (this.queue.length > 0 && this.inFlight < this.maxInFlight) {
+      const item = this.queue.shift();
+      this._dispatch(item);
+    }
+  }
+
+  _onReplySettled(messageId) {
+    // limpia timeout + libera slot + avanza la cola
     if (messageId && this.pending.has(messageId)) {
       const { timer } = this.pending.get(messageId);
       clearTimeout(timer);
       this.pending.delete(messageId);
+      this.inFlight = Math.max(0, this.inFlight - 1);
+      this._flushQueue();
     }
   }
 
@@ -278,5 +361,8 @@ export class Client {
     // Limpiar todos los timers pendientes
     this.pending.forEach(({ timer }) => clearTimeout(timer));
     this.pending.clear();
+    this.queue = [];
+    this.inFlight = 0;
   }
 }
+

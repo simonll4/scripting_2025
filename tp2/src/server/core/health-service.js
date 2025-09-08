@@ -3,6 +3,7 @@
  * Monitorea estado del servidor y limpia sesiones expiradas
  */
 import { logger } from "../utils/logger.js";
+import { cleanExpiredSessions } from "../security/index.js";
 
 export class HealthService {
   constructor(connectionManager) {
@@ -47,15 +48,14 @@ export class HealthService {
   }
 
   cleanupExpiredSessions() {
-    const sessionsMap = this.connectionManager.sessions;
-    const now = Date.now();
-    let cleaned = 0;
-
-    for (const [sessionId, session] of sessionsMap.entries()) {
-      if (now - session.lastUsed > this.sessionMaxAge) {
-        sessionsMap.delete(sessionId);
-        cleaned++;
-      }
+    // Usar la función centralizada del módulo security
+    const sessionsObj = Object.fromEntries(this.connectionManager.sessions);
+    const cleaned = cleanExpiredSessions(sessionsObj, this.sessionMaxAge);
+    
+    // Actualizar el Map con las sesiones que quedaron
+    this.connectionManager.sessions.clear();
+    for (const [sessionId, session] of Object.entries(sessionsObj)) {
+      this.connectionManager.sessions.set(sessionId, session);
     }
 
     if (cleaned > 0) {

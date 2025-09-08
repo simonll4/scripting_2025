@@ -1,35 +1,39 @@
 import { getCommand } from "../../business/index.js";
-import { makeResponse, ErrorTemplates } from "../../../protocol/index.js";
-import { hasScope } from "../../utils/index.js";
+import {
+  makeError,
+  ErrorTemplates,
+  PROTOCOL,
+} from "../../../protocol/index.js";
+import { hasScope } from "../../security/index.js";
 import { logger } from "../../utils/logger.js";
 
 /**
  * ============================================================================
- * COMMAND ROUTER MIDDLEWARE
+ * COMMAND ROUTER
  * ============================================================================
- * Middleware final que ejecuta comandos de negocio.
+ * Middleware final del pipeline: resuelve y ejecuta comandos de negocio.
  *
- * Responsabilidades:
- * 1. Resolver comando por acción (act)
- * 2. Verificar permisos (scopes) del usuario
- * 3. Ejecutar handler con contexto completo
- * 4. Manejar respuesta exitosa o errores
- * 5. Cerrar conexión si el comando lo requiere
+ * Flujo:
+ *  1) Resolver comando por acción (act)
+ *  2) Verificar scope/permisos
+ *  3) Ejecutar handler del comando con un contexto acotado
+ *  4) Responder OK o ERR (mapeando códigos de error consistentes)
+ *  5) Cerrar la conexión si el comando lo requiere (p.ej. QUIT)
  *
- * Siempre termina el pipeline (return false).
+ * Este middleware SIEMPRE consume la request (retorna false).
  */
 export class CommandRouter {
   async process(context) {
-    const { connection, message, session, db } = context;
+    const { message, session } = context;
 
-    // 1. Buscar definición del comando
+    // 1) Resolver comando
     const commandDef = getCommand(message.act);
     if (!commandDef) {
       context.reply(ErrorTemplates.unknownAction(message.id, message.act));
       return false;
     }
 
-    // 2. Verificar permisos (scope) si el comando lo requiere
+    // 2) Verificar permisos (scope) si aplica
     if (commandDef.scope && !hasScope(session, commandDef.scope)) {
       context.reply(
         ErrorTemplates.forbidden(message.id, message.act, commandDef.scope)
@@ -37,24 +41,27 @@ export class CommandRouter {
       return false;
     }
 
-    // 3. Ejecutar comando
+    // 3) Ejecutar y manejar resultados/errores
     await this._executeCommand(context, commandDef);
 
-    return false; // Router siempre termina el pipeline
+    // El router siempre termina el pipeline (ya respondió OK/ERR)
+    return false;
   }
 
-  // ====================================
-  // PRIVATE METHODS
-  // ====================================
+  // ==========================================================================
+  // PRIVATE
+  // ==========================================================================
 
   /**
-   * Ejecuta un comando con manejo de errores
+   * Ejecuta el handler del comando con manejo de errores uniforme.
+   * - Construye un contexto de ejecución mínimo para evitar acoplar handlers al pipeline.
+   * - Responde siempre (OK/ERR).
    */
   async _executeCommand(context, commandDef) {
-    const { connection, message, session, db } = context;
+    const { connection, message, session, db, startedAt } = context;
 
     try {
-      // Preparar contexto para el handler del comando
+      // Contexto que reciben los handlers de negocio (acotado y estable)
       const handlerContext = {
         session,
         data: context.validatedData || message.data || {},
@@ -63,29 +70,76 @@ export class CommandRouter {
         connection,
       };
 
-      // Ejecutar handler del comando
+      // Ejecutar comando
       const result = await commandDef.handler(handlerContext);
 
-      // Responder con resultado exitoso
-      context.reply(makeResponse(message.id, message.act, result ?? {}));
+      // Responder OK (si el handler no devuelve nada, respondemos objeto vacío)
+      context.reply(result ?? {});
 
       // Cerrar conexión si el comando lo requiere (ej: QUIT)
       if (commandDef.closeAfter) {
         connection.close();
       }
     } catch (error) {
-      // Log detallado del error para debugging
-      logger.error(`Command execution failed`, {
+      // Log estructurado para observabilidad
+      logger.error("Command execution failed", {
         command: message.act,
         messageId: message.id,
         connectionId: connection.id,
         sessionId: session?.id,
-        error: error.message,
-        stack: error.stack,
+        error: error?.message,
+        stack: error?.stack,
       });
 
-      // Responder con error genérico al cliente
-      context.reply(ErrorTemplates.internalError(message.id, message.act));
+      // Mapeo de errores a códigos de protocolo:
+      // 1) Preferimos error.code (handlers deberían setearlo)
+      // 2) Fallback heurístico por mensaje (temporal)
+      // 3) Default: INTERNAL_ERROR
+      const { code, msg } = this._mapErrorToProtocol(error);
+
+      context.reply(
+        makeError(message.id, message.act, code, msg, { startedAt })
+      );
     }
+  }
+
+  /**
+   * Traduce un error arrojado por el handler a un código del protocolo.
+   * Regla:
+   * - Si error.code ∈ PROTOCOL.ERROR_CODES → usarlo (preferido)
+   * - Si no, heurística por mensaje para BAD_REQUEST (temporal)
+   * - Por defecto → INTERNAL_ERROR
+   */
+  _mapErrorToProtocol(error) {
+    // Preferido: un handler prolijo setea error.code = PROTOCOL.ERROR_CODES.XXX
+    if (
+      error?.code &&
+      Object.values(PROTOCOL.ERROR_CODES).includes(error.code)
+    ) {
+      return { code: error.code, msg: error.message || "Command error" };
+    }
+
+    // Fallback temporal: detección más específica por contenido del mensaje
+    const m = String(error?.message || "").toLowerCase();
+    const looksLikeBadRequest =
+      m.includes("validation failed") ||
+      m.includes("schema validation") ||
+      m.includes("required field") ||
+      m.includes("missing required") ||
+      m.includes("malformed request") ||
+      m.includes("bad request");
+
+    if (looksLikeBadRequest) {
+      return {
+        code: PROTOCOL.ERROR_CODES.BAD_REQUEST,
+        msg: error?.message || "Bad request",
+      };
+    }
+
+    // Default: error interno
+    return {
+      code: PROTOCOL.ERROR_CODES.INTERNAL_ERROR,
+      msg: "Internal server error",
+    };
   }
 }

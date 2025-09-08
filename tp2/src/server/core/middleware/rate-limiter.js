@@ -1,9 +1,9 @@
 import { CONFIG } from "../../config.js";
-import { PROTOCOL, ErrorTemplates } from "../../../protocol/index.js";
+import { PROTOCOL, makeError } from "../../../protocol/index.js";
 
 /**
  * ============================================================================
- * RATE LIMITER MIDDLEWARE
+ * RATE LIMITER
  * ============================================================================
  * Implementa Token Bucket Algorithm para controlar la velocidad de requests.
  *
@@ -18,7 +18,7 @@ export class RateLimiter {
   }
 
   async process(context) {
-    const { connection, message } = context;
+    const { connection, message, startedAt } = context;
 
     // Permitir AUTH sin rate limiting para evitar bloqueos en conexión inicial
     if (message.act === PROTOCOL.CORE_ACTS.AUTH) {
@@ -30,7 +30,16 @@ export class RateLimiter {
 
     // Verificar si puede procesar el request
     if (!bucket.take(1)) {
-      context.reply(ErrorTemplates.rateLimited(message.id, message.act));
+      const retryAfterMs = bucket.getRetryAfterMs();
+      context.reply(
+        makeError(
+          message.id,
+          message.act,
+          PROTOCOL.ERROR_CODES.RATE_LIMITED,
+          "Rate limit exceeded",
+          { retryAfterMs, startedAt }
+        )
+      );
       return false;
     }
 
@@ -98,5 +107,16 @@ class TokenBucket {
       this.tokens = Math.min(this.capacity, this.tokens + tokensToAdd);
       this.lastRefill = now;
     }
+  }
+
+  /**
+   * Calcula cuándo estará disponible el próximo token
+   */
+  getRetryAfterMs() {
+    if (this.refillRate <= 0) return 5000; // Default fallback
+
+    // Time to get 1 token
+    const timePerToken = 1000 / this.refillRate;
+    return Math.ceil(timePerToken);
   }
 }
