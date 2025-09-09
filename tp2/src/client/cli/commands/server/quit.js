@@ -1,4 +1,4 @@
-import { SERVER_COMMANDS } from "../../../server/business/commands/constants.js";
+import { SERVER_COMMANDS } from "../../../../server/business/commands/constants.js";
 
 export const quit = {
   name: "quit",

@@ -56,8 +56,6 @@ export class Client {
     this.reconfigureTransport = reconfigureTransport;
 
     this._setupSocketEvents();
-
-    logger.info(`Conectando a ${host}:${port}...`);
   }
 
   disconnect() {
@@ -94,9 +92,6 @@ export class Client {
       this._dispatch(item);
     } else {
       this.queue.push(item);
-      logger.debug?.(
-        `Encolado ${id}; inFlight=${this.inFlight}/${this.maxInFlight}`
-      );
     }
 
     return id;
@@ -112,9 +107,7 @@ export class Client {
     // Evento de conexión exitosa
     socket.once("connect", () => {
       this.state.connected = true;
-      logger.info(
-        `Conectado a ${this.cfg.host}:${this.cfg.port}. Esperando HELLO...`
-      );
+      // Conexión establecida - el HELLO se maneja silenciosamente
     });
 
     // Evento de cierre de conexión
@@ -147,12 +140,7 @@ export class Client {
     const timer = setTimeout(() => {
       // Timeout por request: liberamos slot y avisamos
       this._onReplySettled(id);
-      const errMsg = `Timeout esperando respuesta`;
-      logger.error(errMsg, {
-        requestId: id,
-        action,
-        timeout: this.cfg.requestTimeoutMs,
-      });
+      const errMsg = `Timeout esperando respuesta del servidor`;
       // Callback de error de capa aplicación
       this.onError?.({
         v: PROTOCOL.VERSION,
@@ -218,27 +206,22 @@ export class Client {
   _handleHello(msg) {
     const { maxFrame, maxInFlight, heartbeatMs } = msg?.data || {};
 
-    // Configurar heartbeat TCP si el servidor lo especifica
+    // Configurar heartbeat TCP si el servidor lo especifica (silencioso)
     if (typeof heartbeatMs === "number" && heartbeatMs > 0) {
       this.socket.setKeepAlive(true, heartbeatMs);
-      logger.info(`Heartbeat TCP configurado: ${heartbeatMs}ms`);
     }
 
-    // Reconfigurar maxFrame si es diferente al default
+    // Reconfigurar maxFrame si es diferente al default (silencioso)
     if (typeof maxFrame === "number" && maxFrame > 0) {
       this.reconfigureTransport(maxFrame);
     }
 
-    // Actualizar maxInFlight si el servidor lo informa
+    // Actualizar maxInFlight si el servidor lo informa (silencioso)
     if (typeof maxInFlight === "number" && maxInFlight > 0) {
       this.maxInFlight = maxInFlight;
-      logger.info(`MAX_IN_FLIGHT (server hint): ${this.maxInFlight}`);
     }
 
-    // (Opcional) podrías usar heartbeatMs para timers propios si quisieras.
-
-    // Iniciar autenticación automáticamente
-    logger.info("HELLO recibido. Iniciando autenticación...");
+    // Iniciar autenticación automáticamente (silencioso)
     this.send(PROTOCOL.CORE_ACTS.AUTH, { token: this.cfg.token });
   }
 
@@ -260,7 +243,6 @@ export class Client {
     const sessionId = msg?.data?.sessionId;
 
     if (!sessionId) {
-      logger.error("Autenticación fallida: respuesta inválida");
       this.disconnect();
       return;
     }
@@ -269,7 +251,7 @@ export class Client {
     this.state.authenticated = true;
     this.state.sessionId = sessionId;
 
-    logger.ok?.(`Autenticado exitosamente. Session ID: ${sessionId}`);
+    // Notificar al UI sin logs técnicos
     this.onAuthenticated?.(sessionId);
 
     // Tras autenticación, intentar enviar lo que haya quedado en cola
@@ -277,18 +259,11 @@ export class Client {
   }
 
   _handleError(msg) {
-    const { code, msg: message, act } = msg;
-
-    logger.error(`Error del servidor`, {
-      action: act || "unknown",
-      code,
-      message,
-      details: msg.details,
-    });
+    const { code, act } = msg;
 
     // Errores críticos de autenticación -> desconectar
     if (act === PROTOCOL.CORE_ACTS.AUTH && this._isCriticalAuthError(code)) {
-      logger.error("Error crítico de autenticación. Desconectando...");
+      // Para errores de auth, desconectar directamente sin logs técnicos
       this.disconnect();
       return;
     }
@@ -310,13 +285,10 @@ export class Client {
       this._setupRequestTimeout(id, action);
       sendMessage(this.socket, request);
       this.inFlight += 1;
-      logger.debug?.(
-        `Enviado ${id}; inFlight=${this.inFlight}/${this.maxInFlight}`
-      );
     } catch (error) {
       // En caso de error al enviar, liberamos cualquier timer residual
       this._onReplySettled(id);
-      logger.error("Error enviando mensaje", { action, error: error.message });
+      // Error silencioso - será manejado en nivel superior
     }
   }
 
@@ -353,7 +325,7 @@ export class Client {
 
     this._cleanup();
 
-    logger.info("Conexión cerrada");
+    // Notificar desconexión sin logs técnicos
     this.onDisconnected?.();
   }
 

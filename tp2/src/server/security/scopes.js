@@ -17,8 +17,7 @@ export const SCOPES = Object.freeze({
   OS_CMD: "oscmd", // Fixed: unified with command implementation
 
   // Scope administrativo
-  ADMIN: "admin",
-
+  //ADMIN: "admin",
   // Scope universal
   ALL: "*",
 });
@@ -29,6 +28,5 @@ export const SCOPES = Object.freeze({
  */
 export const ROLE_SCOPES = Object.freeze({
   user: [SCOPES.GET_OS_INFO, SCOPES.WATCH, SCOPES.GET_WATCHES],
-  power: [SCOPES.GET_OS_INFO, SCOPES.WATCH, SCOPES.GET_WATCHES, SCOPES.PS],
   admin: [SCOPES.ALL],
 });

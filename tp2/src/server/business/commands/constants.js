@@ -47,7 +47,7 @@ export const SERVER_COMMANDS = Object.freeze({
  * OS_CMD: Ejecuta comando del sistema operativo
  *   - Parámetros: comando y argumentos
  *   - Respuesta: salida del comando
- *   - Nota: Requiere mecanismos de seguridad (whitelist, IP whitelist, etc.)
+ *   - Nota: Requiere mecanismos de seguridad (whitelist comandos,etc)
  *
  * QUIT: Termina la conexión con el agente
  *   - Parámetros: ninguno

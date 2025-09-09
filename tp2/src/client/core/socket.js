@@ -51,10 +51,9 @@ function _configureTcpOptions(socket, keepAliveMs, connectTimeoutMs) {
   // Deshabilitar algoritmo de Nagle para menor latencia
   socket.setNoDelay(true);
 
-  // Configurar keep-alive si está especificado
+  // Configurar keep-alive si está especificado (silencioso)
   if (keepAliveMs > 0) {
     socket.setKeepAlive(true, keepAliveMs);
-    logger.info(`Keep-alive configurado: ${keepAliveMs}ms`);
   }
 
   // Timeout de conexión (corte duro)
@@ -69,10 +68,7 @@ function _configureTcpOptions(socket, keepAliveMs, connectTimeoutMs) {
 function _setupInitialTransport(socket) {
   const maxFrameSize = PROTOCOL.LIMITS.MAX_FRAME;
 
-  logger.info(
-    `Configurando transporte inicial: maxFrame=${maxFrameSize} bytes`
-  );
-
+  // Configuración silenciosa del transporte
   return setupTransportPipeline(socket, {
     maxFrameSize: maxFrameSize,
   });
@@ -92,16 +88,13 @@ function _setupSocketEventHandlers(socket, connectTimeoutMs) {
     });
   });
 
-  // Socket cerrado
+  // Socket cerrado (silencioso - será manejado por el client)
   socket.on("close", (hadError) => {
-    const reason = hadError ? "con error" : "normal";
-    logger.info(`Conexión cerrada (${reason})`);
+    // Los logs se manejan en nivel superior
   });
 
-  // Conexión establecida
+  // Conexión establecida (silencioso)
   socket.on("connect", () => {
-    const { remoteAddress, remotePort } = socket;
-    logger.info(`Socket conectado a ${remoteAddress}:${remotePort}`);
     // al conectar, desarmamos el timeout de "connect"
     if (connectTimeoutMs > 0) socket.setTimeout(0);
   });
@@ -164,12 +157,11 @@ function _shouldReconfigure(newMaxFrameSize) {
   }
 
   if (newMaxFrameSize === PROTOCOL.LIMITS.MAX_FRAME) {
-    logger.info("MaxFrameSize igual al actual, no es necesario reconfigurar");
+    // Silencioso - no necesita log
     return false;
   }
 
   if (newMaxFrameSize <= 0) {
-    logger.warn(`MaxFrameSize inválido: ${newMaxFrameSize}`);
     return false;
   }
 

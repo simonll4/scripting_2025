@@ -3,40 +3,171 @@ import fs from "fs";
 import { randomUUID } from "crypto";
 import chokidar from "chokidar";
 
-// token -> { watcher, timer }
+import {
+  insertWatch,
+  updateWatchStatus,
+  getActiveWatches,
+  insertWatchEventsBatch,
+} from "../../db/db.js";
+
+// ------------------------------------------------------------
+// Config
+// ------------------------------------------------------------
+const BATCH_FLUSH_MS = 120;
+const BATCH_MAX_SIZE = 200;
+
+const WATCH_OPTS = Object.freeze({
+  ignoreInitial: true,
+  awaitWriteFinish: { stabilityThreshold: 250, pollInterval: 100 },
+  followSymlinks: true,
+  persistent: false,
+});
+
+// token -> { watcher, timer, writer }
 const ACTIVE_WATCHES = new Map();
 
-// Helpers DB
-async function insertWatch(db, { token, absPath, startedAt, expiresAt }) {
-  await db.run(
-    "INSERT INTO watches (token, abs_path, started_at, expires_at, status) VALUES (?, ?, ?, ?, 'active')",
-    [token, absPath, startedAt, expiresAt]
-  );
+const toErrorString = (err) => (err && err.message ? err.message : String(err));
+
+// ------------------------------------------------------------
+// EventWriter: batch -> DAO.insertWatchEventsBatch
+// ------------------------------------------------------------
+class EventWriter {
+  /**
+   * @param {import("sqlite").Database} db
+   * @param {string} token
+   */
+  constructor(db, token) {
+    this.db = db;
+    this.token = token;
+    this.queue = [];
+    this.timer = null;
+    this.closed = false;
+  }
+
+  async push(event_type, file_path) {
+    if (this.closed) return;
+    this.queue.push({
+      event_type,
+      file_path: file_path ?? null,
+      ts: Date.now(),
+    });
+
+    if (this.queue.length >= BATCH_MAX_SIZE) {
+      await this.flush();
+      return;
+    }
+
+    if (!this.timer) {
+      this.timer = setTimeout(() => {
+        this.flush().catch(() => {});
+      }, BATCH_FLUSH_MS);
+    }
+  }
+
+  async flush() {
+    if (this.closed) return;
+    if (this.timer) {
+      clearTimeout(this.timer);
+      this.timer = null;
+    }
+    if (!this.queue.length) return;
+
+    const batch = this.queue;
+    this.queue = [];
+
+    try {
+      // delega transacción y prepared statements al DAO
+      await insertWatchEventsBatch(this.db, this.token, batch);
+    } catch (err) {
+      // reencola con límite para retry
+      this.queue = batch.concat(this.queue).slice(0, BATCH_MAX_SIZE * 10);
+    }
+  }
+
+  async close() {
+    if (this.closed) return;
+    this.closed = true;
+    if (this.timer) {
+      clearTimeout(this.timer);
+      this.timer = null;
+    }
+    await this.flush();
+  }
 }
 
-async function updateWatchStatus(db, token, status) {
-  await db.run(
-    "UPDATE watches SET status = ?, expires_at = MAX(expires_at, ?) WHERE token = ? AND status = 'active'",
-    [status, Date.now(), token]
-  );
+// ------------------------------------------------------------
+// Core helpers
+// ------------------------------------------------------------
+function buildWatcher(db, token, absPath, msRemaining) {
+  const writer = new EventWriter(db, token);
+  const watcher = chokidar.watch(absPath, WATCH_OPTS);
+
+  watcher
+    .on("add", (file) => writer.push("add", file))
+    .on("addDir", (dir) => writer.push("addDir", dir))
+    .on("change", (file) => writer.push("modify", file))
+    .on("unlink", (file) => writer.push("unlink", file))
+    .on("unlinkDir", (dir) => writer.push("unlinkDir", dir))
+    .on("error", (err) => writer.push("error", toErrorString(err)));
+
+  const timer = setTimeout(() => {
+    stopWatch(db, token, "expired").catch(() => {});
+  }, msRemaining);
+
+  ACTIVE_WATCHES.set(token, { watcher, timer, writer });
+  return watcher;
 }
 
-async function insertEvent(db, token, eventType, filePath) {
-  const ts = Date.now();
-  await db.run(
-    "INSERT INTO watch_events (token, event_type, file_path, ts) VALUES (?, ?, ?, ?)",
-    [token, eventType, filePath ?? null, ts]
-  );
+// ------------------------------------------------------------
+// API pública
+// ------------------------------------------------------------
+export async function startNewWatch(db, targetPath, durationSeconds) {
+  // Resolver y canónicalizar path
+  const resolved = path.isAbsolute(targetPath)
+    ? targetPath
+    : path.resolve(process.cwd(), targetPath);
+
+  if (!fs.existsSync(resolved)) {
+    return { error: "NOT_FOUND", message: `No existe: ${resolved}` };
+  }
+
+  let absPath = resolved;
+  try {
+    absPath = fs.realpathSync(resolved);
+  } catch (_) {}
+
+  const token = randomUUID();
+  const startedAt = Date.now();
+  const expiresAt = startedAt + Math.max(1, Math.floor(durationSeconds)) * 1000;
+
+  await insertWatch(db, { token, absPath, startedAt, expiresAt });
+  buildWatcher(db, token, absPath, expiresAt - startedAt);
+
+  return { token, path: absPath, startedAt, expiresAt };
 }
 
 export async function stopWatch(db, token, reason = "stopped") {
   const entry = ACTIVE_WATCHES.get(token);
-  if (!entry) return;
-  const { watcher, timer } = entry;
+  if (!entry) {
+    // Aseguramos estado en DB por las dudas (idempotente)
+    await updateWatchStatus(
+      db,
+      token,
+      reason === "expired" ? "expired" : "stopped"
+    );
+    return;
+  }
+
+  const { watcher, timer, writer } = entry;
   try {
     if (timer) clearTimeout(timer);
     if (watcher) await watcher.close();
   } catch (_) {}
+
+  try {
+    if (writer) await writer.close();
+  } catch (_) {}
+
   ACTIVE_WATCHES.delete(token);
   await updateWatchStatus(
     db,
@@ -45,83 +176,30 @@ export async function stopWatch(db, token, reason = "stopped") {
   );
 }
 
-function buildWatcher(db, token, absPath, msRemaining) {
-  // Queremos registrar eventos post-arranque, no el estado inicial.
-  const watcher = chokidar.watch(absPath, {
-    ignoreInitial: true,
-    awaitWriteFinish: { stabilityThreshold: 200, pollInterval: 100 },
-    // podés agregar include/exclude con 'ignored' si lo necesitás luego
-    // depth: opcional si querés limitar recursividad
-    persistent: false, // no bloquea el proceso
-    followSymlinks: true,
-  });
-
-  // Eventos típicos de chokidar:
-  // add, addDir, change, unlink, unlinkDir, ready, raw, error
-  watcher
-    .on("add", (file) => insertEvent(db, token, "add", file))
-    .on("addDir", (dir) => insertEvent(db, token, "addDir", dir))
-    .on("change", (file) => insertEvent(db, token, "modify", file))
-    .on("unlink", (file) => insertEvent(db, token, "unlink", file))
-    .on("unlinkDir", (dir) => insertEvent(db, token, "unlinkDir", dir))
-    .on("error", (err) => insertEvent(db, token, "error", String(err)));
-
-  const timer = setTimeout(() => {
-    stopWatch(db, token, "expired").catch(() => {});
-  }, msRemaining);
-
-  ACTIVE_WATCHES.set(token, { watcher, timer });
-  return watcher;
-}
-
-/**
- * Arranca un nuevo watch (comando watch)
- */
-export async function startNewWatch(db, targetPath, durationSeconds) {
-  // Si el path es absoluto, lo usamos tal como está
-  // Si es relativo, lo resolvemos contra el directorio actual
-  const absPath = path.isAbsolute(targetPath) 
-    ? targetPath 
-    : path.resolve(process.cwd(), targetPath);
-
-  // ÚNICA validación que no puede ir al schema: existencia del path
-  if (!fs.existsSync(absPath)) {
-    return { error: "NOT_FOUND", message: `No existe: ${absPath}` };
-  }
-
-  const token = randomUUID();
-  const startedAt = Date.now();
-  const expiresAt = startedAt + durationSeconds * 1000;
-
-  await insertWatch(db, { token, absPath, startedAt, expiresAt });
-  buildWatcher(db, token, absPath, expiresAt - startedAt);
-
-  return { token, path: absPath, startedAt, expiresAt };
-}
-
-/**
- * Rehidrata watches activos al boot.
- * Crea de nuevo los watchers con el tiempo restante.
- */
 export async function rehydrateActiveWatches(db) {
   const now = Date.now();
-  const rows = await db.all(
-    "SELECT token, abs_path, started_at, expires_at FROM watches WHERE status='active' AND expires_at > ?",
-    [now]
-  );
+  const rows = await getActiveWatches(db, now);
 
   for (const row of rows) {
-    const {
-      token,
-      abs_path: absPath,
-      started_at: startedAt,
-      expires_at: expiresAt,
-    } = row;
+    const token = row.token;
+    const absPath = row.abs_path;
+    const expiresAt = row.expires_at;
+
     const remaining = expiresAt - now;
     if (remaining <= 0) {
-      await updateWatchStatus(db, token, "expired");
+      await updateWatchStatus(db, token, "expired", now);
       continue;
     }
+
+    if (ACTIVE_WATCHES.has(token)) {
+      const entry = ACTIVE_WATCHES.get(token);
+      if (entry.timer) clearTimeout(entry.timer);
+      entry.timer = setTimeout(() => {
+        stopWatch(db, token, "expired").catch(() => {});
+      }, remaining);
+      continue;
+    }
+
     buildWatcher(db, token, absPath, remaining);
   }
 }

@@ -2,7 +2,7 @@ export default {
   scope: null,
   closeAfter: true,
   // handler signature uniforme
-  handler: async ({ db, session, data, socket, connection }) => {
+  handler: async () => {
     return { bye: true };
   }
 };

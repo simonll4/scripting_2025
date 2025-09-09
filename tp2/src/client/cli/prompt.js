@@ -2,6 +2,7 @@ import readline from "readline";
 import { COMMANDS } from "./commands/index.js";
 import { logger } from "../utils/logger.js";
 import { loadHistory, saveHistory } from "../utils/history.js";
+import { formatResponse, formatLatencyInfo } from "../utils/formatter.js";
 
 /**
  * Interfaz de línea de comandos interactiva para el cliente.
@@ -46,7 +47,7 @@ export class Prompt {
     this.rl = readline.createInterface({
       input: process.stdin,
       output: process.stdout,
-      prompt: "agent> ",
+      prompt: "\x1b[36magent\x1b[0m\x1b[1m❯\x1b[0m ",
       historySize: 1000,
       terminal: true,
       completer: this._createCommandCompleter(),
@@ -55,11 +56,44 @@ export class Prompt {
 
   _createCommandCompleter() {
     return (line) => {
+      const words = line.split(' ');
       const commandNames = Object.keys(COMMANDS);
-      const matches = commandNames.filter((cmd) => cmd.startsWith(line));
-
-      // Si hay coincidencias, mostrarlas; si no, mostrar todos los comandos
-      return [matches.length ? matches : commandNames, line];
+      
+      if (words.length === 1) {
+        // Completar nombre de comando
+        const matches = commandNames.filter((cmd) => cmd.startsWith(line));
+        return [matches.length ? matches : commandNames, line];
+      } else {
+        // Sugerir parámetros comunes para comandos específicos
+        const commandName = words[0];
+        const lastWord = words[words.length - 1];
+        const suggestions = [];
+        
+        switch (commandName) {
+          case 'ps':
+            const psOptions = ['--limit', '--sort', '--order', '--user', '--pattern', '--fields'];
+            suggestions.push(...psOptions.filter(opt => opt.startsWith(lastWord)));
+            break;
+          case 'oscmd':
+            if (lastWord === '--timeout') {
+              suggestions.push('5000', '10000', '15000');
+            } else if (!lastWord.startsWith('--')) {
+              suggestions.push('--timeout');
+            }
+            break;
+          case 'getwatches':
+            const gwOptions = ['--since', '--until', '--page-size', '--order', '--cursor'];
+            suggestions.push(...gwOptions.filter(opt => opt.startsWith(lastWord)));
+            break;
+          case 'getosinfo':
+            if (!isNaN(lastWord) || lastWord === '') {
+              suggestions.push('30', '60', '120', '300', '600');
+            }
+            break;
+        }
+        
+        return [suggestions, lastWord];
+      }
     };
   }
 
@@ -90,59 +124,68 @@ export class Prompt {
 
     // Error del servidor
     this.client.onError = (error) => {
-      // El error ya se loggea en el cliente, solo mostrar prompt
+      try {
+        const formattedError = formatResponse(error);
+        console.log(formattedError);
+        
+        const latencyInfo = formatLatencyInfo(error);
+        if (latencyInfo) {
+          console.log(latencyInfo);
+        }
+      } catch (formattingError) {
+        // Fallback para errores de formateo
+        console.log(`Error del servidor: ${error.msg || error.message || 'Error desconocido'}`);
+        if (error.code) console.log(`   Código: ${error.code}`);
+        if (error.details) console.log(`   Detalles: ${JSON.stringify(error.details, null, 2)}`);
+      }
+      
+      console.log(""); // Línea en blanco
       this._showPrompt();
     };
 
     // Desconexión
     this.client.onDisconnected = () => {
-      console.log("\nConexión cerrada por el servidor.");
+      console.log(`\n\x1b[36m${"=".repeat(60)}\x1b[0m`);
+      console.log(`\x1b[1mCONEXIÓN CERRADA\x1b[0m`);
+      console.log(`\x1b[36m${"=".repeat(60)}\x1b[0m`);
+      console.log(`\nLa conexión con el servidor se ha cerrado`);
+      console.log(`Saliendo del cliente...`);
+      console.log(`\x1b[36m${"=".repeat(60)}\x1b[0m\n`);
       this.shutdown();
     };
   }
 
   _showWelcomeMessage() {
+    const line = "=".repeat(50);
     console.log(`
-Cliente del Agente
-Autenticación OK | Escriba 'help' para ver comandos.
+\x1b[36m${line}\x1b[0m
+\x1b[1mCONECTADO AL SERVIDOR\x1b[0m
+\x1b[36m${line}\x1b[0m
+
+Escriba '\x1b[33mhelp\x1b[0m' para ver comandos disponibles
+Use '\x1b[33mhelp <comando>\x1b[0m' para ayuda detallada
+
+\x1b[36m${line}\x1b[0m
 `);
   }
 
   _displayServerResponse(message) {
-    const data = message.data;
-
-    // Formato especial para respuestas de oscmd
-    if (data && typeof data === "object" && 
-        ('ok' in data || 'exitCode' in data || 'stdout' in data || 'stderr' in data)) {
+    try {
+      // Usar el nuevo sistema de formateo avanzado
+      const formattedResponse = formatResponse(message);
+      console.log(formattedResponse);
       
-      if (data.error) {
-        console.log(`❌ Error: ${data.error}`);
-        if (data.message) console.log(`   ${data.message}`);
-      } else if (data.ok === false) {
-        console.log(`❌ Command failed (exit code: ${data.exitCode || 'unknown'})`);
-        if (data.timedOut) console.log(`   ⏱️  Command timed out`);
-        if (data.stderr) {
-          console.log(`   stderr: ${data.stderr.trim()}`);
-        }
-        if (data.stdout) {
-          console.log(`   stdout: ${data.stdout.trim()}`);
-        }
-      } else if (data.ok === true) {
-        console.log(`✅ Command executed successfully (exit code: ${data.exitCode})`);
-        if (data.stdout) {
-          console.log(''); // Línea en blanco
-          console.log(data.stdout.trim());
-        }
-        if (data.stderr && data.stderr.trim()) {
-          console.log(''); // Línea en blanco
-          console.log(`stderr: ${data.stderr.trim()}`);
-        }
-      } else {
-        // Fallback para otras respuestas estructuradas
-        console.log(JSON.stringify(data, null, 2));
+      // Mostrar información de latencia si está disponible
+      const latencyInfo = formatLatencyInfo(message);
+      if (latencyInfo) {
+        console.log(latencyInfo);
       }
-    } else {
-      // Para otros tipos de respuestas
+      
+    } catch (error) {
+      // Fallback al formato básico si el formateador falla
+      logger.warn('Error formateando respuesta, usando formato básico', { error: error.message });
+      
+      const data = message.data;
       if (data && typeof data === "object") {
         console.log(JSON.stringify(data, null, 2));
       } else {
@@ -169,7 +212,10 @@ Autenticación OK | Escriba 'help' para ver comandos.
 
     // Manejo de Ctrl+C
     this.rl.on("SIGINT", () => {
-      console.log("\n\nSaliendo...");
+      console.log(`\n\n\x1b[36m${"=".repeat(40)}\x1b[0m`);
+      console.log(`\x1b[1mINTERRUPCIÓN DETECTADA\x1b[0m`);
+      console.log(`\x1b[36m${"=".repeat(40)}\x1b[0m`);
+      console.log(`\nCerrando cliente de forma segura...`);
       this.shutdown();
     });
   }
@@ -188,9 +234,9 @@ Autenticación OK | Escriba 'help' para ver comandos.
 
     // Validar que el comando existe
     if (!command) {
-      logger.error(
-        `Comando desconocido: '${commandName}'. Usa 'help' para ver comandos disponibles.`
-      );
+      console.log(`\n\x1b[31mComando desconocido:\x1b[0m '\x1b[33m${commandName}\x1b[0m'`);
+      console.log(`Use '\x1b[32mhelp\x1b[0m' para ver comandos disponibles`);
+      console.log("");
       return this._showPrompt();
     }
 
@@ -198,9 +244,9 @@ Autenticación OK | Escriba 'help' para ver comandos.
     try {
       await this._executeCommand(command, commandName, args);
     } catch (error) {
-      logger.error(`Error ejecutando comando '${commandName}'`, {
-        error: error.message,
-      });
+      console.log(`\n\x1b[31mError ejecutando comando '\x1b[33m${commandName}\x1b[31m':\x1b[0m`);
+      console.log(`   \x1b[33m${error.message}\x1b[0m`);
+      console.log("");
       this._showPrompt();
     }
   }
@@ -242,7 +288,7 @@ Autenticación OK | Escriba 'help' para ver comandos.
     const requestId = this.client.send(command.action, payload);
 
     if (!requestId) {
-      throw new Error("Falló el envío del comando al servidor");
+      throw new Error("No se pudo enviar el comando al servidor. Verifique la conexión.");
     }
   }
 

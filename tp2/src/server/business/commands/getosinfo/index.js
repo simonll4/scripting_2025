@@ -4,3 +4,4 @@ import schema from "./schema.js";
 
 export const act = SERVER_COMMANDS.GET_OS_INFO;
 export { command, schema };
+    
