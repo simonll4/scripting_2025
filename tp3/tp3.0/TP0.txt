@@ -1,0 +1,7 @@
+1) Cree un módulo que, mediante tcp reciba un comando snapshot, el módulo debe sacar una foto mediante la webcam y publicarla por MQTT 
+   (ver codificación base 64) en un tópico a elección.
+2) Cree un programa que envíe el comando snapshot a 1) cada cierto tiempo (el tiempo deben ser configurable) 
+3) Cree un módulo que escuche el tópico anterior y que cada vez que se reciba una foto por mqtt, la almacene en una carpeta con el nombre: yyyyMMdd_HHmmss.jpg
+
+
+- 

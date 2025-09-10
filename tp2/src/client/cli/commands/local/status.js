@@ -17,7 +17,7 @@ export const status = {
     
     // Estado de autenticación
     const authStatus = state.authenticated ? '\x1b[32mAutenticado\x1b[0m' : '\x1b[31mNo autenticado\x1b[0m';
-    console.log(`$Autenticación: ${authStatus}`);
+    console.log(`Autenticación: ${authStatus}`);
     
     // ID de sesión
     if (state.sessionId) {

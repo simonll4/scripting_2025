@@ -14,6 +14,14 @@ Cada mensaje viaja en un frame binario de **dos partes**:
 - **Receptor**: deframenta por longitud y luego parsea el JSON.
 - **Errores de transporte**: frame demasiado grande o JSON inválido ⇒ emitir `transport-error` y cerrar el socket.
 
+
+###  Handshake de Aplicación (Capa de Aplicación)
+```
+Cliente ← SERVER HELLO (capabilities) 
+Cliente AUTH → SERVER
+Cliente ← SERVER AUTH_OK (sesionId) 
+```
+
 ## Versionado
 
 Todos los envelopes incluyen `v` (versión).

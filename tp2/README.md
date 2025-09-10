@@ -11,7 +11,7 @@ Solución compuesta por un agente TCP (server) y un cliente CLI (client) que se 
 
 Diagrama (alto nivel):
 
-```
+```         
           (script)              token
           [admin.js] ===========================> [Client]
               |                                      |
@@ -51,7 +51,7 @@ Diagrama (alto nivel):
 - Detalle completo: `tp2/src/protocol/README.md`.
 
 ## Notas
-
+- Crear /db en el root del repositorio.
 - Persistencia: tokens + datos de negocio en SQLite (el server inicializa la DB al arrancar).
 
 ## Documentación

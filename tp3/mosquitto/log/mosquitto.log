@@ -1,0 +1,188 @@
+1757469045: mosquitto version 2.0.22 starting
+1757469045: Config loaded from /mosquitto/config/mosquitto.conf.
+1757469045: Opening ipv4 listen socket on port 1883.
+1757469045: Opening ipv6 listen socket on port 1883.
+1757469045: mosquitto version 2.0.22 running
+1757469141: mosquitto version 2.0.22 terminating
+1757469141: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1757469144: mosquitto version 2.0.22 starting
+1757469144: Config loaded from /mosquitto/config/mosquitto.conf.
+1757469144: Opening ipv4 listen socket on port 1883.
+1757469144: Opening ipv6 listen socket on port 1883.
+1757469144: mosquitto version 2.0.22 running
+1757470945: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1757471616: mosquitto version 2.0.22 terminating
+1757471616: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1757471616: mosquitto version 2.0.22 starting
+1757471616: Config loaded from /mosquitto/config/mosquitto.conf.
+1757471616: Opening ipv4 listen socket on port 1883.
+1757471616: Opening ipv6 listen socket on port 1883.
+1757471616: mosquitto version 2.0.22 running
+1757471672: mosquitto version 2.0.22 terminating
+1757471672: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1757471674: mosquitto version 2.0.22 starting
+1757471674: Config loaded from /mosquitto/config/mosquitto.conf.
+1757471674: Opening ipv4 listen socket on port 1883.
+1757471674: Opening ipv6 listen socket on port 1883.
+1757471674: mosquitto version 2.0.22 running
+1757471746: mosquitto version 2.0.22 terminating
+1757471746: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1757471753: mosquitto version 2.0.22 starting
+1757471753: Config loaded from /mosquitto/config/mosquitto.conf.
+1757471753: Opening ipv4 listen socket on port 1883.
+1757471753: Opening ipv6 listen socket on port 1883.
+1757471753: mosquitto version 2.0.22 running
+1757471758: New connection from 172.18.0.1:64626 on port 1883.
+1757471758: New client connected from 172.18.0.1:64626 as 2531a83f-8fdb-4145-a408-7d167130ae55 (p2, c1, k60, u'simonll4').
+1757471804: Client 2531a83f-8fdb-4145-a408-7d167130ae55 disconnected.
+1757471805: New connection from 172.18.0.1:63230 on port 1883.
+1757471805: New client connected from 172.18.0.1:63230 as agent-tcp-3d29cbd5-e0f9-4bb0-949a-cc68de49fe8d (p2, c1, k60, u'simonll4').
+1757472243: Client agent-tcp-3d29cbd5-e0f9-4bb0-949a-cc68de49fe8d disconnected.
+1757472245: New connection from 172.18.0.1:59932 on port 1883.
+1757472245: New client connected from 172.18.0.1:59932 as agent-tcp-5ab7a0f8-fce8-4c18-b2eb-fbc3c0bee10e (p2, c1, k60, u'simonll4').
+1757472323: Client agent-tcp-5ab7a0f8-fce8-4c18-b2eb-fbc3c0bee10e disconnected.
+1757472425: New connection from 172.18.0.1:57112 on port 1883.
+1757472425: New client connected from 172.18.0.1:57112 as agent-tcp-8a883a07-391a-4b27-9d95-a47aa9aa61e1 (p2, c1, k60, u'simonll4').
+1757472430: New connection from 172.18.0.1:59916 on port 1883.
+1757472430: New client connected from 172.18.0.1:59916 as agent-tcp-a0929fbe-11cb-4442-941d-e444206123bd (p2, c1, k60, u'simonll4').
+1757472442: Client agent-tcp-a0929fbe-11cb-4442-941d-e444206123bd disconnected.
+1757472444: Client agent-tcp-8a883a07-391a-4b27-9d95-a47aa9aa61e1 disconnected.
+1757472457: New connection from 172.18.0.1:59268 on port 1883.
+1757472457: New client connected from 172.18.0.1:59268 as agent-tcp-f6922d32-ed3e-4921-83c2-1b88041a5a2b (p2, c1, k60, u'simonll4').
+1757472618: New connection from 172.18.0.1:62562 on port 1883.
+1757472618: Client saver-d68fb111-307a-4c2b-a148-0da03744e4dd disconnected, not authorised.
+1757472944: New connection from 172.18.0.1:61202 on port 1883.
+1757472944: Client saver-2b34a6da-4ef4-495c-be6c-84f744b36328 disconnected, not authorised.
+1757472996: New connection from 172.18.0.1:61580 on port 1883.
+1757472996: New client connected from 172.18.0.1:61580 as saver-32cef360-7155-4497-89a8-9ad005107169 (p2, c1, k60, u'simonll4').
+1757473075: Client saver-32cef360-7155-4497-89a8-9ad005107169 closed its connection.
+1757473082: New connection from 172.18.0.1:59344 on port 1883.
+1757473082: New client connected from 172.18.0.1:59344 as saver-01339c26-044a-4e43-9434-900baac86ce2 (p2, c1, k60, u'simonll4').
+1757473244: New connection from 172.18.0.1:58104 on port 1883.
+1757473244: New client connected from 172.18.0.1:58104 as debug-client (p2, c1, k60, u'simonll4').
+1757473249: Client debug-client disconnected.
+1757473351: Client saver-01339c26-044a-4e43-9434-900baac86ce2 disconnected.
+1757473351: Client agent-tcp-f6922d32-ed3e-4921-83c2-1b88041a5a2b disconnected.
+1757473358: New connection from 172.18.0.1:63814 on port 1883.
+1757473358: New client connected from 172.18.0.1:63814 as agent-tcp-81759212-3fe0-49f9-b796-9f92a82fb91d (p2, c1, k60, u'simonll4').
+1757473377: New connection from 172.18.0.1:56484 on port 1883.
+1757473377: New client connected from 172.18.0.1:56484 as saver-4a83c782-ef2f-45a1-a2f6-64d967d78672 (p2, c1, k60, u'simonll4').
+1757473388: Client saver-4a83c782-ef2f-45a1-a2f6-64d967d78672 disconnected.
+1757473554: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1757473629: New connection from 172.18.0.1:57308 on port 1883.
+1757473629: New client connected from 172.18.0.1:57308 as saver-363f777c-5f7d-4130-8817-5fb84239f340 (p2, c1, k60, u'simonll4').
+1757473684: Client agent-tcp-81759212-3fe0-49f9-b796-9f92a82fb91d closed its connection.
+1757473685: Client saver-363f777c-5f7d-4130-8817-5fb84239f340 closed its connection.
+1757473697: New connection from 172.18.0.1:55000 on port 1883.
+1757473697: New client connected from 172.18.0.1:55000 as agent-tcp-b8f81eff-edf2-4c68-9c2d-4168845c5e34 (p2, c1, k60, u'simonll4').
+1757473702: New connection from 172.18.0.1:56654 on port 1883.
+1757473702: New client connected from 172.18.0.1:56654 as saver-c2d5e668-cc23-4776-a6c7-51fcb74cb744 (p2, c1, k60, u'simonll4').
+1757474216: New connection from 172.18.0.1:64768 on port 1883.
+1757474216: New client connected from 172.18.0.1:64768 as saver-b68ae496-2c49-460a-a3e7-720c331920f9 (p2, c1, k60, u'simonll4').
+1757474243: New connection from 172.18.0.1:63758 on port 1883.
+1757474243: New client connected from 172.18.0.1:63758 as saver-4f6a9ffa-8254-4f14-ae78-90fd4d7ef115 (p2, c1, k60, u'simonll4').
+1757474296: Client saver-4f6a9ffa-8254-4f14-ae78-90fd4d7ef115 closed its connection.
+1757474296: Client saver-b68ae496-2c49-460a-a3e7-720c331920f9 closed its connection.
+1757474309: Client saver-c2d5e668-cc23-4776-a6c7-51fcb74cb744 disconnected.
+1757474311: New connection from 172.18.0.1:60968 on port 1883.
+1757474311: New client connected from 172.18.0.1:60968 as saver-252e9760-b954-43dc-89ad-65754ed5bd14 (p2, c1, k60, u'simonll4').
+1757474380: Client saver-252e9760-b954-43dc-89ad-65754ed5bd14 disconnected.
+1757474381: Client agent-tcp-b8f81eff-edf2-4c68-9c2d-4168845c5e34 disconnected.
+1757475355: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1757476156: New connection from 172.18.0.1:63038 on port 1883.
+1757476156: New client connected from 172.18.0.1:63038 as agent-tcp-deb145c5-b9d9-47ac-a97f-b5e738846ad1 (p2, c1, k60, u'simonll4').
+1757476157: Client agent-tcp-deb145c5-b9d9-47ac-a97f-b5e738846ad1 disconnected.
+1757476172: New connection from 172.18.0.1:57388 on port 1883.
+1757476172: New client connected from 172.18.0.1:57388 as agent-tcp-946f054a-fe6b-47d5-a8af-0c9463a50d98 (p2, c1, k60, u'simonll4').
+1757476177: New connection from 172.18.0.1:57400 on port 1883.
+1757476177: New client connected from 172.18.0.1:57400 as saver-daf9315e-cca3-4511-a5da-a6b80fe495ad (p2, c1, k60, u'simonll4').
+1757476193: Client saver-daf9315e-cca3-4511-a5da-a6b80fe495ad disconnected.
+1757476194: Client agent-tcp-946f054a-fe6b-47d5-a8af-0c9463a50d98 disconnected.
+1757477156: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1757478957: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1757479551: New connection from 172.18.0.1:57094 on port 1883.
+1757479551: New client connected from 172.18.0.1:57094 as agent-tcp-2c4ea56d-2e74-4a28-ae95-9a2317cb516d (p2, c1, k60, u'simonll4').
+1757479958: New connection from 172.18.0.1:58190 on port 1883.
+1757479958: New client connected from 172.18.0.1:58190 as saver-1757479958038 (p2, c1, k60, u'simonll4').
+1757479962: Client saver-1757479958038 disconnected.
+1757480016: New connection from 172.18.0.1:59904 on port 1883.
+1757480016: New client connected from 172.18.0.1:59904 as agent-tcp-dc8c7daa-fd9f-43d8-b289-9e06a17b7863 (p2, c1, k60, u'simonll4').
+1757480036: Client agent-tcp-2c4ea56d-2e74-4a28-ae95-9a2317cb516d disconnected.
+1757480040: Client agent-tcp-dc8c7daa-fd9f-43d8-b289-9e06a17b7863 disconnected.
+1757480091: New connection from 172.18.0.1:60706 on port 1883.
+1757480091: New client connected from 172.18.0.1:60706 as agent-tcp-54808d7e-394e-4166-a633-dfd647a9a4f3 (p2, c1, k60, u'simonll4').
+1757480104: Client agent-tcp-54808d7e-394e-4166-a633-dfd647a9a4f3 disconnected.
+1757480125: New connection from 172.18.0.1:59376 on port 1883.
+1757480125: New client connected from 172.18.0.1:59376 as agent-tcp-12ed41e0-0c81-435a-975c-26b7fc149abb (p2, c1, k60, u'simonll4').
+1757480187: Client agent-tcp-12ed41e0-0c81-435a-975c-26b7fc149abb disconnected.
+1757480248: New connection from 172.18.0.1:61254 on port 1883.
+1757480248: New client connected from 172.18.0.1:61254 as agent-tcp-763bb571-4ffe-4ca9-bc2b-3a795eb5a7d6 (p2, c1, k60, u'simonll4').
+1757480342: Client agent-tcp-763bb571-4ffe-4ca9-bc2b-3a795eb5a7d6 disconnected.
+1757480350: New connection from 172.18.0.1:64080 on port 1883.
+1757480350: New client connected from 172.18.0.1:64080 as agent-tcp-c0d0c862-b54c-4f05-b1f9-972a0afc913b (p2, c1, k60, u'simonll4').
+1757480497: Client agent-tcp-c0d0c862-b54c-4f05-b1f9-972a0afc913b disconnected.
+1757480506: New connection from 172.18.0.1:63300 on port 1883.
+1757480506: New client connected from 172.18.0.1:63300 as agent-tcp-9478e47b-ee4c-47ba-af04-7862cba37f42 (p2, c1, k60, u'simonll4').
+1757480649: Client agent-tcp-9478e47b-ee4c-47ba-af04-7862cba37f42 disconnected.
+1757480685: New connection from 172.18.0.1:60966 on port 1883.
+1757480685: New client connected from 172.18.0.1:60966 as agent-tcp-74e27f3f-84b4-4576-95b7-e935ce0db310 (p2, c1, k60, u'simonll4').
+1757480758: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1757480929: New connection from 172.18.0.1:60252 on port 1883.
+1757480929: New client connected from 172.18.0.1:60252 as saver-1757480929012 (p2, c1, k60, u'simonll4').
+1757480938: Client saver-1757480929012 disconnected.
+1757480976: New connection from 172.18.0.1:55728 on port 1883.
+1757480976: New client connected from 172.18.0.1:55728 as agent-tcp-9a1e56b3-629a-41b6-810a-0cbd41bb0b1f (p2, c1, k60, u'simonll4').
+1757480988: Client agent-tcp-9a1e56b3-629a-41b6-810a-0cbd41bb0b1f disconnected.
+1757480998: New connection from 172.18.0.1:56094 on port 1883.
+1757480998: New client connected from 172.18.0.1:56094 as agent-tcp-69b58c30-1711-42e9-a19c-e3ca80971515 (p2, c1, k60, u'simonll4').
+1757481016: New connection from 172.18.0.1:57422 on port 1883.
+1757481016: New client connected from 172.18.0.1:57422 as saver-1757481016799 (p2, c1, k60, u'simonll4').
+1757481020: Client saver-1757481016799 disconnected.
+1757481022: Client agent-tcp-69b58c30-1711-42e9-a19c-e3ca80971515 disconnected.
+1757481068: Client agent-tcp-74e27f3f-84b4-4576-95b7-e935ce0db310 disconnected.
+1757481079: New connection from 172.18.0.1:57412 on port 1883.
+1757481079: New client connected from 172.18.0.1:57412 as agent-tcp-1fdd02f6-32ea-4c02-be1f-cc055ae2c855 (p2, c1, k60, u'simonll4').
+1757481192: Client agent-tcp-1fdd02f6-32ea-4c02-be1f-cc055ae2c855 disconnected.
+1757481203: New connection from 172.18.0.1:61680 on port 1883.
+1757481203: New client connected from 172.18.0.1:61680 as agent-tcp-0c848c34-4b4a-4968-8ded-af64687c75ea (p2, c1, k60, u'simonll4').
+1757481258: New connection from 172.18.0.1:62798 on port 1883.
+1757481258: New client connected from 172.18.0.1:62798 as agent-tcp-883a33f1-ce5a-4b76-b640-152beabe44ec (p2, c1, k60, u'simonll4').
+1757481273: Client agent-tcp-883a33f1-ce5a-4b76-b640-152beabe44ec disconnected.
+1757481299: New connection from 172.18.0.1:58492 on port 1883.
+1757481299: New client connected from 172.18.0.1:58492 as saver-1757481299488 (p2, c1, k60, u'simonll4').
+1757481313: Client saver-1757481299488 disconnected.
+1757481339: New connection from 172.18.0.1:57610 on port 1883.
+1757481339: New client connected from 172.18.0.1:57610 as saver-1757481338985 (p2, c1, k60, u'simonll4').
+1757481369: Client saver-1757481338985 disconnected.
+1757481429: New connection from 172.18.0.1:61034 on port 1883.
+1757481429: New client connected from 172.18.0.1:61034 as saver-1757481429850 (p2, c1, k60, u'simonll4').
+1757481521: Client agent-tcp-0c848c34-4b4a-4968-8ded-af64687c75ea closed its connection.
+1757481523: Client saver-1757481429850 closed its connection.
+1757481529: New connection from 172.18.0.1:55496 on port 1883.
+1757481529: New client connected from 172.18.0.1:55496 as agent-tcp-f33edbda-2732-4a9e-be7c-ef11ed794f10 (p2, c1, k60, u'simonll4').
+1757481536: New connection from 172.18.0.1:55500 on port 1883.
+1757481536: New client connected from 172.18.0.1:55500 as saver-1757481536215 (p2, c1, k60, u'simonll4').
+1757481803: Client saver-1757481536215 disconnected.
+1757481880: Client agent-tcp-f33edbda-2732-4a9e-be7c-ef11ed794f10 disconnected.
+1757481881: New connection from 172.18.0.1:60486 on port 1883.
+1757481881: New client connected from 172.18.0.1:60486 as agent-tcp-5489a1ff-b821-48a0-ae81-89e127714d8f (p2, c1, k60, u'simonll4').
+1757482014: New connection from 172.18.0.1:57306 on port 1883.
+1757482014: New client connected from 172.18.0.1:57306 as saver-1757482014558 (p2, c1, k60, u'simonll4').
+1757482027: Client saver-1757482014558 disconnected.
+1757482031: New connection from 172.18.0.1:63530 on port 1883.
+1757482031: New client connected from 172.18.0.1:63530 as saver-1757482030990 (p2, c1, k60, u'simonll4').
+1757482143: Client saver-1757482030990 disconnected.
+1757482149: Client agent-tcp-5489a1ff-b821-48a0-ae81-89e127714d8f disconnected.
+1757482310: New connection from 172.18.0.1:62164 on port 1883.
+1757482310: New client connected from 172.18.0.1:62164 as agent-tcp-7c8786df-d633-431e-af16-571f9555e990 (p2, c1, k60, u'simonll4').
+1757482314: New connection from 172.18.0.1:62180 on port 1883.
+1757482314: New client connected from 172.18.0.1:62180 as saver-1757482314448 (p2, c1, k60, u'simonll4').
+1757482333: Client saver-1757482314448 disconnected.
+1757482335: Client agent-tcp-7c8786df-d633-431e-af16-571f9555e990 disconnected.
+1757482559: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1757482830: New connection from 172.18.0.1:64688 on port 1883.
+1757482830: New client connected from 172.18.0.1:64688 as agent-tcp-faf0cd23-a3ba-4ad7-9c14-422b7983dc85 (p2, c1, k60, u'simonll4').
+1757482834: New connection from 172.18.0.1:64694 on port 1883.
+1757482834: New client connected from 172.18.0.1:64694 as saver-1757482834818 (p2, c1, k60, u'simonll4').
+1757482860: Client saver-1757482834818 disconnected.
+1757482862: Client agent-tcp-faf0cd23-a3ba-4ad7-9c14-422b7983dc85 disconnected.

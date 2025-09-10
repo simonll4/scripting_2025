@@ -1,0 +1,88 @@
+1) Crear un agente MQTT que soporte la siguiente configuración:
+  - Datos del server mqtt al que debe conectarse
+  - Nombre del agente (se asume lógicamente único), ejemplo: "agente86"
+
+El agente, cuando inicia debe publicar lo siguiente: {"nombre": "agente86"}
+El agente debe subscribisrse al tópico "request/commands/{nombreAgente}/+"
+** {nombreAgente} es el nombre del agente configurado
+** en la parte que se usa el wildcard +, se recibirá el nombre del comando
+** los argumentos de los comandos se recibirán en el payload o mensaje
+Ej: topic="request/commands/agente86/ls" message="/algun/path"
+
+Comandos soportados:
+- ls [path]: el comando debe listar los archivos y carpetas y publicarlos en el tópico: "response/commands/{nombreAgente}/ls"
+** El formato general de respuesta de comandos es:
+   {
+    "date":new Date().toISOString(),
+    "command": "{nombreComando}", // Ej: "ls"
+    "name": "{nombreAgente}",     // Ej: "agente86"
+    "payload":{....}
+   } 
+
+   Ejemplo de payload para el comando ls:
+   {
+    "message": "OK",
+    "result":[
+        {"path":"/algun/path/archivo.txt", "type","file"}
+        {"path":"/algun/path/folder", "type","folder"},
+        {"path":"/algun/path/foto.jpg", "type","file"}
+    ]
+   }
+    o
+   {
+    "message": "Path not found",
+    "result":false
+   }
+- help: el comando debe enviar los comandos soportados y su sintáxis
+Ejemplo: topic:"response/commands/agente86/help", respuesta:
+{
+    "message": "OK",
+    "result":[
+        {"command":"help", "description","Lista de comandos disponibles"}
+        {"command":"ls", "description","Lista los archivos y carpetas del path especificado, ej: ls /algun/path"}
+    ]
+   }
+
+2) Crear un programa (cliente CLP) que reciba como parámetros:
+   -h [mqtt_host]
+   -p [mqtt_port]
+   -u [username]
+   -P [password]
+   -a [agente]
+// ubiquitous command service (ucs)
+Ejemplo: node ucs.js -h magm.mooo.com -p 1883 -u ubuntu -P ubuntu -a agente86
+
+Si la conexión es exitosa, se mostrarán los comandos disponibles en el agente y un prompt:
+
+Comandos disponibles:
+
+help: Lista de comandos disponibles
+ls: Lista los archivos y carpetas del path especificado, ej: ls /algun/path
+quit: salir <-- este comando es intrinseco del programa, no es del agente
+
+agente86>
+
+En el prompt se podrán escribir comandos, por ejemplo:
+
+agente86> ls /algun/path
+
+/algun/path/archivo.txt [file]
+/algun/path/folder [folder]
+/algun/path/foto.jpg [file]
+
+o
+
+agente86> help
+
+help: Lista de comandos disponibles
+ls: Lista los archivos y carpetas del path especificado, ej: ls /algun/path 
+quit: salir
+
+
+Importante!, crear un mecanismo para evitar que cuando se ejecute más de un CLP, 
+las respuestas no sean recibidas por todos los clientes y solo sea procesada por el CLP que la emitió 
+
+
+
+
+- 
