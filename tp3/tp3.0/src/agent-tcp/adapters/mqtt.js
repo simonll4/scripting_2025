@@ -7,7 +7,7 @@
 
 import crypto from "crypto";
 import mqtt from "mqtt";
-import { createLogger } from "../../shared/utils/logger.js";
+import { createLogger } from "../../utils/logger.js";
 
 const logger = createLogger("MQTT-ADAPTER");
 

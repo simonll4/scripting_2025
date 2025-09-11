@@ -6,7 +6,7 @@
  */
 
 import net from "net";
-import { createLogger } from "../../shared/utils/logger.js";
+import { createLogger } from "../../utils/logger.js";
 import { ConnectionManager } from "./connection-manager.js";
 import { MessagePipeline } from "./message-pipeline.js";
 import { initDB } from "../db/index.js";

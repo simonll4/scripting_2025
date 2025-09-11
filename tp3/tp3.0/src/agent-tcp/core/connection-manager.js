@@ -6,7 +6,7 @@
  */
 
 import crypto from "crypto";
-import { createLogger } from "../../shared/utils/logger.js";
+import { createLogger } from "../../utils/logger.js";
 import { 
   MessageDeframer, 
   setupTransportPipeline, 

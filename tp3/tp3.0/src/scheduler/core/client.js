@@ -16,7 +16,7 @@ import {
   isValidResponse,
   isValidHello,
 } from "../../protocol/index.js";
-import { createLogger } from "../../shared/utils/logger.js";
+import { createLogger } from "../../utils/logger.js";
 
 const logger = createLogger("SCHEDULER-CLIENT");
 

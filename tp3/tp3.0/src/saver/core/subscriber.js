@@ -6,7 +6,7 @@
  */
 
 import mqtt from "mqtt";
-import { createLogger } from "../../shared/utils/logger.js";
+import { createLogger } from "../../utils/logger.js";
 import { validatePayload, extractMetadata } from "../core/validator.js";
 import { FileStore } from "../core/file-store.js";
 

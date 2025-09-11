@@ -7,7 +7,7 @@
 
 import sqlite3 from "sqlite3";
 import { open } from "sqlite";
-import { createLogger } from "../../shared/utils/logger.js";
+import { createLogger } from "../../utils/logger.js";
 
 const logger = createLogger("DB");
 

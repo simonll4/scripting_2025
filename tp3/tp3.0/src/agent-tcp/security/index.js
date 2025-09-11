@@ -6,4 +6,4 @@
  */
 
 export { validateToken, hasScope, hasAnyScope } from "./token-service.js";
-export { SCOPES} from "../../shared/security/scopes.js";
+export { SCOPES} from "./scopes.js";

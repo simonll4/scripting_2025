@@ -1,66 +1,9 @@
-/**
- * ============================================================================
- * SAVER MAIN - Camera System TP3.0
- * ============================================================================
- * Punto de entrada principal del saver refactorizado
- */
-
 import { SaverSubscriber } from "./core/subscriber.js";
-import { SAVER_CONFIG as config } from "../shared/utils/config.js";
-import { validateConfig, createLogger } from "../shared/utils/index.js";
+import { config } from "./config.js";
+import { createLogger } from "../utils/index.js";
 
 const logger = createLogger("SAVER-MAIN");
 
-/**
- * Manejo graceful de señales
- */
-async function setupGracefulShutdown(saver) {
-  const shutdown = async (signal) => {
-    logger.info(`Received ${signal}, shutting down gracefully...`);
-    try {
-      await saver.stop();
-      
-      // Mostrar estadísticas finales
-      const stats = saver.getStats();
-      logger.info("Final statistics:", JSON.stringify(stats, null, 2));
-      
-      process.exit(0);
-    } catch (error) {
-      logger.error("Error during shutdown:", error);
-      process.exit(1);
-    }
-  };
-
-  process.on("SIGTERM", () => shutdown("SIGTERM"));
-  process.on("SIGINT", () => shutdown("SIGINT"));
-  
-  // Manejar errores no capturados
-  process.on("uncaughtException", (error) => {
-    logger.error("Uncaught exception:", error);
-    shutdown("uncaughtException");
-  });
-
-  process.on("unhandledRejection", (reason, promise) => {
-    logger.error("Unhandled rejection at:", promise, "reason:", reason);
-    shutdown("unhandledRejection");
-  });
-}
-
-/**
- * Mostrar estadísticas periódicamente
- */
-function setupStatsReporting(saver) {
-  setInterval(() => {
-    const stats = saver.getStats();
-    if (stats.totalMessages > 0) {
-      logger.info(
-        `Stats: messages=${stats.totalMessages}, saved=${stats.savedImages}, ` +
-        `errors=${stats.errors}, rate=${stats.successRate.toFixed(1)}%, ` +
-        `avgSize=${stats.avgImageSize}B, totalMB=${(stats.totalBytes / 1024 / 1024).toFixed(1)}`
-      );
-    }
-  }, 60000); // Cada minuto
-}
 
 /**
  * Función principal
@@ -68,11 +11,9 @@ function setupStatsReporting(saver) {
 async function main() {
   try {
     // Validar configuración crítica
-    validateConfig(config, [
-      "MQTT_URL",
-      "SUB_TOPIC", 
-      "OUT_DIR",
-    ]);
+    if (!config.MQTT_URL || !config.SUB_TOPIC || !config.OUT_DIR) {
+      throw new Error("Missing required configuration");
+    }
 
     // Adaptar configuración flat a nested
     const saverConfig = {
@@ -138,4 +79,4 @@ if (import.meta.url === `file://${process.argv[1]}`) {
 }
 
 export { SaverSubscriber } from "./core/subscriber.js";
-export { saverConfig as config } from "./config.js";
+export { config } from "./config.js";

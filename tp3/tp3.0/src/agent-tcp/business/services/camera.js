@@ -6,7 +6,7 @@
  */
 
 import { spawn } from "child_process";
-import { createLogger } from "../../../shared/utils/logger.js";
+import { createLogger } from "../../../utils/logger.js";
 import { PROTOCOL } from "../../../protocol/index.js";
 
 const logger = createLogger("CAMERA-SERVICE");

@@ -1,13 +1,6 @@
-/**
- * ============================================================================
- * AGENT TCP ENTRY POINT - Camera System TP3.0
- * ============================================================================
- * Punto de entrada principal del servidor TCP con graceful shutdown
- */
-
 import { AgentTCPServer } from "./core/server.js";
 import { config } from "./config.js";
-import { validateConfig, createLogger } from "../shared/utils/index.js";
+import { createLogger } from "../utils/index.js";
 
 const logger = createLogger("AGENT-TCP-MAIN");
 
@@ -17,12 +10,9 @@ const logger = createLogger("AGENT-TCP-MAIN");
 async function main() {
   try {
     // Validar configuración crítica
-    validateConfig(config, [
-      "TCP_PORT",
-      "MQTT_URL", 
-      "DEFAULT_CAMERA",
-      "DB_PATH",
-    ]);
+    if (!config.TCP_PORT || !config.MQTT_URL || !config.DEFAULT_CAMERA || !config.DB_PATH) {
+      throw new Error("Missing required configuration");
+    }
 
     // Crear e inicializar servidor
     const server = new AgentTCPServer(config);

@@ -35,17 +35,3 @@ export function isValidCommand(command) {
   return command in COMMAND_REGISTRY;
 }
 
-/**
- * Obtiene los scopes requeridos para un comando
- */
-export function getCommandScopes(command) {
-  const commandInfo = COMMAND_REGISTRY[command];
-  return commandInfo?.scopes || [];
-}
-
-/**
- * Lista todos los comandos disponibles
- */
-export function listAvailableCommands() {
-  return Object.keys(COMMAND_REGISTRY);
-}

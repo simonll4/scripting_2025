@@ -7,7 +7,7 @@
 
 import { captureSnapshot } from "../../services/camera.js";
 import { PROTOCOL } from "../../../../protocol/index.js";
-import { createLogger } from "../../../../shared/utils/logger.js";
+import { createLogger } from "../../../../utils/logger.js";
 import { logCapture } from "../../../db/repositories/captures.js";
 
 const logger = createLogger("CMD-SNAPSHOT");

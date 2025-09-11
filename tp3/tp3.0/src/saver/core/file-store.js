@@ -8,7 +8,7 @@
 import fs from "fs/promises";
 import path from "path";
 import crypto from "crypto";
-import { createLogger } from "../../shared/utils/logger.js";
+import { createLogger } from "../../utils/logger.js";
 
 const logger = createLogger("SAVER-FILE-STORE");
 

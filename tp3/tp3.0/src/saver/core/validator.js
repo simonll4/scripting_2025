@@ -5,7 +5,7 @@
  * Validador de mensajes MQTT extraído del subscriber
  */
 
-import { createLogger } from "../../shared/utils/logger.js";
+import { createLogger } from "../../utils/logger.js";
 
 const logger = createLogger("SAVER-VALIDATOR");
 

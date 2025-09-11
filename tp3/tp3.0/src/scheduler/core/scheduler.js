@@ -6,7 +6,7 @@
  */
 
 import { SchedulerClient } from "./client.js";
-import { createLogger } from "../../shared/utils/logger.js";
+import { createLogger } from "../../utils/logger.js";
 
 const logger = createLogger("SCHEDULER");
 

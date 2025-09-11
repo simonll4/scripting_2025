@@ -5,7 +5,7 @@
  * Pipeline de procesamiento de mensajes y enrutamiento de comandos
  */
 
-import { createLogger } from "../../shared/utils/logger.js";
+import { createLogger } from "../../utils/logger.js";
 import { 
   PROTOCOL, 
   makeResponse, 

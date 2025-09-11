@@ -6,8 +6,8 @@
  */
 
 import { Scheduler } from "./core/scheduler.js";
-import { SCHEDULER_CONFIG as config } from "../shared/utils/config.js";
-import { validateConfig, createLogger } from "../shared/utils/index.js";
+import { config } from "./config.js";
+import { createLogger } from "../utils/index.js";
 
 const logger = createLogger("SCHEDULER-MAIN");
 
@@ -17,12 +17,9 @@ const logger = createLogger("SCHEDULER-MAIN");
 async function main() {
   try {
     // Validar configuración crítica
-    validateConfig(config, [
-      "AGENT_HOST",
-      "AGENT_PORT", 
-      "TOKEN",
-      "INTERVAL_MS",
-    ]);
+    if (!config.AGENT_HOST || !config.AGENT_PORT || !config.TOKEN || !config.INTERVAL_MS) {
+      throw new Error("Missing required configuration");
+    }
 
     logger.info("Starting Camera System Scheduler...");
 
