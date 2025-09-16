@@ -1,6 +1,6 @@
 /**
  * ============================================================================
- * SCOPES CONSTANTS - Camera System TP3.0
+ * SCOPES CONSTANTS
  * ============================================================================
  * Definición de scopes simplificada - Solo captura de snapshots
  */

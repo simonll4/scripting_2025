@@ -1,6 +1,6 @@
 /**
  * ============================================================================
- * TOKEN SERVICE - Camera System TP3.0  
+ * TOKEN SERVICE
  * ============================================================================
  * Servicio de autenticación de tokens, extraído y refactorizado desde auth.js
  */

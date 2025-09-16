@@ -1,8 +1,7 @@
 /**
  * ============================================================================
- * SCHEDULER MAIN - Camera System TP3.0
+ * Scheduler
  * ============================================================================
- * Scheduler principal refactorizado usando el nuevo cliente
  */
 
 import { SchedulerClient } from "./client.js";
@@ -11,7 +10,7 @@ import { createLogger } from "../../utils/logger.js";
 const logger = createLogger("SCHEDULER");
 
 /**
- * Scheduler principal refactorizado
+ * Scheduler optimizado usando cliente robusto
  */
 export class Scheduler {
   constructor(config) {
@@ -20,62 +19,53 @@ export class Scheduler {
     this.intervalId = null;
     this.isRunning = false;
     this.isExecuting = false;
-    this.statsIntervalId = null;
-    
+
+    // Stats simplificadas
     this.stats = {
       totalRequests: 0,
-      successfulSnapshots: 0,
-      failedSnapshots: 0,
+      successful: 0,
+      failed: 0,
+      startTime: null,
       lastSnapshot: null,
       lastError: null,
-      startTime: null,
-      connectionErrors: 0,
     };
   }
 
   /**
-   * Inicia el scheduler
+   * Inicia el scheduler optimizado
    */
   async start() {
     if (this.isRunning) {
-      logger.warn("Scheduler is already running");
+      logger.warn("Scheduler already running");
       return;
     }
 
-    try {
-      logger.info(`Starting scheduler with interval: ${this.config.INTERVAL_MS}ms`);
-      
-      this.stats.startTime = Date.now();
-      this.isRunning = true;
+    logger.info(
+      `Starting optimized scheduler (${this.config.INTERVAL_MS}ms interval)`
+    );
 
-      // Conectar inicial
-      await this.client.connect();
-      
-      // Iniciar ciclo de snapshots
-      this.intervalId = setInterval(() => {
-        this.executeSnapshot().catch((error) => {
-          logger.error("Snapshot execution error:", error);
-        });
-      }, this.config.INTERVAL_MS);
+    this.stats.startTime = Date.now();
+    this.isRunning = true;
 
-      // Iniciar logging de estadísticas
-      this.startStatsLogging();
+    // Conectar usando el cliente robusto
+    await this.client.connect();
 
-      logger.info("Scheduler started successfully");
-      
-    } catch (error) {
-      this.isRunning = false;
-      logger.error("Failed to start scheduler:", error);
-      throw error;
-    }
+    // Iniciar ciclo de snapshots
+    this.intervalId = setInterval(() => {
+      this.executeSnapshot().catch((error) => {
+        logger.error("Snapshot error:", error.message);
+      });
+    }, this.config.INTERVAL_MS);
+
+    logger.info("Optimized scheduler started");
   }
 
   /**
-   * Ejecuta captura de snapshot
+   * Captura snapshot usando el cliente robusto
    */
   async executeSnapshot() {
     if (this.isExecuting) {
-      logger.debug("Snapshot already in progress, skipping");
+      logger.debug("Snapshot in progress, skipping");
       return;
     }
 
@@ -83,101 +73,39 @@ export class Scheduler {
     this.stats.totalRequests++;
 
     try {
-      logger.debug("Executing snapshot request...");
-      
       const startTime = Date.now();
+
       const response = await this.client.requestSnapshot({
         cameraId: this.config.DEFAULT_CAMERA,
         topic: this.config.DEFAULT_TOPIC,
+        width: this.config.WIDTH,
+        height: this.config.HEIGHT,
+        quality: this.config.QUALITY,
+        qualityPreset: this.config.QUALITY_PRESET,
       });
 
       const duration = Date.now() - startTime;
-      
-      this.stats.successfulSnapshots++;
+
+      this.stats.successful++;
       this.stats.lastSnapshot = {
         timestamp: Date.now(),
         duration,
         size: response.data?.size,
-        cameraId: response.data?.cameraId,
-        topic: response.data?.topic,
+        width: response.data?.width,
+        height: response.data?.height,
       };
 
-      logger.info(`Snapshot captured successfully in ${duration}ms:`, {
-        size: response.data?.size,
-        cameraId: response.data?.cameraId,
-        topic: response.data?.topic,
-      });
-
+      logger.info(`Snapshot OK: ${response.data?.size}B in ${duration}ms`);
     } catch (error) {
-      this.stats.failedSnapshots++;
+      this.stats.failed++;
       this.stats.lastError = {
         timestamp: Date.now(),
         message: error.message,
-        code: error.code,
       };
 
-      // Distinguir entre errores de conexión y errores de negocio
-      if (error.message.includes("connect") || error.message.includes("timeout")) {
-        this.stats.connectionErrors++;
-        logger.error("Connection error during snapshot:", error.message);
-      } else {
-        logger.error("Snapshot request failed:", error.message);
-      }
-
+      logger.error("Snapshot failed:", error.message);
     } finally {
       this.isExecuting = false;
-    }
-  }
-
-  /**
-   * Inicia logging periódico de estadísticas
-   */
-  startStatsLogging() {
-    this.statsIntervalId = setInterval(() => {
-      this.logStats();
-    }, this.config.STATS_LOG_INTERVAL_MS || 60000);
-  }
-
-  /**
-   * Log de estadísticas
-   */
-  logStats() {
-    const uptime = Date.now() - this.stats.startTime;
-    const successRate = this.stats.totalRequests > 0 
-      ? ((this.stats.successfulSnapshots / this.stats.totalRequests) * 100).toFixed(2)
-      : 0;
-
-    const connectionStats = this.client.getConnectionStats();
-
-    logger.info("Scheduler Statistics:", {
-      uptime: Math.round(uptime / 1000) + "s",
-      totalRequests: this.stats.totalRequests,
-      successful: this.stats.successfulSnapshots,
-      failed: this.stats.failedSnapshots,
-      successRate: `${successRate}%`,
-      connectionErrors: this.stats.connectionErrors,
-      connection: {
-        connected: connectionStats.connected,
-        authenticated: connectionStats.authenticated,
-        pendingRequests: connectionStats.pendingRequests,
-        retryCount: connectionStats.retryCount,
-      },
-      lastSnapshot: this.stats.lastSnapshot?.timestamp 
-        ? new Date(this.stats.lastSnapshot.timestamp).toISOString()
-        : null,
-    });
-  }
-
-  /**
-   * Lista cámaras disponibles
-   */
-  async listCameras() {
-    try {
-      const response = await this.client.listCameras();
-      return response.data?.cameras || [];
-    } catch (error) {
-      logger.error("Failed to list cameras:", error);
-      throw error;
     }
   }
 
@@ -185,42 +113,39 @@ export class Scheduler {
    * Detiene el scheduler
    */
   async stop() {
-    if (!this.isRunning) {
-      return;
-    }
+    if (!this.isRunning) return;
 
-    logger.info("Stopping scheduler...");
+    logger.info("Stopping optimized scheduler...");
     this.isRunning = false;
 
-    // Limpiar intervalos
     if (this.intervalId) {
       clearInterval(this.intervalId);
       this.intervalId = null;
     }
 
-    if (this.statsIntervalId) {
-      clearInterval(this.statsIntervalId);
-      this.statsIntervalId = null;
-    }
-
-    // Desconectar cliente
     await this.client.disconnect();
-
-    logger.info("Scheduler stopped");
+    logger.info("Optimized scheduler stopped");
   }
 
   /**
-   * Obtiene estadísticas completas
+   * Obtiene estadísticas
    */
   getStats() {
-    const connectionStats = this.client.getConnectionStats();
-    
+    const uptime = this.stats.startTime ? Date.now() - this.stats.startTime : 0;
+    const successRate =
+      this.stats.totalRequests > 0
+        ? ((this.stats.successful / this.stats.totalRequests) * 100).toFixed(1)
+        : 0;
+
+    const clientStats = this.client.getConnectionStats();
+
     return {
       ...this.stats,
-      uptime: this.stats.startTime ? Date.now() - this.stats.startTime : 0,
+      uptime,
+      successRate: `${successRate}%`,
       isRunning: this.isRunning,
       isExecuting: this.isExecuting,
-      connection: connectionStats,
+      connection: clientStats,
     };
   }
 }

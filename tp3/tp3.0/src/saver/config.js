@@ -1,8 +1,7 @@
 /**
  * ============================================================================
- * SAVER CONFIG - Camera System TP3.0
+ * SAVER CONFIG
  * ============================================================================
- * Configuración específica del módulo Saver
  */
 
 import dotenv from "dotenv";
@@ -14,45 +13,43 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const envPath = path.join(__dirname, "../../.env");
 dotenv.config({ path: envPath });
 
+// Configuración simplificada y profesional
 export const config = {
   // MQTT Configuration
-  MQTT_URL: process.env.SAVER_MQTT_URL || process.env.MQTT_URL || 'mqtt://localhost:1883',
-  MQTT_USER: process.env.SAVER_MQTT_USER || process.env.MQTT_USER || null,
-  MQTT_PASS: process.env.SAVER_MQTT_PASS || process.env.MQTT_PASS || null,
-  
-  // Filtro de topics
-  SUB_TOPIC: process.env.SUB_TOPIC || 'cameras/+/+/snapshot',
-  
-  // File Storage Configuration
-  OUT_DIR: process.env.OUT_DIR || './snapshots',
-  ORGANIZE_BY_CAMERA: true,
-  ORGANIZE_BY_DATE: true,
-  CHECK_DUPLICATES: true,
-  MAX_FILE_AGE_DAYS: 30,
-  
-  // Validation Configuration
-  STRICT_MODE: false,
-  MAX_MESSAGE_SIZE: 10485760,  // 10MB
-  REQUIRED_FIELDS: ['cameraId', 'timestamp', 'format', 'data'],
-  SUPPORTED_FORMATS: ['image/jpeg', 'image/png'],
-  LOG_INVALID_MESSAGES: true,
-  
+  mqtt: {
+    url: process.env.MQTT_URL || "mqtt://localhost:1883",
+    user: process.env.MQTT_USER || null,
+    pass: process.env.MQTT_PASS || null,
+    topic: process.env.SAVER_MQTT_TOPIC || "cameras/+/snapshot",
+    clientId: `saver-${Date.now()}`,
+    qos: 1,
+    options: {
+      keepalive: 60,
+      connectTimeout: 30000,
+      reconnectPeriod: 5000,
+      clean: true,
+    },
+  },
+
+  // Storage Configuration
+  storage: {
+    baseDir: process.env.SAVER_OUT_DIR || "./snapshots",
+    organizeByCamera: process.env.SAVER_ORGANIZE_BY_CAMERA !== "false",
+    organizeByDate: false,
+    checkDuplicates: process.env.SAVER_CHECK_DUPLICATES !== "false",
+    maxFileSize: parseInt(process.env.SAVER_MAX_MESSAGE_BYTES) || 15 * 1024 * 1024,
+  },
+
   // Performance Configuration
-  STATS_INTERVAL_MS: 60000,
-  CLEANUP_INTERVAL_MS: 3600000,
-  MAX_CONCURRENT_SAVES: 10,
-  ENABLE_COMPRESSION: false,
-  
-  // Logging Configuration
-  LOG_LEVEL: process.env.LOG_LEVEL || 'info',
-  ENABLE_FILE_LOG: false,
-  LOG_DIR: './logs',
-  MAX_LOG_SIZE: 10485760,
-  MAX_LOG_FILES: 5,
-  
-  // Error Handling
-  MAX_RETRIES: 3,
-  RETRY_DELAY_MS: 1000,
-  FAIL_ON_DISK_ERROR: false,
-  DEAD_LETTER_QUEUE: false,
+  performance: {
+    statsIntervalMs: 60000, // 1 minuto
+  },
 };
+
+// Configurar credenciales MQTT si están disponibles
+if (config.mqtt.user) {
+  config.mqtt.options.username = config.mqtt.user;
+}
+if (config.mqtt.pass) {
+  config.mqtt.options.password = config.mqtt.pass;
+}

@@ -1,6 +1,6 @@
 /**
  * ============================================================================
- * CONNECTION MANAGER - Camera System TP3.0
+ * CONNECTION MANAGER
  * ============================================================================
  * Gestión de conexiones TCP, estado y ciclo de vida
  */
@@ -8,9 +8,8 @@
 import crypto from "crypto";
 import { createLogger } from "../../utils/logger.js";
 import { 
-  MessageDeframer, 
   setupTransportPipeline, 
-  writeFrame, 
+  sendMessage, 
   makeHello 
 } from "../../protocol/index.js";
 
@@ -44,7 +43,17 @@ export class ConnectionManager {
     this.connections.add(connState);
 
     // Configurar timeouts
-    socket.setTimeout(30000); // 30s timeout
+    socket.setTimeout(this.config.CONNECTION_TIMEOUT_MS);
+    
+    // Configurar timeout de autenticación
+    const authTimeout = setTimeout(() => {
+      if (!connState.authenticated) {
+        logger.warn(`Authentication timeout for connection ${connId}`);
+        this.closeConnection(connState, 'Authentication timeout');
+      }
+    }, this.config.AUTH_TIMEOUT_MS);
+    
+    this.connectionTimeouts.set(connId, authTimeout);
     
     // Configurar pipeline de transporte
     setupTransportPipeline(socket, {
@@ -95,10 +104,11 @@ export class ConnectionManager {
       serverVersion: 1, // PROTOCOL.VERSION
     });
 
-    if (writeFrame(connState.socket, hello)) {
+    try {
+      sendMessage(connState.socket, hello);
       logger.debug(`HELLO sent to ${connState.id}`);
-    } else {
-      logger.error(`Failed to send HELLO to ${connState.id}`);
+    } catch (error) {
+      logger.error(`Failed to send HELLO to ${connState.id}:`, error);
       this.closeConnection(connState);
     }
   }
@@ -106,17 +116,32 @@ export class ConnectionManager {
   /**
    * Cierra una conexión
    */
-  closeConnection(connState) {
+  closeConnection(connState, reason = 'Connection closed') {
+    logger.info(`Closing connection ${connState.id}: ${reason}`);
+    
     try {
+      // Limpiar timeout de autenticación si existe
+      const authTimeout = this.connectionTimeouts.get(connState.id);
+      if (authTimeout) {
+        clearTimeout(authTimeout);
+        this.connectionTimeouts.delete(connState.id);
+      }
+      
+      // Cerrar socket gracefully primero, luego forzar si es necesario
       if (!connState.socket.destroyed) {
-        connState.socket.destroy();
+        connState.socket.end();
+        setTimeout(() => {
+          if (!connState.socket.destroyed) {
+            connState.socket.destroy();
+          }
+        }, 1000);
       }
     } catch (error) {
       // Ignorar errores al cerrar
+      logger.debug(`Error closing connection ${connState.id}:`, error);
     }
 
     this.connections.delete(connState);
-    this.connectionTimeouts.delete(connState.id);
   }
 
   /**

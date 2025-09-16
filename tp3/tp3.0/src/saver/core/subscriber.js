@@ -1,6 +1,6 @@
 /**
  * ============================================================================
- * SAVER SUBSCRIBER REFACTORED - Camera System TP3.0
+ * SAVER SUBSCRIBER
  * ============================================================================
  * Subscriber MQTT refactorizado usando arquitectura modular
  */
@@ -21,7 +21,7 @@ export class SaverSubscriber {
     this.mqttClient = null;
     this.fileStore = null;
     this.isRunning = false;
-    
+
     this.stats = {
       totalMessages: 0,
       savedImages: 0,
@@ -40,19 +40,20 @@ export class SaverSubscriber {
     try {
       logger.info("Starting Saver Subscriber...");
 
-      // Inicializar file store
+      // Inicializar file store con configuración estructurada
       this.fileStore = new FileStore(this.config.storage);
       await this.fileStore.initialize();
 
       // Conectar a MQTT
       await this.connectMQTT();
-      
+
       this.isRunning = true;
-      logger.info(`Saver Subscriber started, listening on: ${this.config.mqtt.topic}`);
+      logger.info(
+        `Saver Subscriber started, listening on: ${this.config.mqtt.topic}`
+      );
 
-      // Log estadísticas cada minuto
+      // Configurar logging de estadísticas
       this.setupStatsLogging();
-
     } catch (error) {
       logger.error("Failed to start Saver Subscriber:", error);
       await this.stop();
@@ -64,28 +65,31 @@ export class SaverSubscriber {
    * Conecta al broker MQTT
    */
   async connectMQTT() {
-    const mqttUrl = `mqtt://${this.config.mqtt.broker}:${this.config.mqtt.port}`;
-    logger.info(`Connecting to MQTT broker: ${mqttUrl}`);
+    logger.info(`Connecting to MQTT broker: ${this.config.mqtt.url}`);
 
     return new Promise((resolve, reject) => {
-      this.mqttClient = mqtt.connect(mqttUrl, {
+      this.mqttClient = mqtt.connect(this.config.mqtt.url, {
         clientId: this.config.mqtt.clientId,
         ...this.config.mqtt.options,
       });
 
       this.mqttClient.on("connect", () => {
         logger.info("Connected to MQTT broker");
-        
+
         // Suscribirse al topic
-        this.mqttClient.subscribe(this.config.mqtt.topic, { qos: this.config.mqtt.qos }, (error) => {
-          if (error) {
-            logger.error("Failed to subscribe:", error);
-            reject(error);
-          } else {
-            logger.info(`Subscribed to topic: ${this.config.mqtt.topic}`);
-            resolve();
+        this.mqttClient.subscribe(
+          this.config.mqtt.topic,
+          { qos: this.config.mqtt.qos },
+          (error) => {
+            if (error) {
+              logger.error("Failed to subscribe:", error);
+              reject(error);
+            } else {
+              logger.info(`Subscribed to topic: ${this.config.mqtt.topic}`);
+              resolve();
+            }
           }
-        });
+        );
       });
 
       this.mqttClient.on("message", (topic, payload) => {
@@ -124,7 +128,7 @@ export class SaverSubscriber {
    */
   async handleMessage(topic, payload) {
     const startTime = Date.now();
-    
+
     try {
       this.stats.totalMessages++;
 
@@ -137,22 +141,24 @@ export class SaverSubscriber {
       }
 
       const message = JSON.parse(payload.toString());
-      
+
       // Extraer metadatos
       const metadata = extractMetadata(message);
-      
+
       // Decodificar imagen
       const imageBuffer = Buffer.from(message.data, "base64");
-      
+
       // Guardar imagen usando file store
       const savedFile = await this.fileStore.saveImage(message, imageBuffer);
-      
+
       if (savedFile.isDuplicate) {
         this.stats.duplicates++;
         logger.debug(`Duplicate image detected: ${savedFile.filename}`);
-      } else {
+      } else if (savedFile.saved) {
         this.stats.savedImages++;
-        logger.debug(`Image saved: ${savedFile.filename} (${imageBuffer.length} bytes)`);
+        logger.debug(
+          `Image saved: ${savedFile.filename} (${imageBuffer.length} bytes)`
+        );
       }
 
       // Actualizar estadísticas
@@ -167,9 +173,8 @@ export class SaverSubscriber {
 
       logger.debug(
         `Message processed: topic=${topic}, ` +
-        `camera=${metadata.cameraId}, duration=${Date.now() - startTime}ms`
+          `camera=${metadata.cameraId}, duration=${Date.now() - startTime}ms`
       );
-
     } catch (error) {
       this.stats.errors++;
       this.stats.lastError = {
@@ -219,7 +224,7 @@ export class SaverSubscriber {
   getStats() {
     const uptime = Date.now() - this.stats.startTime;
     const fileStoreStats = this.fileStore?.getStats() || {};
-    
+
     return {
       isRunning: this.isRunning,
       uptime,
@@ -232,8 +237,14 @@ export class SaverSubscriber {
         saved: this.stats.savedImages,
         duplicates: this.stats.duplicates,
         errors: this.stats.errors,
-        successRate: this.stats.totalMessages > 0 ? 
-          ((this.stats.savedImages + this.stats.duplicates) / this.stats.totalMessages * 100).toFixed(1) + "%" : "0%",
+        successRate:
+          this.stats.totalMessages > 0
+            ? (
+                ((this.stats.savedImages + this.stats.duplicates) /
+                  this.stats.totalMessages) *
+                100
+              ).toFixed(1) + "%"
+            : "0%",
       },
       storage: fileStoreStats,
       lastProcessed: this.stats.lastProcessed,
@@ -247,8 +258,10 @@ export class SaverSubscriber {
   setupStatsLogging() {
     this.statsInterval = setInterval(() => {
       const stats = this.getStats();
-      logger.info(`Stats: ${stats.messages.total} msgs, ${stats.messages.saved} saved, ${stats.messages.errors} errors, ${stats.messages.successRate} success`);
-    }, 60000); // Cada minuto
+      logger.info(
+        `Stats: ${stats.messages.total} msgs, ${stats.messages.saved} saved, ${stats.messages.errors} errors, ${stats.messages.successRate} success`
+      );
+    }, this.config.performance.statsIntervalMs);
   }
 
   /**

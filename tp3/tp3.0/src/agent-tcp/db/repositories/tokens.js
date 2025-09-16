@@ -1,6 +1,6 @@
 /**
  * ============================================================================
- * TOKENS REPOSITORY - Camera System TP3.0
+ * TOKENS REPOSITORY
  * ============================================================================
  * Repositorio para manejo de tokens de autenticación
  */

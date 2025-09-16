@@ -46,12 +46,6 @@ export const PROTOCOL = Object.freeze({
     SNAPSHOT: "SNAPSHOT",
   }),
 
-  CAMERA_STATUS: Object.freeze({
-    AVAILABLE: "available",
-    BUSY: "busy",
-    ERROR: "error",
-    NOT_FOUND: "not_found",
-  }),
 
   IMAGE_FORMAT: Object.freeze({
     JPEG: "image/jpeg",

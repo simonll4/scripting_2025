@@ -1,6 +1,6 @@
 /**
  * ============================================================================
- * SECURITY EXPORTS - Camera System TP3.0
+ * SECURITY EXPORTS
  * ============================================================================
  * Re-export central para módulos de seguridad
  */

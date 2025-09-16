@@ -1,8 +1,7 @@
 /**
  * ============================================================================
- * SCHEDULER CONFIGURATION - Camera System TP3.0
+ * SCHEDULER CONFIGURATION
  * ============================================================================
- * Configuración específica para el scheduler
  */
 
 import dotenv from "dotenv";
@@ -16,32 +15,18 @@ dotenv.config({ path: envPath });
 
 export const config = {
   // Conexión al AgentTCP
-  AGENT_HOST: process.env.AGENT_HOST || '127.0.0.1',
-  AGENT_PORT: parseInt(process.env.AGENT_TCP_PORT) || 5001,
-
-  // Token de autenticación
+  AGENT_HOST: process.env.SCHEDULER_AGENT_HOST || "127.0.0.1",
+  AGENT_PORT: parseInt(process.env.SCHEDULER_AGENT_PORT) || 5001,
   TOKEN: process.env.SCHEDULER_TOKEN,
 
-  // Captura
-  INTERVAL_MS: parseInt(process.env.INTERVAL_MS) || 5000,
-  CAMERA_ID: process.env.CAMERA_ID || '/dev/video0',
-  TOPIC: process.env.SCHEDULER_TOPIC || 'cameras/lab/dev-01/snapshot',
+  // Scheduling
+  INTERVAL_MS: parseInt(process.env.SCHEDULER_INTERVAL_MS) || 5000,
 
-  // Parámetros de imagen
-  WIDTH: parseInt(process.env.SNAP_WIDTH) || 1280,
-  HEIGHT: parseInt(process.env.SNAP_HEIGHT) || 720,
-  QUALITY: parseInt(process.env.SNAP_QUALITY) || 80,
-  
-  // Configuraciones específicas del scheduler
-  MAX_RETRY_ATTEMPTS: 5,
-  BASE_RETRY_DELAY_MS: 1000,
-  MAX_RETRY_DELAY_MS: 30000,
-  
-  // Timeouts específicos
-  CONNECTION_TIMEOUT_MS: 10_000,
-  AUTH_TIMEOUT_MS: 10_000,
-  SNAPSHOT_TIMEOUT_MS: 30_000,
-  
-  // Estadísticas
-  STATS_LOG_INTERVAL_MS: 60_000,
+  // Snapshot parameters
+  DEFAULT_CAMERA: process.env.SCHEDULER_DEFAULT_CAMERA || "/dev/video0",
+  DEFAULT_TOPIC: process.env.SCHEDULER_TOPIC || "cameras/lab/dev-01/snapshot",
+  WIDTH: parseInt(process.env.SCHEDULER_SNAP_WIDTH) || 1920,
+  HEIGHT: parseInt(process.env.SCHEDULER_SNAP_HEIGHT) || 1080,
+  QUALITY: parseInt(process.env.SCHEDULER_SNAP_QUALITY) || 95,
+  QUALITY_PRESET: process.env.SCHEDULER_SNAP_PRESET || "max",
 };

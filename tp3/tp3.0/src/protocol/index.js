@@ -30,8 +30,4 @@ export {
   MessageFramer,
   sendMessage,
   setupTransportPipeline,
-  // Legacy functions para compatibilidad
-  encodeFrame,
-  decodePayload,
-  writeFrame,
 } from "./modules/transport.js";

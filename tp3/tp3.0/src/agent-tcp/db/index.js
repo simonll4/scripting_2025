@@ -1,6 +1,6 @@
 /**
  * ============================================================================
- * DATABASE INITIALIZATION - Camera System TP3.0
+ * DATABASE INITIALIZATION
  * ============================================================================
  * Inicialización y configuración de la base de datos, extraído desde db.js
  */

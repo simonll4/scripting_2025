@@ -1,6 +1,6 @@
 /**
  * ============================================================================
- * MESSAGE PIPELINE - Camera System TP3.0
+ * MESSAGE PIPELINE
  * ============================================================================
  * Pipeline de procesamiento de mensajes y enrutamiento de comandos
  */
@@ -11,7 +11,7 @@ import {
   makeResponse, 
   makeError, 
   isValidRequest,
-  writeFrame 
+  sendMessage 
 } from "../../protocol/index.js";
 import { validateToken } from "../security/token-service.js";
 import { getCommandHandler, isValidCommand } from "../business/index.js";
@@ -22,11 +22,12 @@ const logger = createLogger("MESSAGE-PIPELINE");
  * Pipeline de procesamiento de mensajes
  */
 export class MessagePipeline {
-  constructor({ db, mqttAdapter, captureQueue, config }) {
+  constructor({ db, mqttAdapter, captureQueue, config, connectionManager }) {
     this.db = db;
     this.mqttAdapter = mqttAdapter;
     this.captureQueue = captureQueue;
     this.config = config;
+    this.connectionManager = connectionManager;
   }
 
   /**
@@ -39,6 +40,21 @@ export class MessagePipeline {
       // Validar estructura básica del mensaje
       if (!isValidRequest(message)) {
         logger.warn(`Invalid request from ${connState.id}:`, message);
+        
+        // Enviar error de validación en lugar de silenciar
+        const errorResponse = makeError(
+          message?.id || "unknown",
+          message?.act || "unknown", 
+          PROTOCOL.ERROR_CODES.BAD_REQUEST,
+          "Invalid request format",
+          { startedAt: startTime }
+        );
+        
+        try {
+          sendMessage(connState.socket, errorResponse);
+        } catch (error) {
+          logger.warn(`Failed to send validation error to ${connState.id}:`, error);
+        }
         return;
       }
 
@@ -58,8 +74,12 @@ export class MessagePipeline {
       }
 
       // Enviar respuesta
-      if (response && !writeFrame(connState.socket, response)) {
-        logger.warn(`Failed to send response to ${connState.id}`);
+      if (response) {
+        try {
+          sendMessage(connState.socket, response);
+        } catch (error) {
+          logger.warn(`Failed to send response to ${connState.id}:`, error);
+        }
       }
 
     } catch (error) {
@@ -74,7 +94,11 @@ export class MessagePipeline {
         { startedAt: startTime }
       );
 
-      writeFrame(connState.socket, errorResponse);
+      try {
+        sendMessage(connState.socket, errorResponse);
+      } catch (error) {
+        logger.warn(`Failed to send error response to ${connState.id}:`, error);
+      }
     }
   }
 
@@ -134,6 +158,13 @@ export class MessagePipeline {
         scopes: result.scopes,
         authenticatedAt: Date.now(),
       };
+
+      // Limpiar timeout de autenticación
+      const authTimeout = this.connectionManager.connectionTimeouts.get(connState.id);
+      if (authTimeout) {
+        clearTimeout(authTimeout);
+        this.connectionManager.connectionTimeouts.delete(connState.id);
+      }
 
       logger.info(`Authentication successful for ${connState.id} (token: ${result.tokenId})`);
       

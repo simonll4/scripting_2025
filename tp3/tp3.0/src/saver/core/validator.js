@@ -1,6 +1,6 @@
 /**
  * ============================================================================
- * MESSAGE VALIDATOR - Camera System TP3.0
+ * MESSAGE VALIDATOR
  * ============================================================================
  * Validador de mensajes MQTT extraído del subscriber
  */
@@ -53,17 +53,31 @@ export function validateMessage(message) {
   }
 
   // Validar dimensiones opcionales
-  if (message.width !== undefined && (typeof message.width !== "number" || message.width <= 0)) {
+  if (
+    message.width !== undefined &&
+    (typeof message.width !== "number" || message.width <= 0)
+  ) {
     return { valid: false, error: "width must be a positive number" };
   }
 
-  if (message.height !== undefined && (typeof message.height !== "number" || message.height <= 0)) {
+  if (
+    message.height !== undefined &&
+    (typeof message.height !== "number" || message.height <= 0)
+  ) {
     return { valid: false, error: "height must be a positive number" };
   }
 
   // Validar quality opcional
-  if (message.quality !== undefined && (typeof message.quality !== "number" || message.quality < 1 || message.quality > 100)) {
-    return { valid: false, error: "quality must be a number between 1 and 100" };
+  if (
+    message.quality !== undefined &&
+    (typeof message.quality !== "number" ||
+      message.quality < 1 ||
+      message.quality > 100)
+  ) {
+    return {
+      valid: false,
+      error: "quality must be a number between 1 and 100",
+    };
   }
 
   // Validar tamaño de datos base64
@@ -75,21 +89,26 @@ export function validateMessage(message) {
 
     // Verificar que sea una imagen válida (magic bytes)
     if (message.format === "image/jpeg") {
-      if (buffer.length < 2 || buffer[0] !== 0xFF || buffer[1] !== 0xD8) {
-        return { valid: false, error: "invalid JPEG data (missing magic bytes)" };
+      if (buffer.length < 2 || buffer[0] !== 0xff || buffer[1] !== 0xd8) {
+        return {
+          valid: false,
+          error: "invalid JPEG data (missing magic bytes)",
+        };
       }
     } else if (message.format === "image/png") {
-      const pngSignature = [0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A];
+      const pngSignature = [0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a];
       if (buffer.length < 8) {
         return { valid: false, error: "invalid PNG data (too short)" };
       }
       for (let i = 0; i < 8; i++) {
         if (buffer[i] !== pngSignature[i]) {
-          return { valid: false, error: "invalid PNG data (missing signature)" };
+          return {
+            valid: false,
+            error: "invalid PNG data (missing signature)",
+          };
         }
       }
     }
-
   } catch (error) {
     return { valid: false, error: `failed to decode data: ${error.message}` };
   }
@@ -149,7 +168,10 @@ export class MessageValidator {
       return "invalid_format";
     } else if (errorMessage.includes("encoding")) {
       return "invalid_encoding";
-    } else if (errorMessage.includes("magic bytes") || errorMessage.includes("signature")) {
+    } else if (
+      errorMessage.includes("magic bytes") ||
+      errorMessage.includes("signature")
+    ) {
       return "invalid_image";
     } else {
       return "other";
@@ -200,7 +222,7 @@ export function validatePayload(payload) {
  */
 export function extractMetadata(message) {
   const imageBuffer = Buffer.from(message.data, "base64");
-  
+
   return {
     cameraId: message.cameraId || "unknown",
     timestamp: message.timestamp,

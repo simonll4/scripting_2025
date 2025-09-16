@@ -1,46 +1,52 @@
 /**
  * ============================================================================
- * SCHEDULER ENTRY POINT - Camera System TP3.0
+ * SCHEDULER ENTRY POINT
  * ============================================================================
- * Punto de entrada principal del scheduler refactorizado con graceful shutdown
+ * Scheduler optimizado con arquitectura simplificada
  */
 
 import { Scheduler } from "./core/scheduler.js";
 import { config } from "./config.js";
-import { createLogger } from "../utils/index.js";
+import { createLogger } from '../utils/logger.js';
 
-const logger = createLogger("SCHEDULER-MAIN");
+const logger = createLogger("SCHEDULER");
 
 /**
- * Función principal
+ * Función principal optimizada
  */
 async function main() {
-  try {
-    // Validar configuración crítica
-    if (!config.AGENT_HOST || !config.AGENT_PORT || !config.TOKEN || !config.INTERVAL_MS) {
-      throw new Error("Missing required configuration");
-    }
-
-    logger.info("Starting Camera System Scheduler...");
-
-    // Crear e inicializar scheduler
-    const scheduler = new Scheduler(config);
-    
-    // Configurar cierre graceful
-    setupGracefulShutdown(scheduler);
-    
-    // Iniciar scheduler
-    await scheduler.start();
-    
-    logger.info("Scheduler is running. Press Ctrl+C to stop.");
-
-  } catch (error) {
-    logger.error("Failed to start scheduler:", error.message || error);
-    if (error.stack) {
-      logger.error("Stack trace:", error.stack);
-    }
-    process.exit(1);
+  // Validar configuración esencial
+  if (!config.TOKEN) {
+    throw new Error("SCHEDULER_TOKEN is required");
   }
+
+  logger.info("Starting optimized camera scheduler...");
+  logger.info(
+    `Config: ${config.DEFAULT_CAMERA} → ${config.DEFAULT_TOPIC} (${config.QUALITY_PRESET})`
+  );
+
+  // Crear scheduler optimizado
+  const scheduler = new Scheduler(config);
+
+  // Configurar shutdown graceful
+  setupGracefulShutdown(scheduler);
+
+  // Iniciar
+  await scheduler.start();
+
+  // Log estadísticas cada minuto
+  setInterval(() => {
+    const stats = scheduler.getStats();
+    logger.info("Stats:", {
+      uptime: Math.round(stats.uptime / 1000) + "s",
+      total: stats.totalRequests,
+      success: stats.successful,
+      failed: stats.failed,
+      rate: stats.successRate,
+    });
+  }, 60000);
+
+  logger.info("Optimized scheduler running. Press Ctrl+C to stop.");
 }
 
 /**
@@ -54,10 +60,10 @@ function setupGracefulShutdown(scheduler) {
 
       // Mostrar estadísticas finales
       const stats = scheduler.getStats();
-      logger.info("Final statistics:", {
-        totalRequests: stats.totalRequests,
-        successful: stats.successfulSnapshots,
-        failed: stats.failedSnapshots,
+      logger.info("Final stats:", {
+        total: stats.totalRequests,
+        success: stats.successful,
+        failed: stats.failed,
         uptime: Math.round(stats.uptime / 1000) + "s",
       });
 
@@ -90,7 +96,3 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     process.exit(1);
   });
 }
-
-export { Scheduler } from "./core/scheduler.js";
-export { SchedulerClient } from "./core/client.js";
-export { config } from "./config.js";

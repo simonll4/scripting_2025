@@ -1,6 +1,6 @@
 /**
  * ============================================================================
- * LOGGER UTILITY - Camera System TP3.0
+ * LOGGER UTILITY
  * ============================================================================
  */
 
@@ -49,7 +49,9 @@ export class Logger {
   }
 
   debug(...args) {
-    if (process.env.DEBUG || process.env.NODE_ENV === 'development') {
+    const debugEnabled = process.env.DEBUG === 'true' || process.env.DEBUG === '1' || 
+                        process.env.NODE_ENV === 'development';
+    if (debugEnabled) {
       this._log("DEBUG", ...args);
     }
   }

@@ -1,8 +1,7 @@
 /**
  * ============================================================================
- * AGENT TCP SERVER - Camera System TP3.0
+ * AGENT TCP SERVER
  * ============================================================================
- * Servidor TCP refactorizado siguiendo la arquitectura de tp2
  */
 
 import net from "net";
@@ -52,6 +51,7 @@ export class AgentTCPServer {
         mqttAdapter: this.mqttAdapter,
         captureQueue: this.captureQueue,
         config: this.config,
+        connectionManager: this.connectionManager,
       });
 
       // Crear servidor TCP
@@ -66,17 +66,16 @@ export class AgentTCPServer {
 
       // Iniciar escucha
       await new Promise((resolve, reject) => {
-        this.server.listen(this.config.TCP_PORT, (error) => {
-          if (error) {
-            reject(error);
-          } else {
-            this.isRunning = true;
-            logger.info(`AgentTCP listening on port ${this.config.TCP_PORT}`);
-            resolve();
-          }
+        this.server.once('listening', () => {
+          this.isRunning = true;
+          logger.info(`AgentTCP listening on ${this.config.TCP_HOST}:${this.config.TCP_PORT}`);
+          resolve();
         });
+        
+        this.server.once('error', reject);
+        
+        this.server.listen(this.config.TCP_PORT, this.config.TCP_HOST);
       });
-
     } catch (error) {
       logger.error("Failed to start AgentTCP:", error);
       await this.stop();

@@ -1,6 +1,6 @@
 /**
  * ============================================================================
- * BUSINESS COMMANDS REGISTRY - Camera System TP3.0
+ * BUSINESS COMMANDS REGISTRY
  * ============================================================================
  * Registro central de comandos y sus handlers
  */

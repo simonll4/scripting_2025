@@ -154,54 +154,8 @@ export function setupTransportPipeline(socket, options = {}) {
   deframer.on("transport-error", onTransportError);
 
   // Back-compat: si alguien emite "error" en deframer, lo tratamos igual
-  deframer.on("error", onTransportError);
+  // deframer.on("error", onTransportError);
 
   return deframer;
 }
 
-// ============================================================================
-// Legacy functions para compatibilidad con código existente
-// ============================================================================
-
-/**
- * Codifica un mensaje como frame binario (legacy)
- * @param {Object} message - Objeto a serializar
- * @returns {Buffer} Frame binario [length][payload]
- */
-export function encodeFrame(message) {
-  const payload = Buffer.from(JSON.stringify(message), "utf8");
-  const header = Buffer.allocUnsafe(4);
-  header.writeUInt32BE(payload.length, 0);
-  return Buffer.concat([header, payload]);
-}
-
-/**
- * Decodifica un payload de frame a objeto (legacy)
- * @param {Buffer} payload - Payload del frame
- * @returns {Object} Objeto deserializado
- */
-export function decodePayload(payload) {
-  const jsonStr = payload.toString("utf8");
-  return JSON.parse(jsonStr);
-}
-
-/**
- * Wrapper para escribir frame a socket (legacy)
- * @param {net.Socket} socket - Socket TCP
- * @param {Object} message - Mensaje a enviar
- * @returns {boolean} true si se escribió correctamente
- */
-export function writeFrame(socket, message) {
-  if (!socket || socket.destroyed) {
-    return false;
-  }
-
-  try {
-    const frame = encodeFrame(message);
-    return socket.write(frame);
-  } catch (error) {
-    // Log error pero no crashear
-    console.error("writeFrame error:", error);
-    return false;
-  }
-}
