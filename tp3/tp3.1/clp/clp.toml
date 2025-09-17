@@ -1,0 +1,21 @@
+[clp]
+agent_target = "mqttAgent"
+qos = 1
+keepalive = 30
+clean_start = true
+timeout_ms = 5000
+
+[logging]
+debug = true
+level = "debug"                      # debug, info, warn, error
+output = "file"                      # console or file (CLP uses file to keep CLI clean)
+file_path = "../logs/clp.log"
+
+[mqtt]
+url = "mqtt://localhost:1884"
+username = "simonll4"
+password = "123"
+
+[topics]
+request_base = "request/commands"
+response_base = "response/commands"

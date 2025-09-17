@@ -1,0 +1,191 @@
+2025-09-17T04:30:29.112Z [INFO] shutdown_signal_received | signal=SIGINT
+2025-09-17T04:30:29.113Z [DEBUG] presence_cleanup_started | agent=mqttAgent
+2025-09-17T04:30:29.113Z [DEBUG] heartbeat_stopped | agent=mqttAgent
+2025-09-17T04:30:29.114Z [INFO] presence_offline_announced | agent=mqttAgent
+2025-09-17T04:30:29.115Z [DEBUG] presence_announced | agent=mqttAgent state=offline topic=presence/agents/mqttAgent
+2025-09-17T04:30:29.128Z [INFO] mqtt_close | agent=mqttAgent
+2025-09-17T04:30:29.129Z [INFO] mqtt_client_closed
+2025-09-17T04:30:30.465Z [DEBUG] presence_manager_created | agent=mqttAgent enabled=true heartbeatSeconds=30 topic=presence/agents/mqttAgent
+2025-09-17T04:30:30.567Z [WARN] connect_v5_failed | message=Connection refused: Unacceptable protocol version
+2025-09-17T04:30:30.580Z [INFO] connected | mqtt_version=3.1.1 clientId=agent-mqttAgent-6ac7e9fba216 sessionPresent=false
+2025-09-17T04:30:30.582Z [INFO] heartbeat_started | agent=mqttAgent intervalSeconds=30 topic=presence/agents/mqttAgent
+2025-09-17T04:30:30.587Z [DEBUG] presence_announced | agent=mqttAgent state=online topic=presence/agents/mqttAgent
+2025-09-17T04:30:30.627Z [INFO] subscribed | topic=request/commands/mqttAgent/+
+2025-09-17T04:30:30.628Z [INFO] agent_ready | agent=mqttAgent mqttVersion=3.1.1 presenceEnabled=true heartbeatSeconds=30
+2025-09-17T04:30:30.628Z [INFO] Agent started successfully
+2025-09-17T04:30:32.351Z [INFO] response_sent | command=help method=baseline_replyTo id=mfnhheaix0npa1nl16 agent=mqttAgent
+2025-09-17T04:30:32.352Z [INFO] request_processed | agent=mqttAgent command=help id=mfnhheaix0npa1nl16 durationMs=2
+2025-09-17T04:30:52.082Z [INFO] response_sent | command=help method=baseline_replyTo id=mfnhhtilav3at1wxpct agent=mqttAgent
+2025-09-17T04:30:52.082Z [INFO] request_processed | agent=mqttAgent command=help id=mfnhhtilav3at1wxpct durationMs=1
+2025-09-17T04:31:00.592Z [DEBUG] presence_announced | agent=mqttAgent state=online topic=presence/agents/mqttAgent
+2025-09-17T04:31:30.607Z [DEBUG] presence_announced | agent=mqttAgent state=online topic=presence/agents/mqttAgent
+2025-09-17T04:31:35.294Z [INFO] shutdown_signal_received | signal=SIGINT
+2025-09-17T04:31:35.294Z [DEBUG] presence_cleanup_started | agent=mqttAgent
+2025-09-17T04:31:35.295Z [DEBUG] heartbeat_stopped | agent=mqttAgent
+2025-09-17T04:31:35.295Z [INFO] presence_offline_announced | agent=mqttAgent
+2025-09-17T04:31:35.296Z [DEBUG] presence_announced | agent=mqttAgent state=offline topic=presence/agents/mqttAgent
+2025-09-17T04:31:35.311Z [INFO] mqtt_close | agent=mqttAgent
+2025-09-17T04:31:35.312Z [INFO] mqtt_client_closed
+2025-09-17T04:34:47.590Z [DEBUG] presence_manager_created | agent=mqttAgent enabled=true heartbeatSeconds=30 topic=presence/agents/mqttAgent
+2025-09-17T04:34:47.699Z [WARN] connect_v5_failed | message=Connection refused: Unacceptable protocol version
+2025-09-17T04:34:47.711Z [INFO] connected | mqtt_version=3.1.1 clientId=agent-mqttAgent-97bf6c4990e2c sessionPresent=false
+2025-09-17T04:34:47.714Z [INFO] heartbeat_started | agent=mqttAgent intervalSeconds=30 topic=presence/agents/mqttAgent
+2025-09-17T04:34:47.719Z [DEBUG] presence_announced | agent=mqttAgent state=online topic=presence/agents/mqttAgent
+2025-09-17T04:34:47.759Z [INFO] subscribed | topic=request/commands/mqttAgent/+
+2025-09-17T04:34:47.759Z [INFO] agent_ready | agent=mqttAgent mqttVersion=3.1.1 presenceEnabled=true heartbeatSeconds=30
+2025-09-17T04:34:47.760Z [INFO] Agent started successfully
+2025-09-17T04:34:51.656Z [INFO] response_sent | command=help method=baseline_replyTo id=mfnhmydfp97f73ilv2f agent=mqttAgent
+2025-09-17T04:34:51.657Z [INFO] request_processed | agent=mqttAgent command=help id=mfnhmydfp97f73ilv2f durationMs=2
+2025-09-17T04:34:54.378Z [INFO] response_sent | command=help method=baseline_replyTo id=mfnhn0h3gmfm98haj5k agent=mqttAgent
+2025-09-17T04:34:54.379Z [INFO] request_processed | agent=mqttAgent command=help id=mfnhn0h3gmfm98haj5k durationMs=1
+2025-09-17T04:35:06.170Z [INFO] response_sent | command=ls method=baseline_replyTo id=mfnhn9km24tnr93p8pl agent=mqttAgent
+2025-09-17T04:35:06.170Z [INFO] request_processed | agent=mqttAgent command=ls id=mfnhn9km24tnr93p8pl durationMs=2
+2025-09-17T04:35:17.724Z [DEBUG] presence_announced | agent=mqttAgent state=online topic=presence/agents/mqttAgent
+2025-09-17T04:35:38.031Z [INFO] response_sent | command=help method=baseline_replyTo id=mfnhny5odzxfjdeg81a agent=mqttAgent
+2025-09-17T04:35:38.031Z [INFO] request_processed | agent=mqttAgent command=help id=mfnhny5odzxfjdeg81a durationMs=1
+2025-09-17T04:35:44.565Z [INFO] response_sent | command=ls method=baseline_replyTo id=mfnho377issk5kscyjl agent=mqttAgent
+2025-09-17T04:35:44.566Z [INFO] request_processed | agent=mqttAgent command=ls id=mfnho377issk5kscyjl durationMs=1
+2025-09-17T04:35:47.726Z [DEBUG] presence_announced | agent=mqttAgent state=online topic=presence/agents/mqttAgent
+2025-09-17T04:36:16.797Z [INFO] response_sent | command=ls method=baseline_replyTo id=mfnhos2ih6h4d5dnrwo agent=mqttAgent
+2025-09-17T04:36:16.797Z [INFO] request_processed | agent=mqttAgent command=ls id=mfnhos2ih6h4d5dnrwo durationMs=1
+2025-09-17T04:36:17.728Z [DEBUG] presence_announced | agent=mqttAgent state=online topic=presence/agents/mqttAgent
+2025-09-17T04:36:22.493Z [INFO] response_sent | command=ls method=baseline_replyTo id=mfnhowgp034zl4pub6rx agent=mqttAgent
+2025-09-17T04:36:22.493Z [INFO] request_processed | agent=mqttAgent command=ls id=mfnhowgp034zl4pub6rx durationMs=1
+2025-09-17T04:36:47.738Z [DEBUG] presence_announced | agent=mqttAgent state=online topic=presence/agents/mqttAgent
+2025-09-17T04:37:17.753Z [DEBUG] presence_announced | agent=mqttAgent state=online topic=presence/agents/mqttAgent
+2025-09-17T04:37:47.768Z [DEBUG] presence_announced | agent=mqttAgent state=online topic=presence/agents/mqttAgent
+2025-09-17T04:38:17.782Z [DEBUG] presence_announced | agent=mqttAgent state=online topic=presence/agents/mqttAgent
+2025-09-17T04:38:47.799Z [DEBUG] presence_announced | agent=mqttAgent state=online topic=presence/agents/mqttAgent
+2025-09-17T04:39:17.812Z [DEBUG] presence_announced | agent=mqttAgent state=online topic=presence/agents/mqttAgent
+2025-09-17T04:39:47.827Z [DEBUG] presence_announced | agent=mqttAgent state=online topic=presence/agents/mqttAgent
+2025-09-17T04:40:17.841Z [DEBUG] presence_announced | agent=mqttAgent state=online topic=presence/agents/mqttAgent
+2025-09-17T04:40:47.857Z [DEBUG] presence_announced | agent=mqttAgent state=online topic=presence/agents/mqttAgent
+2025-09-17T04:41:17.873Z [DEBUG] presence_announced | agent=mqttAgent state=online topic=presence/agents/mqttAgent
+2025-09-17T04:41:20.082Z [INFO] shutdown_signal_received | signal=SIGINT
+2025-09-17T04:41:20.083Z [DEBUG] presence_cleanup_started | agent=mqttAgent
+2025-09-17T04:41:20.083Z [DEBUG] heartbeat_stopped | agent=mqttAgent
+2025-09-17T04:41:20.083Z [INFO] presence_offline_announced | agent=mqttAgent
+2025-09-17T04:41:20.084Z [DEBUG] presence_announced | agent=mqttAgent state=offline topic=presence/agents/mqttAgent
+2025-09-17T04:41:20.098Z [INFO] mqtt_close | agent=mqttAgent
+2025-09-17T04:41:20.098Z [INFO] mqtt_client_closed
+2025-09-17T04:41:20.973Z [DEBUG] presence_manager_created | agent=mqttAgent enabled=true heartbeatSeconds=30 topic=presence/agents/mqttAgent
+2025-09-17T04:41:21.074Z [INFO] connected | mqtt_version=5 clientId=agent-mqttAgent-70cf727ccf3bb sessionPresent=false
+2025-09-17T04:41:21.077Z [INFO] heartbeat_started | agent=mqttAgent intervalSeconds=30 topic=presence/agents/mqttAgent
+2025-09-17T04:41:21.084Z [DEBUG] presence_announced | agent=mqttAgent state=online topic=presence/agents/mqttAgent
+2025-09-17T04:41:21.122Z [INFO] subscribed | topic=request/commands/mqttAgent/+
+2025-09-17T04:41:21.122Z [INFO] agent_ready | agent=mqttAgent mqttVersion=5.0 presenceEnabled=true heartbeatSeconds=30
+2025-09-17T04:41:21.122Z [INFO] Agent started successfully
+2025-09-17T04:41:24.514Z [INFO] response_sent | command=help method=v5_responseTopic id=mfnhvdi46o5tux8fkjh agent=mqttAgent
+2025-09-17T04:41:24.515Z [INFO] request_processed | agent=mqttAgent command=help id=mfnhvdi46o5tux8fkjh durationMs=3
+2025-09-17T04:41:46.343Z [INFO] response_sent | command=ls method=v5_responseTopic id=mfnhvucjm3h5mg0pzue agent=mqttAgent
+2025-09-17T04:41:46.344Z [INFO] request_processed | agent=mqttAgent command=ls id=mfnhvucjm3h5mg0pzue durationMs=2
+2025-09-17T04:41:51.084Z [DEBUG] presence_announced | agent=mqttAgent state=online topic=presence/agents/mqttAgent
+2025-09-17T04:42:04.698Z [INFO] response_sent | command=ls method=v5_responseTopic id=mfnhw8ieuvcz6u2dia8 agent=mqttAgent
+2025-09-17T04:42:04.698Z [INFO] request_processed | agent=mqttAgent command=ls id=mfnhw8ieuvcz6u2dia8 durationMs=1
+2025-09-17T04:42:21.085Z [DEBUG] presence_announced | agent=mqttAgent state=online topic=presence/agents/mqttAgent
+2025-09-17T04:42:51.100Z [DEBUG] presence_announced | agent=mqttAgent state=online topic=presence/agents/mqttAgent
+2025-09-17T04:42:53.173Z [INFO] response_sent | command=ls method=v5_responseTopic id=mfnhx9wx2qtrbo6tokk agent=mqttAgent
+2025-09-17T04:42:53.173Z [INFO] request_processed | agent=mqttAgent command=ls id=mfnhx9wx2qtrbo6tokk durationMs=1
+2025-09-17T04:43:21.112Z [DEBUG] presence_announced | agent=mqttAgent state=online topic=presence/agents/mqttAgent
+2025-09-17T04:43:51.126Z [DEBUG] presence_announced | agent=mqttAgent state=online topic=presence/agents/mqttAgent
+2025-09-17T04:44:21.141Z [DEBUG] presence_announced | agent=mqttAgent state=online topic=presence/agents/mqttAgent
+2025-09-17T04:44:51.156Z [DEBUG] presence_announced | agent=mqttAgent state=online topic=presence/agents/mqttAgent
+2025-09-17T04:45:21.171Z [DEBUG] presence_announced | agent=mqttAgent state=online topic=presence/agents/mqttAgent
+2025-09-17T04:45:51.186Z [DEBUG] presence_announced | agent=mqttAgent state=online topic=presence/agents/mqttAgent
+2025-09-17T04:46:15.994Z [INFO] shutdown_signal_received | signal=SIGINT
+2025-09-17T04:46:15.994Z [DEBUG] presence_cleanup_started | agent=mqttAgent
+2025-09-17T04:46:15.995Z [DEBUG] heartbeat_stopped | agent=mqttAgent
+2025-09-17T04:46:15.995Z [INFO] presence_offline_announced | agent=mqttAgent
+2025-09-17T04:46:15.996Z [DEBUG] presence_announced | agent=mqttAgent state=offline topic=presence/agents/mqttAgent
+2025-09-17T04:46:16.010Z [INFO] mqtt_close | agent=mqttAgent
+2025-09-17T04:46:16.011Z [INFO] mqtt_client_closed
+2025-09-17T04:46:17.556Z [DEBUG] presence_manager_created | agent=mqttAgent enabled=true heartbeatSeconds=30 topic=presence/agents/mqttAgent
+2025-09-17T04:46:17.670Z [INFO] connected | mqtt_version=5 clientId=agent-mqttAgent-825896507f387 sessionPresent=false
+2025-09-17T04:46:17.673Z [INFO] heartbeat_started | agent=mqttAgent intervalSeconds=30 topic=presence/agents/mqttAgent
+2025-09-17T04:46:17.678Z [DEBUG] presence_announced | agent=mqttAgent state=online topic=presence/agents/mqttAgent
+2025-09-17T04:46:17.719Z [INFO] subscribed | topic=request/commands/mqttAgent/+
+2025-09-17T04:46:17.719Z [INFO] agent_ready | agent=mqttAgent mqttVersion=5.0 presenceEnabled=true heartbeatSeconds=30
+2025-09-17T04:46:17.719Z [INFO] Agent started successfully
+2025-09-17T04:46:19.040Z [INFO] response_sent | command=help method=v5_responseTopic id=mfni1orcvqejc9udg6 agent=mqttAgent
+2025-09-17T04:46:19.041Z [INFO] request_processed | agent=mqttAgent command=help id=mfni1orcvqejc9udg6 durationMs=3
+2025-09-17T04:46:47.687Z [DEBUG] presence_announced | agent=mqttAgent state=online topic=presence/agents/mqttAgent
+2025-09-17T04:46:58.803Z [INFO] response_sent | command=ls method=v5_responseTopic id=mfni2jfz2967ckac89 agent=mqttAgent
+2025-09-17T04:46:58.803Z [INFO] request_processed | agent=mqttAgent command=ls id=mfni2jfz2967ckac89 durationMs=2
+2025-09-17T04:47:09.645Z [INFO] response_sent | command=ls method=v5_responseTopic id=mfni2rt69b9qm4qzcvk agent=mqttAgent
+2025-09-17T04:47:09.645Z [INFO] request_processed | agent=mqttAgent command=ls id=mfni2rt69b9qm4qzcvk durationMs=1
+2025-09-17T04:47:17.691Z [DEBUG] presence_announced | agent=mqttAgent state=online topic=presence/agents/mqttAgent
+2025-09-17T04:47:47.706Z [DEBUG] presence_announced | agent=mqttAgent state=online topic=presence/agents/mqttAgent
+2025-09-17T04:48:17.721Z [DEBUG] presence_announced | agent=mqttAgent state=online topic=presence/agents/mqttAgent
+2025-09-17T04:48:41.421Z [INFO] shutdown_signal_received | signal=SIGINT
+2025-09-17T04:48:41.422Z [DEBUG] presence_cleanup_started | agent=mqttAgent
+2025-09-17T04:48:41.422Z [DEBUG] heartbeat_stopped | agent=mqttAgent
+2025-09-17T04:48:41.423Z [INFO] presence_offline_announced | agent=mqttAgent
+2025-09-17T04:48:41.425Z [DEBUG] presence_announced | agent=mqttAgent state=offline topic=presence/agents/mqttAgent
+2025-09-17T04:48:41.442Z [INFO] mqtt_close | agent=mqttAgent
+2025-09-17T04:48:41.442Z [INFO] mqtt_client_closed
+2025-09-17T04:48:42.400Z [DEBUG] presence_manager_created | agent=mqttAgent enabled=true heartbeatSeconds=30 topic=presence/agents/mqttAgent
+2025-09-17T04:48:42.532Z [INFO] connected | mqtt_version=5 clientId=agent-mqttAgent-0031dce644c12 sessionPresent=false
+2025-09-17T04:48:42.535Z [INFO] heartbeat_started | agent=mqttAgent intervalSeconds=30 topic=presence/agents/mqttAgent
+2025-09-17T04:48:42.540Z [DEBUG] presence_announced | agent=mqttAgent state=online topic=presence/agents/mqttAgent
+2025-09-17T04:48:42.581Z [INFO] subscribed | topic=request/commands/mqttAgent/+
+2025-09-17T04:48:42.581Z [INFO] agent_ready | agent=mqttAgent mqttVersion=5.0 presenceEnabled=true heartbeatSeconds=30
+2025-09-17T04:48:42.582Z [INFO] Agent started successfully
+2025-09-17T04:48:45.412Z [INFO] response_sent | command=help method=v5_responseTopic id=mfni4tpaqdjz3olz9ge agent=mqttAgent
+2025-09-17T04:48:45.413Z [INFO] request_processed | agent=mqttAgent command=help id=mfni4tpaqdjz3olz9ge durationMs=3
+2025-09-17T04:49:12.549Z [DEBUG] presence_announced | agent=mqttAgent state=online topic=presence/agents/mqttAgent
+2025-09-17T04:49:20.401Z [INFO] response_sent | command=ls method=v5_responseTopic id=mfni5kp9s1sy63vzhhd agent=mqttAgent
+2025-09-17T04:49:20.401Z [INFO] request_processed | agent=mqttAgent command=ls id=mfni5kp9s1sy63vzhhd durationMs=1
+2025-09-17T04:49:31.469Z [INFO] response_sent | command=ls method=v5_responseTopic id=mfni5t8q8y31gapbo6f agent=mqttAgent
+2025-09-17T04:49:31.470Z [INFO] request_processed | agent=mqttAgent command=ls id=mfni5t8q8y31gapbo6f durationMs=2
+2025-09-17T04:49:42.346Z [INFO] response_sent | command=ls method=v5_responseTopic id=mfni61mvdcnh41wezip agent=mqttAgent
+2025-09-17T04:49:42.346Z [INFO] request_processed | agent=mqttAgent command=ls id=mfni61mvdcnh41wezip durationMs=1
+2025-09-17T04:49:42.550Z [DEBUG] presence_announced | agent=mqttAgent state=online topic=presence/agents/mqttAgent
+2025-09-17T04:50:01.501Z [INFO] response_sent | command=help method=v5_responseTopic id=mfni6geufi3hypfqavg agent=mqttAgent
+2025-09-17T04:50:01.501Z [INFO] request_processed | agent=mqttAgent command=help id=mfni6geufi3hypfqavg durationMs=2
+2025-09-17T04:50:12.560Z [DEBUG] presence_announced | agent=mqttAgent state=online topic=presence/agents/mqttAgent
+2025-09-17T04:50:30.363Z [INFO] response_sent | command=ls method=v5_responseTopic id=mfni72oo3n4d3xrtabf agent=mqttAgent
+2025-09-17T04:50:30.363Z [INFO] request_processed | agent=mqttAgent command=ls id=mfni72oo3n4d3xrtabf durationMs=1
+2025-09-17T04:50:32.552Z [INFO] response_sent | command=ls method=v5_responseTopic id=mfni74dhnm8bdarc0h agent=mqttAgent
+2025-09-17T04:50:32.552Z [INFO] request_processed | agent=mqttAgent command=ls id=mfni74dhnm8bdarc0h durationMs=1
+2025-09-17T04:50:32.926Z [INFO] response_sent | command=ls method=v5_responseTopic id=mfni74nv7r3bv4j89ie agent=mqttAgent
+2025-09-17T04:50:32.927Z [INFO] request_processed | agent=mqttAgent command=ls id=mfni74nv7r3bv4j89ie durationMs=2
+2025-09-17T04:50:42.571Z [DEBUG] presence_announced | agent=mqttAgent state=online topic=presence/agents/mqttAgent
+2025-09-17T04:51:00.757Z [INFO] shutdown_signal_received | signal=SIGINT
+2025-09-17T04:51:00.757Z [DEBUG] presence_cleanup_started | agent=mqttAgent
+2025-09-17T04:51:00.758Z [DEBUG] heartbeat_stopped | agent=mqttAgent
+2025-09-17T04:51:00.758Z [INFO] presence_offline_announced | agent=mqttAgent
+2025-09-17T04:51:00.759Z [DEBUG] presence_announced | agent=mqttAgent state=offline topic=presence/agents/mqttAgent
+2025-09-17T04:51:00.774Z [INFO] mqtt_close | agent=mqttAgent
+2025-09-17T04:51:00.775Z [INFO] mqtt_client_closed
+2025-09-17T04:51:01.719Z [DEBUG] presence_manager_created | agent=mqttAgent enabled=true heartbeatSeconds=30 topic=presence/agents/mqttAgent
+2025-09-17T04:51:01.851Z [WARN] connect_v5_failed | message=Connection refused: Unacceptable protocol version
+2025-09-17T04:51:01.871Z [INFO] connected | mqtt_version=3.1.1 clientId=agent-mqttAgent-b36369cecb0a6 sessionPresent=false
+2025-09-17T04:51:01.875Z [INFO] heartbeat_started | agent=mqttAgent intervalSeconds=30 topic=presence/agents/mqttAgent
+2025-09-17T04:51:01.881Z [DEBUG] presence_announced | agent=mqttAgent state=online topic=presence/agents/mqttAgent
+2025-09-17T04:51:01.921Z [INFO] subscribed | topic=request/commands/mqttAgent/+
+2025-09-17T04:51:01.921Z [INFO] agent_ready | agent=mqttAgent mqttVersion=3.1.1 presenceEnabled=true heartbeatSeconds=30
+2025-09-17T04:51:01.922Z [INFO] Agent started successfully
+2025-09-17T04:51:04.541Z [INFO] response_sent | command=help method=baseline_replyTo id=mfni7t1zzpfycyjd8l agent=mqttAgent
+2025-09-17T04:51:04.542Z [INFO] request_processed | agent=mqttAgent command=help id=mfni7t1zzpfycyjd8l durationMs=2
+2025-09-17T04:51:06.225Z [INFO] response_sent | command=ls method=baseline_replyTo id=mfni7uctimj7pdzf2xl agent=mqttAgent
+2025-09-17T04:51:06.225Z [INFO] request_processed | agent=mqttAgent command=ls id=mfni7uctimj7pdzf2xl durationMs=1
+2025-09-17T04:51:08.224Z [INFO] response_sent | command=ls method=baseline_replyTo id=mfni7vwdf8ij72vsxk agent=mqttAgent
+2025-09-17T04:51:08.224Z [INFO] request_processed | agent=mqttAgent command=ls id=mfni7vwdf8ij72vsxk durationMs=1
+2025-09-17T04:51:31.885Z [DEBUG] presence_announced | agent=mqttAgent state=online topic=presence/agents/mqttAgent
+2025-09-17T04:52:01.900Z [DEBUG] presence_announced | agent=mqttAgent state=online topic=presence/agents/mqttAgent
+2025-09-17T04:52:31.915Z [DEBUG] presence_announced | agent=mqttAgent state=online topic=presence/agents/mqttAgent
+2025-09-17T04:53:38.381Z [DEBUG] presence_manager_created | agent=mqttAgent enabled=true heartbeatSeconds=30 topic=presence/agents/mqttAgent
+2025-09-17T04:53:38.480Z [WARN] connect_v5_failed | message=Connection refused: Unacceptable protocol version
+2025-09-17T04:53:38.490Z [INFO] connected | mqtt_version=3.1.1 clientId=agent-mqttAgent-2d8d611e6b472 sessionPresent=false
+2025-09-17T04:53:38.493Z [INFO] heartbeat_started | agent=mqttAgent intervalSeconds=30 topic=presence/agents/mqttAgent
+2025-09-17T04:53:38.499Z [DEBUG] presence_announced | agent=mqttAgent state=online topic=presence/agents/mqttAgent
+2025-09-17T04:53:38.539Z [INFO] subscribed | topic=request/commands/mqttAgent/+
+2025-09-17T04:53:38.539Z [INFO] agent_ready | agent=mqttAgent mqttVersion=3.1.1 presenceEnabled=true heartbeatSeconds=30
+2025-09-17T04:53:38.539Z [INFO] Agent started successfully
+2025-09-17T04:53:49.147Z [INFO] shutdown_signal_received | signal=SIGINT
+2025-09-17T04:53:49.148Z [DEBUG] presence_cleanup_started | agent=mqttAgent
+2025-09-17T04:53:49.148Z [DEBUG] heartbeat_stopped | agent=mqttAgent
+2025-09-17T04:53:49.148Z [INFO] presence_offline_announced | agent=mqttAgent
+2025-09-17T04:53:49.150Z [DEBUG] presence_announced | agent=mqttAgent state=offline topic=presence/agents/mqttAgent
+2025-09-17T04:53:49.164Z [INFO] mqtt_close | agent=mqttAgent
+2025-09-17T04:53:49.164Z [INFO] mqtt_client_closed

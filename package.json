@@ -1,6 +1,7 @@
 {
   "type": "module",
   "dependencies": {
+    "aedes": "^0.51.3",
     "ajv": "^8.17.1",
     "ajv-formats": "^3.0.1",
     "argon2": "^0.44.0",
@@ -10,6 +11,7 @@
     "node-fetch": "^3.3.2",
     "sqlite": "^5.1.1",
     "sqlite3": "^5.1.7",
-    "systeminformation": "^5.27.8"
+    "systeminformation": "^5.27.8",
+    "toml": "^3.0.0"
   }
 }

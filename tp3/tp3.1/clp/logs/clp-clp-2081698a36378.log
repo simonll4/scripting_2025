@@ -1,0 +1,6 @@
+2025-09-17T04:53:03.740Z [DEBUG] request_initiated | id=mfniad18v3d2hefhih command=help agent=mqttAgent args_count=undefined timeout_ms=5000
+2025-09-17T04:53:03.741Z [INFO] request_sent | command=help id=mfniad18v3d2hefhih agent=mqttAgent method=baseline_replyTo topic=request/commands/mqttAgent/help reply_to=response/commands/mqttAgent/help/clp-2081698a36378 payload={"id":"mfniad18v3d2hefhih","args":{},"replyTo":"response/commands/mqttAgent/help/clp-2081698a36378"}
+2025-09-17T04:53:03.743Z [INFO] subscribed | topic=response/commands/mqttAgent/+/clp-2081698a36378
+2025-09-17T04:53:08.740Z [ERROR] Failed to start CLP client: | message=error is not a function stack=TypeError: error is not a function
+    at start (file:///home/simonll4/Desktop/scritping/tp3/tp3.1/clp/src/core/app.js:318:17)
+    at async main (file:///home/simonll4/Desktop/scritping/tp3/tp3.1/clp/src/index.js:35:19)

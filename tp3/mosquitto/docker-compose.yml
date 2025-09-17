@@ -1,11 +1,33 @@
 services:
-  mosquitto:
+  mosquitto_v5:
     image: eclipse-mosquitto:latest
-    container_name: mosquitto
+    container_name: mosquitto_v5
     restart: always
     ports:
       - "1883:1883"
     volumes:
       - ./config:/mosquitto/config
       - ./data:/mosquitto/data
-      - ./log:/mosquitto/log
+      - ./log:/mosquitto/log]
+  
+  mosquitto:
+    image: eclipse-mosquitto:1.5.8
+    container_name: mosquitto_1_5_8
+    restart: always
+    ports:
+      - "1884:1883"
+    volumes:
+      - ./config:/mosquitto/config
+  
+
+# services:
+#   mosquitto:
+#     image: eclipse-mosquitto:latest
+#     container_name: mosquitto
+#     restart: always
+#     ports:
+#       - "1883:1883"
+#     volumes:
+#       - ./config:/mosquitto/config
+#       - ./data:/mosquitto/data
+#       - ./log:/mosquitto/log

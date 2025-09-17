@@ -368,3 +368,603 @@
 1757999563: New connection from 172.18.0.1:56692 on port 1883.
 1757999563: New client connected from 172.18.0.1:56692 as saver-1757999563599 (p2, c1, k60, u'simonll4').
 1757999575: Client saver-1757999563599 disconnected.
+1758000995: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1758047511: mosquitto version 2.0.22 starting
+1758047511: Config loaded from /mosquitto/config/mosquitto.conf.
+1758047511: Opening ipv4 listen socket on port 1883.
+1758047511: Opening ipv6 listen socket on port 1883.
+1758047511: mosquitto version 2.0.22 running
+1758049312: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1758051113: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1758052914: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1758053333: New connection from 172.18.0.1:60790 on port 1883.
+1758053333: Client agent-3013344fc6443 disconnected, not authorised.
+1758053333: New connection from 172.18.0.1:60794 on port 1883.
+1758053333: Client agent-f78087a153a01 disconnected, not authorised.
+1758053367: New connection from 172.18.0.1:55790 on port 1883.
+1758053367: Client agent-c4e6052e333fe disconnected, not authorised.
+1758053367: New connection from 172.18.0.1:55794 on port 1883.
+1758053367: Client agent-f5792009781c7 disconnected, not authorised.
+1758053645: New connection from 172.18.0.1:55896 on port 1883.
+1758053645: Client agent-44feeedc899c4 disconnected, not authorised.
+1758053645: New connection from 172.18.0.1:55908 on port 1883.
+1758053645: Client agent-5131e840f71c7 disconnected, not authorised.
+1758053908: New connection from 172.18.0.1:62306 on port 1883.
+1758053908: New client connected from 172.18.0.1:62306 as agent-a368fcb88b9ed (p5, c1, k30, u'simonll4').
+1758053908: Client agent-a368fcb88b9ed closed its connection.
+1758053908: New connection from 172.18.0.1:62322 on port 1883.
+1758053908: New client connected from 172.18.0.1:62322 as agent-404fd81892da3 (p5, c1, k30, u'simonll4').
+1758053953: Client agent-404fd81892da3 closed its connection.
+1758054022: New connection from 172.18.0.1:58980 on port 1883.
+1758054022: New client connected from 172.18.0.1:58980 as agent-5b5ce99e1525e (p5, c1, k30, u'simonll4').
+1758054022: Client agent-5b5ce99e1525e closed its connection.
+1758054022: New connection from 172.18.0.1:58994 on port 1883.
+1758054022: New client connected from 172.18.0.1:58994 as agent-13050c7150808 (p5, c1, k30, u'simonll4').
+1758054066: New connection from 172.18.0.1:60748 on port 1883.
+1758054066: New client connected from 172.18.0.1:60748 as clp-f34f60e24ad85 (p5, c1, k30, u'simonll4').
+1758054331: Client agent-13050c7150808 closed its connection.
+1758054335: New connection from 172.18.0.1:61640 on port 1883.
+1758054335: New client connected from 172.18.0.1:61640 as agent-50fe1819c1765 (p5, c1, k30, u'simonll4').
+1758054335: Client agent-50fe1819c1765 closed its connection.
+1758054335: New connection from 172.18.0.1:61656 on port 1883.
+1758054335: New client connected from 172.18.0.1:61656 as agent-7592de2e0802a (p5, c1, k30, u'simonll4').
+1758054337: Client clp-f34f60e24ad85 closed its connection.
+1758054343: New connection from 172.18.0.1:57904 on port 1883.
+1758054343: New client connected from 172.18.0.1:57904 as clp-81f3f81a26e54 (p5, c1, k30, u'simonll4').
+1758054353: Client clp-81f3f81a26e54 closed its connection.
+1758054715: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1758054719: New connection from 172.18.0.1:59552 on port 1883.
+1758054719: New client connected from 172.18.0.1:59552 as clp-54a518a8120a5 (p5, c1, k30, u'simonll4').
+1758054721: New connection from 172.18.0.1:59560 on port 1883.
+1758054721: New client connected from 172.18.0.1:59560 as clp-8d7b39884210b (p5, c1, k30, u'simonll4').
+1758054796: Client clp-8d7b39884210b closed its connection.
+1758054802: Client clp-54a518a8120a5 closed its connection.
+1758056516: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1758058317: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1758059816: Client agent-7592de2e0802a closed its connection.
+1758059835: New connection from 172.18.0.1:63006 on port 1883.
+1758059835: New client connected from 172.18.0.1:63006 as agent-agente86-c735e0af4830b (p5, c1, k30, u'simonll4').
+1758059837: New connection from 172.18.0.1:56750 on port 1883.
+1758059837: New client connected from 172.18.0.1:56750 as clp-845788c7c91d9 (p5, c1, k30, u'simonll4').
+1758059942: Client agent-agente86-c735e0af4830b closed its connection.
+1758059943: New connection from 172.18.0.1:61246 on port 1883.
+1758059943: New client connected from 172.18.0.1:61246 as agent-agente86-a19cb8595f522 (p5, c1, k30, u'simonll4').
+1758059945: Client clp-845788c7c91d9 closed its connection.
+1758059946: New connection from 172.18.0.1:56476 on port 1883.
+1758059946: New client connected from 172.18.0.1:56476 as clp-6a6ac3ba58e84 (p5, c1, k30, u'simonll4').
+1758060118: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1758060773: Client clp-6a6ac3ba58e84 closed its connection.
+1758060774: Client agent-agente86-a19cb8595f522 closed its connection.
+1758061919: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1758062845: New connection from 172.18.0.1:59144 on port 1883.
+1758062845: Client agent-agente86-df218aac2f1e4 disconnected, not authorised.
+1758062845: New connection from 172.18.0.1:59158 on port 1883.
+1758062845: Client agent-agente86-2124673879ba6 disconnected, not authorised.
+1758062917: New connection from 172.18.0.1:63494 on port 1883.
+1758062917: Client clp-a193848b7d27c disconnected, not authorised.
+1758062917: New connection from 172.18.0.1:63504 on port 1883.
+1758062917: Client clp-8a5a74684e95 disconnected, not authorised.
+1758062929: New connection from 172.18.0.1:62480 on port 1883.
+1758062929: Client clp-24f92dad04dcc disconnected, not authorised.
+1758062929: New connection from 172.18.0.1:62496 on port 1883.
+1758062929: Client clp-f8cfdec94fb7d disconnected, not authorised.
+1758062939: New connection from 172.18.0.1:57224 on port 1883.
+1758062939: Client agent-agente86-a12ac0bddcf38 disconnected, not authorised.
+1758062939: New connection from 172.18.0.1:57238 on port 1883.
+1758062939: Client agent-agente86-524fe12faa62c disconnected, not authorised.
+1758062966: New connection from 172.18.0.1:62100 on port 1883.
+1758062966: Client agent-agente86-07b7a753a9c5b disconnected, not authorised.
+1758062966: New connection from 172.18.0.1:62102 on port 1883.
+1758062966: Client agent-agente86-a1f64229ad01 disconnected, not authorised.
+1758063070: New connection from 172.18.0.1:63138 on port 1883.
+1758063070: New client connected from 172.18.0.1:63138 as clp-ad5bf18539109 (p5, c1, k30, u'simonll4').
+1758063102: Client clp-ad5bf18539109 closed its connection.
+1758063118: New connection from 172.18.0.1:62934 on port 1883.
+1758063118: New client connected from 172.18.0.1:62934 as clp-c6731861b9143 (p5, c1, k30, u'simonll4').
+1758063151: Client clp-c6731861b9143 closed its connection.
+1758063291: New connection from 172.18.0.1:55532 on port 1883.
+1758063291: New client connected from 172.18.0.1:55532 as clp-6ac4e9dc3a592 (p5, c1, k30, u'simonll4').
+1758063304: Client clp-6ac4e9dc3a592 closed its connection.
+1758063681: New connection from 172.18.0.1:62460 on port 1883.
+1758063681: New client connected from 172.18.0.1:62460 as clp-7c34fd13d8d91 (p5, c1, k30, u'simonll4').
+1758063720: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1758063941: Client clp-7c34fd13d8d91 closed its connection.
+1758064290: mosquitto version 2.0.22 terminating
+1758064290: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1758064295: mosquitto version 2.0.22 starting
+1758064295: Config loaded from /mosquitto/config/mosquitto.conf.
+1758064295: Opening ipv4 listen socket on port 1883.
+1758064295: Opening ipv6 listen socket on port 1883.
+1758064295: mosquitto version 2.0.22 running
+1758064399: New connection from 172.18.0.1:56072 on port 1883.
+1758064399: New client connected from 172.18.0.1:56072 as agent-agente86-d0c569426040b (p5, c1, k30, u'simonll4').
+1758064476: New connection from 172.18.0.1:59436 on port 1883.
+1758064476: New client connected from 172.18.0.1:59436 as clp-25a20cf18fe07 (p5, c1, k30, u'simonll4').
+1758064476: Client clp-25a20cf18fe07 closed its connection.
+1758064493: New connection from 172.18.0.1:57364 on port 1883.
+1758064493: New client connected from 172.18.0.1:57364 as clp-7e7e262c7dea2 (p5, c1, k30, u'simonll4').
+1758064493: Client clp-7e7e262c7dea2 closed its connection.
+1758064592: New connection from 172.18.0.1:62240 on port 1883.
+1758064592: New client connected from 172.18.0.1:62240 as agent-agente86-ae085cf473f64 (p5, c1, k30, u'simonll4').
+1758064595: New connection from 172.18.0.1:62250 on port 1883.
+1758064595: New client connected from 172.18.0.1:62250 as clp-933196dd93aa9 (p5, c1, k30, u'simonll4').
+1758064624: New connection from 172.18.0.1:59258 on port 1883.
+1758064624: New client connected from 172.18.0.1:59258 as clp-f725ae29b7366 (p5, c1, k30, u'simonll4').
+1758065034: Client clp-933196dd93aa9 closed its connection.
+1758065255: Client agent-agente86-ae085cf473f64 closed its connection.
+1758065256: New connection from 172.18.0.1:63900 on port 1883.
+1758065256: New client connected from 172.18.0.1:63900 as agent-agente86-c3ec7e84a3863 (p5, c1, k30, u'simonll4').
+1758065260: New connection from 172.18.0.1:63908 on port 1883.
+1758065260: New client connected from 172.18.0.1:63908 as clp-eaa16bc08b55c (p5, c1, k30, u'simonll4').
+1758065265: Client clp-f725ae29b7366 closed its connection.
+1758065266: New connection from 172.18.0.1:62466 on port 1883.
+1758065266: New client connected from 172.18.0.1:62466 as clp-ddfb683579ddd (p5, c1, k30, u'simonll4').
+1758066095: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1758067896: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1758069697: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1758071056: Client clp-ddfb683579ddd closed its connection.
+1758071057: Client clp-eaa16bc08b55c closed its connection.
+1758071058: Client agent-agente86-c3ec7e84a3863 closed its connection.
+1758071498: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1758071639: New connection from 172.18.0.1:65336 on port 1883.
+1758071639: New client connected from 172.18.0.1:65336 as agent-agente86-90723b12037c5 (p5, c1, k30, u'simonll4').
+1758071696: New connection from 172.18.0.1:56954 on port 1883.
+1758071696: New client connected from 172.18.0.1:56954 as clp-8650c62912562 (p5, c1, k30, u'simonll4').
+1758071708: New connection from 172.18.0.1:56268 on port 1883.
+1758071708: New client connected from 172.18.0.1:56268 as clp-4b82901d6d0c8 (p5, c1, k30, u'simonll4').
+1758071712: Client clp-8650c62912562 closed its connection.
+1758071714: New connection from 172.18.0.1:56270 on port 1883.
+1758071714: New client connected from 172.18.0.1:56270 as clp-8c26e6d281368 (p5, c1, k30, u'simonll4').
+1758071773: Client agent-agente86-d0c569426040b closed its connection.
+1758072754: Client agent-agente86-90723b12037c5 closed its connection.
+1758072754: Client clp-8c26e6d281368 closed its connection.
+1758072755: Client clp-4b82901d6d0c8 closed its connection.
+1758073203: New connection from 172.18.0.1:55172 on port 1883.
+1758073203: New client connected from 172.18.0.1:55172 as agent-agente86-d199feeb6adf7 (p5, c1, k30, u'simonll4').
+1758073205: New connection from 172.18.0.1:55178 on port 1883.
+1758073205: New client connected from 172.18.0.1:55178 as clp-3cf4849bfc911 (p5, c1, k30, u'simonll4').
+1758073211: Client clp-3cf4849bfc911 closed its connection.
+1758073218: New connection from 172.18.0.1:57188 on port 1883.
+1758073218: New client connected from 172.18.0.1:57188 as clp-670ca1734cb94 (p5, c1, k30, u'simonll4').
+1758073230: Client clp-670ca1734cb94 closed its connection.
+1758073254: New connection from 172.18.0.1:63186 on port 1883.
+1758073254: New client connected from 172.18.0.1:63186 as clp-b4dcea70522bf (p5, c1, k30, u'simonll4').
+1758073255: Client clp-b4dcea70522bf closed its connection.
+1758073297: Client agent-agente86-d199feeb6adf7 disconnected.
+1758073299: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1758073332: New connection from 172.18.0.1:56930 on port 1883.
+1758073332: New client connected from 172.18.0.1:56930 as agent-agente86-65e9f60000bed (p5, c1, k30, u'simonll4').
+1758073335: New connection from 172.18.0.1:56944 on port 1883.
+1758073335: New client connected from 172.18.0.1:56944 as clp-20e9e4c1a979b (p5, c1, k30, u'simonll4').
+1758073343: New connection from 172.18.0.1:56458 on port 1883.
+1758073343: New client connected from 172.18.0.1:56458 as clp-d7e4ae8830ee6 (p5, c1, k30, u'simonll4').
+1758073438: Client clp-20e9e4c1a979b closed its connection.
+1758073439: Client agent-agente86-65e9f60000bed disconnected.
+1758073441: New connection from 172.18.0.1:55116 on port 1883.
+1758073441: New client connected from 172.18.0.1:55116 as agent-agente86-a0c2c22153e76 (p5, c1, k30, u'simonll4').
+1758073443: New connection from 172.18.0.1:55118 on port 1883.
+1758073443: New client connected from 172.18.0.1:55118 as clp-bf6a3f09558be (p5, c1, k30, u'simonll4').
+1758073453: Client clp-bf6a3f09558be closed its connection.
+1758073798: New connection from 172.18.0.1:59146 on port 1883.
+1758073798: New client connected from 172.18.0.1:59146 as clp-bb92b8e1e30b7 (p5, c1, k30, u'simonll4').
+1758073841: Client clp-bb92b8e1e30b7 closed its connection.
+1758073848: New connection from 172.18.0.1:61758 on port 1883.
+1758073848: New client connected from 172.18.0.1:61758 as clp-dc9ad1887f80b (p5, c1, k30, u'simonll4').
+1758073865: Client clp-dc9ad1887f80b closed its connection.
+1758073889: New connection from 172.18.0.1:60882 on port 1883.
+1758073889: New client connected from 172.18.0.1:60882 as agent-agente86-c8c76ffb485f (p5, c1, k30, u'simonll4').
+1758073900: Client agent-agente86-c8c76ffb485f disconnected.
+1758073901: New connection from 172.18.0.1:63030 on port 1883.
+1758073901: New client connected from 172.18.0.1:63030 as clp-6429dd09b29b2 (p5, c1, k30, u'simonll4').
+1758073924: New connection from 172.18.0.1:57382 on port 1883.
+1758073924: New client connected from 172.18.0.1:57382 as agent-agente86-645749da19c3c (p5, c1, k30, u'simonll4').
+1758073946: Client agent-agente86-645749da19c3c disconnected.
+1758073947: New connection from 172.18.0.1:58832 on port 1883.
+1758073947: New client connected from 172.18.0.1:58832 as clp-0115791781b2d (p5, c1, k30, u'simonll4').
+1758073991: Client agent-agente86-a0c2c22153e76 disconnected.
+1758073995: Client clp-d7e4ae8830ee6 closed its connection.
+1758073998: New connection from 172.18.0.1:58226 on port 1883.
+1758073998: New client connected from 172.18.0.1:58226 as agent-agente86-b8600494d34a6 (p5, c1, k30, u'simonll4').
+1758074008: New connection from 172.18.0.1:60994 on port 1883.
+1758074008: New client connected from 172.18.0.1:60994 as clp-cba49a63f5809 (p5, c1, k30, u'simonll4').
+1758074013: Client clp-cba49a63f5809 closed its connection.
+1758074019: New connection from 172.18.0.1:60796 on port 1883.
+1758074019: New client connected from 172.18.0.1:60796 as clp-f54630896fe11 (p5, c1, k30, u'simonll4').
+1758074039: Client clp-f54630896fe11 closed its connection.
+1758074061: Client clp-6429dd09b29b2 closed its connection.
+1758074061: Client clp-0115791781b2d closed its connection.
+1758074062: Client agent-agente86-b8600494d34a6 closed its connection.
+1758074245: New connection from 172.18.0.1:64708 on port 1883.
+1758074245: New client connected from 172.18.0.1:64708 as agent-agente86-090ae0b1439ce (p5, c1, k30, u'simonll4').
+1758074254: New connection from 172.18.0.1:64720 on port 1883.
+1758074254: New client connected from 172.18.0.1:64720 as clp-5c21cf53e95d6 (p5, c1, k30, u'simonll4').
+1758074259: Client clp-5c21cf53e95d6 closed its connection.
+1758074266: New connection from 172.18.0.1:60660 on port 1883.
+1758074266: New client connected from 172.18.0.1:60660 as clp-022d05fd2d87d (p5, c1, k30, u'simonll4').
+1758074339: Client clp-022d05fd2d87d closed its connection.
+1758074736: New connection from 172.18.0.1:62118 on port 1883.
+1758074736: New client connected from 172.18.0.1:62118 as agent-agente86-37ec3ee5f0222 (p5, c1, k30, u'simonll4').
+1758074751: New connection from 172.18.0.1:63866 on port 1883.
+1758074751: New client connected from 172.18.0.1:63866 as agent-agente86-f322e1806a707 (p5, c1, k30, u'simonll4').
+1758074769: Client agent-agente86-f322e1806a707 disconnected.
+1758074777: New connection from 172.18.0.1:62784 on port 1883.
+1758074777: New client connected from 172.18.0.1:62784 as agent-agente86-03a0c13f8c0b9 (p5, c1, k30, u'simonll4').
+1758074816: New connection from 172.18.0.1:56274 on port 1883.
+1758074816: New client connected from 172.18.0.1:56274 as agent-agente86-caa0bf1fc23ff (p5, c1, k30, u'simonll4').
+1758074833: Client agent-agente86-caa0bf1fc23ff disconnected.
+1758074916: New connection from 172.18.0.1:61822 on port 1883.
+1758074916: New client connected from 172.18.0.1:61822 as clp-06c7bb5bb52da (p5, c1, k30, u'simonll4').
+1758074924: Client clp-06c7bb5bb52da closed its connection.
+1758075041: New connection from 172.18.0.1:62640 on port 1883.
+1758075041: New client connected from 172.18.0.1:62640 as agent-agente86-f312466886cd9 (p5, c1, k30, u'simonll4').
+1758075043: New connection from 172.18.0.1:62652 on port 1883.
+1758075043: New client connected from 172.18.0.1:62652 as clp-7e8b988c93641 (p5, c1, k30, u'simonll4').
+1758075057: Client clp-7e8b988c93641 closed its connection.
+1758075058: Client agent-agente86-f312466886cd9 disconnected.
+1758075100: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1758075122: New connection from 172.18.0.1:61902 on port 1883.
+1758075122: New client connected from 172.18.0.1:61902 as agent-agente86-b9ab66ec53efa (p5, c1, k30, u'simonll4').
+1758075134: Client agent-agente86-b9ab66ec53efa disconnected.
+1758075134: New connection from 172.18.0.1:65168 on port 1883.
+1758075134: New client connected from 172.18.0.1:65168 as clp-61afef99f59bb (p5, c1, k30, u'simonll4').
+1758075139: Client clp-61afef99f59bb closed its connection.
+1758075193: New connection from 172.18.0.1:56900 on port 1883.
+1758075193: New client connected from 172.18.0.1:56900 as clp-30dfd3160371 (p5, c1, k30, u'simonll4').
+1758075205: Client clp-30dfd3160371 closed its connection.
+1758075218: Client agent-agente86-090ae0b1439ce closed its connection.
+1758075218: Client agent-agente86-03a0c13f8c0b9 closed its connection.
+1758075218: Client agent-agente86-37ec3ee5f0222 closed its connection.
+1758075335: New connection from 172.18.0.1:55126 on port 1883.
+1758075335: New client connected from 172.18.0.1:55126 as agent-agente86-44682922949eb (p5, c1, k30, u'simonll4').
+1758075337: New connection from 172.18.0.1:64976 on port 1883.
+1758075337: New client connected from 172.18.0.1:64976 as clp-1151151acc749 (p5, c1, k30, u'simonll4').
+1758075349: New connection from 172.18.0.1:56450 on port 1883.
+1758075349: New client connected from 172.18.0.1:56450 as clp-52c76169807a6 (p5, c1, k30, u'simonll4').
+1758075352: Client clp-52c76169807a6 closed its connection.
+1758076006: Client agent-agente86-44682922949eb disconnected.
+1758076017: New connection from 172.18.0.1:56798 on port 1883.
+1758076017: New client connected from 172.18.0.1:56798 as agent-agente86-bbdf370432af8 (p5, c1, k30, u'simonll4').
+1758076020: Client clp-1151151acc749 closed its connection.
+1758076022: New connection from 172.18.0.1:56802 on port 1883.
+1758076022: New client connected from 172.18.0.1:56802 as clp-09187988080c7 (p5, c1, k30, u'simonll4').
+1758076155: Client agent-agente86-bbdf370432af8 disconnected.
+1758076158: New connection from 172.18.0.1:55984 on port 1883.
+1758076158: New client connected from 172.18.0.1:55984 as agent-agente86-9c35808ef49ba (p5, c1, k30, u'simonll4').
+1758076462: Client agent-agente86-9c35808ef49ba disconnected.
+1758076464: New connection from 172.18.0.1:60814 on port 1883.
+1758076464: New client connected from 172.18.0.1:60814 as agent-agente86-af204400a4e8b (p5, c1, k30, u'simonll4').
+1758076466: Client clp-09187988080c7 closed its connection.
+1758076467: New connection from 172.18.0.1:64998 on port 1883.
+1758076467: New client connected from 172.18.0.1:64998 as clp-83f3ae271c427 (p5, c1, k30, u'simonll4').
+1758076901: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1758076956: Client clp-83f3ae271c427 closed its connection.
+1758076958: Client agent-agente86-af204400a4e8b disconnected.
+1758076959: New connection from 172.18.0.1:55756 on port 1883.
+1758076959: New client connected from 172.18.0.1:55756 as agent-agente86-0d7060f36143 (p5, c1, k30, u'simonll4').
+1758076963: New connection from 172.18.0.1:55762 on port 1883.
+1758076963: New client connected from 172.18.0.1:55762 as clp-bc55ce726041c (p5, c1, k30, u'simonll4').
+1758077007: Client clp-bc55ce726041c closed its connection.
+1758077013: New connection from 172.18.0.1:61300 on port 1883.
+1758077013: New client connected from 172.18.0.1:61300 as clp-67203de000163 (p5, c1, k30, u'simonll4').
+1758077023: Client clp-67203de000163 closed its connection.
+1758077360: Client agent-agente86-0d7060f36143 disconnected.
+1758077440: New connection from 172.18.0.1:58852 on port 1883.
+1758077440: New client connected from 172.18.0.1:58852 as agent-agente86-a1f29a1fa8354 (p5, c1, k30, u'simonll4').
+1758077470: Client agent-agente86-a1f29a1fa8354 disconnected.
+1758077471: New connection from 172.18.0.1:59906 on port 1883.
+1758077471: New client connected from 172.18.0.1:59906 as agent-agente86-016c12ce38db3 (p5, c1, k30, u'simonll4').
+1758077474: New connection from 172.18.0.1:59914 on port 1883.
+1758077474: New client connected from 172.18.0.1:59914 as clp-70cf156030c0b (p5, c1, k30, u'simonll4').
+1758077479: Client clp-70cf156030c0b closed its connection.
+1758077483: New connection from 172.18.0.1:55606 on port 1883.
+1758077483: New client connected from 172.18.0.1:55606 as clp-52032afa954db (p5, c1, k30, u'simonll4').
+1758077488: Client clp-52032afa954db closed its connection.
+1758077513: New connection from 172.18.0.1:55288 on port 1883.
+1758077513: New client connected from 172.18.0.1:55288 as clp-3257c95cdfec7 (p5, c1, k30, u'simonll4').
+1758077518: Client clp-3257c95cdfec7 closed its connection.
+1758077573: New connection from 172.18.0.1:64594 on port 1883.
+1758077573: New client connected from 172.18.0.1:64594 as clp-58b3f866bb993 (p5, c1, k30, u'simonll4').
+1758077578: Client clp-58b3f866bb993 closed its connection.
+1758077579: New connection from 172.18.0.1:64262 on port 1883.
+1758077579: New client connected from 172.18.0.1:64262 as clp-df6fd0720fc8c (p5, c1, k30, u'simonll4').
+1758077584: Client clp-df6fd0720fc8c closed its connection.
+1758078024: New connection from 172.18.0.1:64834 on port 1883.
+1758078024: New client connected from 172.18.0.1:64834 as clp-e09322a361107 (p5, c1, k30, u'simonll4').
+1758078029: Client clp-e09322a361107 closed its connection.
+1758078081: New connection from 172.18.0.1:65378 on port 1883.
+1758078081: New client connected from 172.18.0.1:65378 as mqttjs_63c5563a (p2, c1, k60, u'simonll4').
+1758078086: Client mqttjs_63c5563a closed its connection.
+1758078105: New connection from 172.18.0.1:55628 on port 1883.
+1758078105: New client connected from 172.18.0.1:55628 as mqttjs_2e36716d (p2, c1, k60, u'simonll4').
+1758078105: Client mqttjs_2e36716d closed its connection.
+1758078112: New connection from 172.18.0.1:55866 on port 1883.
+1758078112: New client connected from 172.18.0.1:55866 as clp-630a4463266ce (p5, c1, k30, u'simonll4').
+1758078117: Client clp-630a4463266ce closed its connection.
+1758078124: New connection from 172.18.0.1:63756 on port 1883.
+1758078124: New client connected from 172.18.0.1:63756 as mqttjs_9e6a3cf0 (p2, c1, k60, u'simonll4').
+1758078129: Client mqttjs_9e6a3cf0 closed its connection.
+1758078137: Client agent-agente86-016c12ce38db3 disconnected.
+1758078189: New connection from 172.18.0.1:61738 on port 1883.
+1758078189: New client connected from 172.18.0.1:61738 as agent-agente86-6b9db4324c3c4 (p5, c1, k30, u'simonll4').
+1758078215: Client agent-agente86-6b9db4324c3c4 disconnected.
+1758078216: New connection from 172.18.0.1:65514 on port 1883.
+1758078216: New client connected from 172.18.0.1:65514 as clp-3b87d8d753fbf (p5, c1, k30, u'simonll4').
+1758078221: Client clp-3b87d8d753fbf closed its connection.
+1758078222: New connection from 172.18.0.1:65520 on port 1883.
+1758078222: New client connected from 172.18.0.1:65520 as clp-03e81fb2b2175 (p5, c1, k30, u'simonll4').
+1758078227: Client clp-03e81fb2b2175 closed its connection.
+1758078241: New connection from 172.18.0.1:55078 on port 1883.
+1758078241: New client connected from 172.18.0.1:55078 as mqttjs_74a9c30b (p2, c1, k60, u'simonll4').
+1758078241: Client mqttjs_74a9c30b closed its connection.
+1758078259: New connection from 172.18.0.1:60574 on port 1883.
+1758078259: New client connected from 172.18.0.1:60574 as clp-8396507694af3 (p5, c1, k30, u'simonll4').
+1758078264: Client clp-8396507694af3 closed its connection.
+1758078303: New connection from 172.18.0.1:63382 on port 1883.
+1758078303: New client connected from 172.18.0.1:63382 as agent-undefined-51afd82e0f33b (p5, c1, k30, u'simonll4').
+1758078306: Client agent-undefined-51afd82e0f33b disconnected.
+1758078311: New connection from 172.18.0.1:55830 on port 1883.
+1758078311: New client connected from 172.18.0.1:55830 as agent-undefined-5b119878a0808 (p5, c1, k30, u'simonll4').
+1758078386: Client agent-undefined-5b119878a0808 disconnected.
+1758078409: New connection from 172.18.0.1:62806 on port 1883.
+1758078409: New client connected from 172.18.0.1:62806 as agent-mqtt-agent-f36d055ea50dd (p5, c1, k30, u'simonll4').
+1758078426: Client agent-mqtt-agent-f36d055ea50dd disconnected.
+1758078426: New connection from 172.18.0.1:60720 on port 1883.
+1758078426: New client connected from 172.18.0.1:60720 as mqttjs_1c0a82b3 (p2, c1, k60, u'simonll4').
+1758078431: Client mqttjs_1c0a82b3 closed its connection.
+1758078433: New connection from 172.18.0.1:60730 on port 1883.
+1758078433: New client connected from 172.18.0.1:60730 as mqttjs_9fdc4752 (p2, c1, k60, u'simonll4').
+1758078438: Client mqttjs_9fdc4752 closed its connection.
+1758078449: New connection from 172.18.0.1:60188 on port 1883.
+1758078449: New client connected from 172.18.0.1:60188 as mqttjs_5253a6f1 (p2, c1, k60, u'simonll4').
+1758078449: Client mqttjs_5253a6f1 closed its connection.
+1758078458: New connection from 172.18.0.1:57950 on port 1883.
+1758078458: New client connected from 172.18.0.1:57950 as clp-88a0699455066 (p5, c1, k30, u'simonll4').
+1758078463: Client clp-88a0699455066 closed its connection.
+1758078470: New connection from 172.18.0.1:61196 on port 1883.
+1758078470: New client connected from 172.18.0.1:61196 as mqttjs_aa15a4d4 (p2, c1, k60, u'simonll4').
+1758078475: Client mqttjs_aa15a4d4 closed its connection.
+1758078485: New connection from 172.18.0.1:61288 on port 1883.
+1758078485: New client connected from 172.18.0.1:61288 as clp-daab4522eb6bc (p5, c1, k30, u'simonll4').
+1758078490: Client clp-daab4522eb6bc closed its connection.
+1758078559: New connection from 172.18.0.1:60750 on port 1883.
+1758078559: New client connected from 172.18.0.1:60750 as agent-mqtt-agent-fef9888da3229 (p5, c1, k30, u'simonll4').
+1758078562: New connection from 172.18.0.1:60762 on port 1883.
+1758078562: New client connected from 172.18.0.1:60762 as clp-31a9ff386ef08 (p5, c1, k30, u'simonll4').
+1758078567: Client clp-31a9ff386ef08 closed its connection.
+1758078574: New connection from 172.18.0.1:61498 on port 1883.
+1758078574: New client connected from 172.18.0.1:61498 as clp-3a6812e3f1a1b (p5, c1, k30, u'simonll4').
+1758078577: Client clp-3a6812e3f1a1b closed its connection.
+1758078579: Client agent-mqtt-agent-fef9888da3229 disconnected.
+1758078642: New connection from 172.18.0.1:62372 on port 1883.
+1758078642: New client connected from 172.18.0.1:62372 as agent-mqtt-agent-248f26aec3f11 (p5, c1, k30, u'simonll4').
+1758078656: Client agent-mqtt-agent-248f26aec3f11 disconnected.
+1758078656: New connection from 172.18.0.1:55598 on port 1883.
+1758078656: New client connected from 172.18.0.1:55598 as mqttjs_789ce828 (p2, c1, k60, u'simonll4').
+1758078661: Client mqttjs_789ce828 closed its connection.
+1758078662: New connection from 172.18.0.1:55600 on port 1883.
+1758078662: New client connected from 172.18.0.1:55600 as mqttjs_83105c50 (p2, c1, k60, u'simonll4').
+1758078667: Client mqttjs_83105c50 closed its connection.
+1758078677: New connection from 172.18.0.1:57086 on port 1883.
+1758078677: New client connected from 172.18.0.1:57086 as clp-3a20e97f000a3 (p5, c1, k30, u'simonll4').
+1758078677: Client clp-3a20e97f000a3 closed its connection.
+1758078694: New connection from 172.18.0.1:60628 on port 1883.
+1758078694: New client connected from 172.18.0.1:60628 as clp-416e6e20d0a17 (p5, c1, k30, u'simonll4').
+1758078699: Client clp-416e6e20d0a17 closed its connection.
+1758078702: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1758078712: New connection from 172.18.0.1:64558 on port 1883.
+1758078712: New client connected from 172.18.0.1:64558 as mqttjs_474070f8 (p2, c1, k60, u'simonll4').
+1758078717: Client mqttjs_474070f8 closed its connection.
+1758078746: New connection from 172.18.0.1:65466 on port 1883.
+1758078746: New client connected from 172.18.0.1:65466 as agent-mqtt-agent-b7001a51370f9 (p5, c1, k30, u'simonll4').
+1758078785: Client agent-mqtt-agent-b7001a51370f9 disconnected.
+1758078804: New connection from 172.18.0.1:55116 on port 1883.
+1758078804: New client connected from 172.18.0.1:55116 as agent-mqtt-agent-dd07c104b33b6 (p5, c1, k30, u'simonll4').
+1758078820: New connection from 172.18.0.1:58166 on port 1883.
+1758078820: New client connected from 172.18.0.1:58166 as mqttjs_d1b2da1c (p2, c1, k60, u'simonll4').
+1758078825: Client mqttjs_d1b2da1c closed its connection.
+1758078828: Client agent-mqtt-agent-dd07c104b33b6 disconnected.
+1758078828: New connection from 172.18.0.1:60600 on port 1883.
+1758078828: New client connected from 172.18.0.1:60600 as clp-0111c6db23609 (p5, c1, k30, u'simonll4').
+1758078834: Client clp-0111c6db23609 closed its connection.
+1758078837: New connection from 172.18.0.1:62492 on port 1883.
+1758078837: New client connected from 172.18.0.1:62492 as agent-mqtt-agent-1c90bbf7f962d (p5, c1, k30, u'simonll4').
+1758078846: New connection from 172.18.0.1:64436 on port 1883.
+1758078846: New client connected from 172.18.0.1:64436 as clp-6b3c9f7a2789a (p5, c1, k30, u'simonll4').
+1758078851: Client clp-6b3c9f7a2789a closed its connection.
+1758078862: New connection from 172.18.0.1:65080 on port 1883.
+1758078862: New client connected from 172.18.0.1:65080 as clp-b163fd8d8fca8 (p5, c1, k30, u'simonll4').
+1758078862: Client clp-b163fd8d8fca8 closed its connection.
+1758078969: Client agent-mqtt-agent-1c90bbf7f962d disconnected.
+1758078977: New connection from 172.18.0.1:65448 on port 1883.
+1758078977: New client connected from 172.18.0.1:65448 as agent-mqtt-agent-4d62461eb257c (p5, c1, k30, u'simonll4').
+1758078996: Client agent-mqtt-agent-4d62461eb257c disconnected.
+1758078997: New connection from 172.18.0.1:64070 on port 1883.
+1758078997: New client connected from 172.18.0.1:64070 as mqttjs_3479467d (p2, c1, k60, u'simonll4').
+1758079001: Client mqttjs_3479467d closed its connection.
+1758079004: New connection from 172.18.0.1:64072 on port 1883.
+1758079004: New client connected from 172.18.0.1:64072 as agent-mqtt-agent-38adda03a7de1 (p5, c1, k30, u'simonll4').
+1758079012: New connection from 172.18.0.1:64088 on port 1883.
+1758079012: New client connected from 172.18.0.1:64088 as mqttjs_fe1f770f (p2, c1, k60, u'simonll4').
+1758079017: Client mqttjs_fe1f770f closed its connection.
+1758079022: New connection from 172.18.0.1:55684 on port 1883.
+1758079022: New client connected from 172.18.0.1:55684 as mqttjs_a61a5da6 (p2, c1, k60, u'simonll4').
+1758079026: Client mqttjs_a61a5da6 closed its connection.
+1758079036: New connection from 172.18.0.1:62204 on port 1883.
+1758079036: New client connected from 172.18.0.1:62204 as clp-4f2c40283fa3b (p5, c1, k30, u'simonll4').
+1758079045: Client clp-4f2c40283fa3b closed its connection.
+1758079059: New connection from 172.18.0.1:58548 on port 1883.
+1758079059: New client connected from 172.18.0.1:58548 as clp-8271ac3d98529 (p5, c1, k30, u'simonll4').
+1758079059: Client clp-8271ac3d98529 closed its connection.
+1758079087: Client agent-mqtt-agent-38adda03a7de1 closed its connection.
+1758079098: New connection from 172.18.0.1:63956 on port 1883.
+1758079098: New client connected from 172.18.0.1:63956 as agent-mqtt-agent-0e6387afc7d47 (p5, c1, k30, u'simonll4').
+1758079101: New connection from 172.18.0.1:63970 on port 1883.
+1758079101: New client connected from 172.18.0.1:63970 as clp-141038deee84c (p5, c1, k30, u'simonll4').
+1758079101: Client clp-141038deee84c closed its connection.
+1758079121: New connection from 172.18.0.1:62894 on port 1883.
+1758079121: New client connected from 172.18.0.1:62894 as clp-9c20804477755 (p5, c1, k30, u'simonll4').
+1758079131: Client clp-9c20804477755 closed its connection.
+1758079307: Client agent-mqtt-agent-0e6387afc7d47 disconnected.
+1758079309: New connection from 172.18.0.1:61292 on port 1883.
+1758079309: New client connected from 172.18.0.1:61292 as agent-mqttAgent-b5174ceab232 (p5, c1, k30, u'simonll4').
+1758080503: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1758080759: Client agent-mqttAgent-b5174ceab232 disconnected.
+1758080915: New connection from 172.18.0.1:56184 on port 1883.
+1758080915: New client connected from 172.18.0.1:56184 as agent-mqttAgent-60ebf89fe22c1 (p5, c1, k30, u'simonll4').
+1758080917: New connection from 172.18.0.1:64724 on port 1883.
+1758080917: New client connected from 172.18.0.1:64724 as clp-7efb68fa3283e (p5, c1, k30, u'simonll4').
+1758080918: Client clp-7efb68fa3283e closed its connection.
+1758080925: New connection from 172.18.0.1:64730 on port 1883.
+1758080925: New client connected from 172.18.0.1:64730 as clp-5641ed20cbe7f (p5, c1, k30, u'simonll4').
+1758080925: Client clp-5641ed20cbe7f closed its connection.
+1758080929: New connection from 172.18.0.1:61994 on port 1883.
+1758080929: New client connected from 172.18.0.1:61994 as clp-a7ea0bfeccae (p5, c1, k30, u'simonll4').
+1758080929: Client clp-a7ea0bfeccae closed its connection.
+1758080947: New connection from 172.18.0.1:62830 on port 1883.
+1758080947: New client connected from 172.18.0.1:62830 as clp-301e7a41dd49f (p5, c1, k30, u'simonll4').
+1758080947: Client clp-301e7a41dd49f closed its connection.
+1758080949: New connection from 172.18.0.1:62842 on port 1883.
+1758080949: New client connected from 172.18.0.1:62842 as clp-f7a190493d743 (p5, c1, k30, u'simonll4').
+1758080949: Client clp-f7a190493d743 closed its connection.
+1758080961: New connection from 172.18.0.1:57782 on port 1883.
+1758080961: New client connected from 172.18.0.1:57782 as clp-08976d614a90a (p5, c1, k30, u'simonll4').
+1758080966: Client clp-08976d614a90a closed its connection.
+1758081009: New connection from 172.18.0.1:64354 on port 1883.
+1758081009: New client connected from 172.18.0.1:64354 as clp-687454dc75826 (p5, c1, k30, u'simonll4').
+1758081009: Client clp-687454dc75826 closed its connection.
+1758081016: Client agent-mqttAgent-60ebf89fe22c1 disconnected.
+1758081019: New connection from 172.18.0.1:56988 on port 1883.
+1758081019: New client connected from 172.18.0.1:56988 as agent-mqttAgent-ec0cdf6ea451 (p5, c1, k30, u'simonll4').
+1758081022: New connection from 172.18.0.1:57002 on port 1883.
+1758081022: New client connected from 172.18.0.1:57002 as clp-31a5085b2b965 (p5, c1, k30, u'simonll4').
+1758081022: Client clp-31a5085b2b965 closed its connection.
+1758081218: New connection from 172.18.0.1:59510 on port 1883.
+1758081218: New client connected from 172.18.0.1:59510 as agent-mqttAgent-94aa08ef68b6e (p5, c1, k30, u'simonll4').
+1758081233: Client agent-mqttAgent-94aa08ef68b6e disconnected.
+1758081234: New connection from 172.18.0.1:60396 on port 1883.
+1758081234: New client connected from 172.18.0.1:60396 as clp-fe0ac519fce8d (p5, c1, k30, u'simonll4').
+1758081234: Client clp-fe0ac519fce8d closed its connection.
+1758081244: New connection from 172.18.0.1:55908 on port 1883.
+1758081244: New client connected from 172.18.0.1:55908 as agent-mqttAgent-abfdfa59d33cc (p5, c1, k30, u'simonll4').
+1758081249: New connection from 172.18.0.1:59254 on port 1883.
+1758081249: New client connected from 172.18.0.1:59254 as clp-770907469eed7 (p5, c1, k30, u'simonll4').
+1758081249: Client clp-770907469eed7 closed its connection.
+1758081252: New connection from 172.18.0.1:59256 on port 1883.
+1758081252: New client connected from 172.18.0.1:59256 as clp-bbeb837412cac (p5, c1, k30, u'simonll4').
+1758081252: Client clp-bbeb837412cac closed its connection.
+1758081255: Client agent-mqttAgent-abfdfa59d33cc disconnected.
+1758081255: New connection from 172.18.0.1:59264 on port 1883.
+1758081255: New client connected from 172.18.0.1:59264 as clp-b6f31ed43c6e4 (p5, c1, k30, u'simonll4').
+1758081255: Client clp-b6f31ed43c6e4 closed its connection.
+1758081273: New connection from 172.18.0.1:58968 on port 1883.
+1758081273: New client connected from 172.18.0.1:58968 as agent-mqttAgent-46126977949c2 (p5, c1, k30, u'simonll4').
+1758081281: Client agent-mqttAgent-46126977949c2 disconnected.
+1758081288: New connection from 172.18.0.1:55694 on port 1883.
+1758081288: New client connected from 172.18.0.1:55694 as clp-c14466e762ea1 (p5, c1, k30, u'simonll4').
+1758081288: Client clp-c14466e762ea1 closed its connection.
+1758081290: New connection from 172.18.0.1:55700 on port 1883.
+1758081290: New client connected from 172.18.0.1:55700 as clp-8d97140cdab6 (p5, c1, k30, u'simonll4').
+1758081290: Client clp-8d97140cdab6 closed its connection.
+1758081324: Client agent-mqttAgent-ec0cdf6ea451 disconnected.
+1758081329: New connection from 172.18.0.1:58580 on port 1883.
+1758081329: New client connected from 172.18.0.1:58580 as agent-mqttAgent-9b45470d8a7fe (p5, c1, k30, u'simonll4').
+1758081342: Client agent-mqttAgent-9b45470d8a7fe disconnected.
+1758081383: New connection from 172.18.0.1:60868 on port 1883.
+1758081383: New client connected from 172.18.0.1:60868 as agent-mqttAgent-41fab9766b3d3 (p5, c1, k30, u'simonll4').
+1758081390: New connection from 172.18.0.1:60002 on port 1883.
+1758081390: New client connected from 172.18.0.1:60002 as clp-eb79c06433eb7 (p5, c1, k30, u'simonll4').
+1758081393: Client clp-eb79c06433eb7 closed its connection.
+1758081401: Client agent-mqttAgent-41fab9766b3d3 disconnected.
+1758081401: New connection from 172.18.0.1:57722 on port 1883.
+1758081401: New client connected from 172.18.0.1:57722 as clp-bfba1ffa5e4b4 (p5, c1, k30, u'simonll4').
+1758081402: Client clp-bfba1ffa5e4b4 closed its connection.
+1758081411: New connection from 172.18.0.1:65044 on port 1883.
+1758081411: New client connected from 172.18.0.1:65044 as agent-mqttAgent-1d60241818e69 (p5, c1, k30, u'simonll4').
+1758081427: Client agent-mqttAgent-1d60241818e69 disconnected.
+1758081427: New connection from 172.18.0.1:57042 on port 1883.
+1758081427: New client connected from 172.18.0.1:57042 as clp-fe5295e60d6bc (p5, c1, k30, u'simonll4').
+1758081427: Client clp-fe5295e60d6bc closed its connection.
+1758081434: New connection from 172.18.0.1:57056 on port 1883.
+1758081434: New client connected from 172.18.0.1:57056 as agent-mqttAgent-63e7ce388c81a (p5, c1, k30, u'simonll4').
+1758081441: New connection from 172.18.0.1:62050 on port 1883.
+1758081441: New client connected from 172.18.0.1:62050 as agent-mqttAgent-259d42dac49 (p5, c1, k30, u'simonll4').
+1758081460: Client agent-mqttAgent-259d42dac49 disconnected.
+1758081461: New connection from 172.18.0.1:55452 on port 1883.
+1758081461: New client connected from 172.18.0.1:55452 as clp-80d012f96d53e (p5, c1, k30, u'simonll4').
+1758081461: Client clp-80d012f96d53e closed its connection.
+1758081488: New connection from 172.18.0.1:59294 on port 1883.
+1758081488: New client connected from 172.18.0.1:59294 as agent-mqttAgent-b866b1f437834 (p5, c1, k30, u'simonll4').
+1758081490: Client agent-mqttAgent-b866b1f437834 closed its connection.
+1758081495: New connection from 172.18.0.1:59310 on port 1883.
+1758081495: New client connected from 172.18.0.1:59310 as agent-mqttAgent-7da77aaf54b5f (p5, c1, k30, u'simonll4').
+1758081498: New connection from 172.18.0.1:59378 on port 1883.
+1758081498: New client connected from 172.18.0.1:59378 as clp-2b03bca8cd73f (p5, c1, k30, u'simonll4').
+1758081503: Client clp-2b03bca8cd73f closed its connection.
+1758081505: New connection from 172.18.0.1:59390 on port 1883.
+1758081505: New client connected from 172.18.0.1:59390 as clp-b53eb04308f8a (p5, c1, k30, u'simonll4').
+1758081510: Client clp-b53eb04308f8a closed its connection.
+1758081521: New connection from 172.18.0.1:62834 on port 1883.
+1758081521: New client connected from 172.18.0.1:62834 as clp-449d2254ad81e (p5, c1, k30, u'simonll4').
+1758081524: Client clp-449d2254ad81e closed its connection.
+1758081529: New connection from 172.18.0.1:55944 on port 1883.
+1758081529: New client connected from 172.18.0.1:55944 as clp-91bd1eead9fed (p5, c1, k30, u'simonll4').
+1758081531: Client clp-91bd1eead9fed closed its connection.
+1758081535: Client agent-mqttAgent-63e7ce388c81a closed its connection.
+1758082095: New connection from 172.18.0.1:59756 on port 1883.
+1758082095: New client connected from 172.18.0.1:59756 as agent-mqttAgent-08eed1907d2 (p5, c1, k30, u'simonll4').
+1758082106: Client agent-mqttAgent-7da77aaf54b5f disconnected.
+1758082108: New connection from 172.18.0.1:57270 on port 1883.
+1758082108: New client connected from 172.18.0.1:57270 as agent-mqttAgent-e81c62468b9 (p5, c1, k30, u'simonll4').
+1758082112: Client agent-mqttAgent-e81c62468b9 disconnected.
+1758082114: Client agent-mqttAgent-08eed1907d2 disconnected.
+1758082115: New connection from 172.18.0.1:57286 on port 1883.
+1758082115: New client connected from 172.18.0.1:57286 as clp-b40cf11a4db8 (p5, c1, k30, u'simonll4').
+1758082120: Client clp-b40cf11a4db8 closed its connection.
+1758082126: New connection from 172.18.0.1:58014 on port 1883.
+1758082126: New client connected from 172.18.0.1:58014 as agent-mqttAgent-99ff1a6618afa (p5, c1, k30, u'simonll4').
+1758082139: Client agent-mqttAgent-99ff1a6618afa disconnected.
+1758082140: New connection from 172.18.0.1:56296 on port 1883.
+1758082140: New client connected from 172.18.0.1:56296 as clp-80b4df8619ff6 (p5, c1, k30, u'simonll4').
+1758082145: Client clp-80b4df8619ff6 closed its connection.
+1758082156: New connection from 172.18.0.1:58462 on port 1883.
+1758082156: New client connected from 172.18.0.1:58462 as agent-mqttAgent-de04de8ac7e52 (p5, c1, k30, u'simonll4').
+1758082161: New connection from 172.18.0.1:58474 on port 1883.
+1758082161: New client connected from 172.18.0.1:58474 as clp-f4502cef328a5 (p5, c1, k30, u'simonll4').
+1758082166: Client clp-f4502cef328a5 closed its connection.
+1758082166: Client agent-mqttAgent-de04de8ac7e52 disconnected.
+1758082193: New connection from 172.18.0.1:59768 on port 1883.
+1758082193: New client connected from 172.18.0.1:59768 as agent-mqttAgent-f5c7941ec214b (p5, c1, k30, u'simonll4').
+1758082196: New connection from 172.18.0.1:64194 on port 1883.
+1758082196: New client connected from 172.18.0.1:64194 as clp-44505f76ad02d (p5, c1, k30, u'simonll4').
+1758082201: Client clp-44505f76ad02d closed its connection.
+1758082204: New connection from 172.18.0.1:64210 on port 1883.
+1758082204: New client connected from 172.18.0.1:64210 as clp-18ce41d6c5c1 (p5, c1, k30, u'simonll4').
+1758082209: Client clp-18ce41d6c5c1 closed its connection.
+1758082209: Client agent-mqttAgent-f5c7941ec214b disconnected.
+1758082242: New connection from 172.18.0.1:59922 on port 1883.
+1758082242: New client connected from 172.18.0.1:59922 as agent-mqttAgent-dc861c55d7306 (p5, c1, k30, u'simonll4').
+1758082244: New connection from 172.18.0.1:59932 on port 1883.
+1758082244: New client connected from 172.18.0.1:59932 as clp-9f90694cb8f14 (p5, c1, k30, u'simonll4').
+1758082249: Client clp-9f90694cb8f14 closed its connection.
+1758082253: New connection from 172.18.0.1:62328 on port 1883.
+1758082253: New client connected from 172.18.0.1:62328 as clp-64385770f03a3 (p5, c1, k30, u'simonll4').
+1758082258: Client clp-64385770f03a3 closed its connection.
+1758082273: New connection from 172.18.0.1:56830 on port 1883.
+1758082273: New client connected from 172.18.0.1:56830 as clp-e9baff4d4d425 (p5, c1, k30, u'simonll4').
+1758082278: Client clp-e9baff4d4d425 closed its connection.
+1758082285: Client agent-mqttAgent-dc861c55d7306 disconnected.
+1758082286: New connection from 172.18.0.1:57942 on port 1883.
+1758082286: New client connected from 172.18.0.1:57942 as agent-mqttAgent-128ec15f7a5c8 (p5, c1, k30, u'simonll4').
+1758082288: New connection from 172.18.0.1:57950 on port 1883.
+1758082288: New client connected from 172.18.0.1:57950 as clp-c7d1b09c081e4 (p5, c1, k30, u'simonll4').
+1758082293: Client clp-c7d1b09c081e4 closed its connection.
+1758082294: New connection from 172.18.0.1:57960 on port 1883.
+1758082294: New client connected from 172.18.0.1:57960 as clp-fd205a85b26f6 (p5, c1, k30, u'simonll4').
+1758082298: New connection from 172.18.0.1:62176 on port 1883.
+1758082298: New client connected from 172.18.0.1:62176 as clp-612b97d0c4707 (p5, c1, k30, u'simonll4').
+1758082301: Client clp-612b97d0c4707 closed its connection.
+1758082302: Client clp-fd205a85b26f6 closed its connection.
+1758082303: Client agent-mqttAgent-128ec15f7a5c8 disconnected.
+1758082304: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1758082341: mosquitto version 2.0.22 terminating
+1758082341: Saving in-memory database to /mosquitto/data//mosquitto.db.

@@ -1,0 +1,2 @@
+2025-09-17T04:49:55.675Z [INFO] CLP client started successfully
+2025-09-17T04:49:55.676Z [ERROR] agent_not_available | agent=mqttAgent reason=agent_offline ageMs=515591 maxAgeMs=90000

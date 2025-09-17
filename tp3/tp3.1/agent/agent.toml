@@ -1,0 +1,26 @@
+[agent]
+name = "mqttAgent"
+qos = 1
+keepalive = 30
+clean_start = true
+root_dir = "/home/simonll4"
+
+[logging]
+debug = true
+level = "debug"                      # debug, info, warn, error
+output = ""                          # console, file, or empty for both
+file_path = "../logs/agent.log"
+
+[mqtt]
+url = "mqtt://localhost:1884"
+username = "simonll4"
+password = "123"
+
+[presence]
+enabled = true
+topic_base = "presence/agents"       # se construye como: {topic_base}/{agent.name}
+heartbeat_seconds = 30               # heartbeat cada 30 segundos
+
+[topics]
+request_base = "request/commands"
+response_base = "response/commands"

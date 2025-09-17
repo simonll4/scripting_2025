@@ -85,4 +85,15 @@ las respuestas no sean recibidas por todos los clientes y solo sea procesada por
 
 
 
-- 
+NOTAS TOMADA CUANDO EXPLICO:
+1) agent
+- inicio el agente se conecta al broker anunciando su nombre (unico) y se suscribe al tópico "request/commands/{nombreAgente}/+"
+- este agente va a recibir comandos a traves de un protocolo totalmente asincrono (hizo enfasis en esta parte que no es tan sencilla o tiene algo no trivial), 
+    no es como en tcp que es sincrono, ahi es mas sencillo
+- con el topic y el message se arma el comando completo
+
+2) client CLP
+- se conecta  al agent y si esta todo ok me muestra los comandos disponibles del agent 
+- manejar el tema del broadcast de los mensajes, si me conecto 2 veces con el mismo cliente, un cliente tiene que recibir las
+    respuestas de las peticiones que mando el y no las del otro cliente (hay que buscar la forma)
+
