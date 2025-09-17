@@ -11,8 +11,8 @@ import crypto from "crypto";
 import argon2 from "argon2";
 import sqlite3 from "sqlite3";
 import { open } from "sqlite";
-import { config as AGENT_CONFIG } from "../src/agent-tcp/config.js";
-import { SCOPES } from "../src/agent-tcp/security/index.js";
+import { config as AGENT_CONFIG } from "../agent-tcp/src/config.js";
+import { SCOPES } from "../agent-tcp/src/security/index.js";
 import fs from "fs";
 
 const ROLES = {

@@ -11,3 +11,6 @@
 2025-09-17T04:53:03.647Z [WARN] connect_v5_failed | message=Connection refused: Unacceptable protocol version
 2025-09-17T04:53:03.658Z [INFO] connected | mqtt_version=3.1.1 clientId=clp-2081698a36378 sessionPresent=false
 2025-09-17T04:53:03.659Z [DEBUG] connection_details | clientId=clp-2081698a36378 protocol_version=4 url=mqtt://localhost:1884 username=simonll4 keepalive=30 clean=true
+2025-09-17T05:03:16.097Z [WARN] connect_v5_failed | message=Connection refused: Unacceptable protocol version
+2025-09-17T05:03:16.106Z [INFO] connected | mqtt_version=3.1.1 clientId=clp-6916cb3773a9 sessionPresent=false
+2025-09-17T05:03:16.106Z [DEBUG] connection_details | clientId=clp-6916cb3773a9 protocol_version=4 url=mqtt://localhost:1884 username=simonll4 keepalive=30 clean=true

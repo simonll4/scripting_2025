@@ -189,3 +189,24 @@
 2025-09-17T04:53:49.150Z [DEBUG] presence_announced | agent=mqttAgent state=offline topic=presence/agents/mqttAgent
 2025-09-17T04:53:49.164Z [INFO] mqtt_close | agent=mqttAgent
 2025-09-17T04:53:49.164Z [INFO] mqtt_client_closed
+2025-09-17T05:03:07.336Z [DEBUG] presence_manager_created | agent=mqttAgent enabled=true heartbeatSeconds=30 topic=presence/agents/mqttAgent
+2025-09-17T05:03:07.412Z [WARN] connect_v5_failed | message=Connection refused: Unacceptable protocol version
+2025-09-17T05:03:07.424Z [INFO] connected | mqtt_version=3.1.1 clientId=agent-mqttAgent-1cfce6aae5053 sessionPresent=false
+2025-09-17T05:03:07.425Z [INFO] heartbeat_started | agent=mqttAgent intervalSeconds=30 topic=presence/agents/mqttAgent
+2025-09-17T05:03:07.428Z [DEBUG] presence_announced | agent=mqttAgent state=online topic=presence/agents/mqttAgent
+2025-09-17T05:03:07.469Z [INFO] subscribed | topic=request/commands/mqttAgent/+
+2025-09-17T05:03:07.470Z [INFO] agent_ready | agent=mqttAgent mqttVersion=3.1.1 presenceEnabled=true heartbeatSeconds=30
+2025-09-17T05:03:07.470Z [INFO] Agent started successfully
+2025-09-17T05:03:16.188Z [INFO] response_sent | command=help method=baseline_replyTo id=mfninhlipywu6b6bcen agent=mqttAgent
+2025-09-17T05:03:16.188Z [INFO] request_processed | agent=mqttAgent command=help id=mfninhlipywu6b6bcen durationMs=2
+2025-09-17T05:03:19.688Z [INFO] response_sent | command=ls method=baseline_replyTo id=mfninkatfx6p81xy065 agent=mqttAgent
+2025-09-17T05:03:19.689Z [INFO] request_processed | agent=mqttAgent command=ls id=mfninkatfx6p81xy065 durationMs=2
+2025-09-17T05:03:22.505Z [INFO] response_sent | command=ls method=baseline_replyTo id=mfninmh2enohngfwven agent=mqttAgent
+2025-09-17T05:03:22.506Z [INFO] request_processed | agent=mqttAgent command=ls id=mfninmh2enohngfwven durationMs=2
+2025-09-17T05:03:25.485Z [INFO] shutdown_signal_received | signal=SIGINT
+2025-09-17T05:03:25.486Z [DEBUG] presence_cleanup_started | agent=mqttAgent
+2025-09-17T05:03:25.486Z [DEBUG] heartbeat_stopped | agent=mqttAgent
+2025-09-17T05:03:25.486Z [INFO] presence_offline_announced | agent=mqttAgent
+2025-09-17T05:03:25.488Z [DEBUG] presence_announced | agent=mqttAgent state=offline topic=presence/agents/mqttAgent
+2025-09-17T05:03:25.502Z [INFO] mqtt_close | agent=mqttAgent
+2025-09-17T05:03:25.503Z [INFO] mqtt_client_closed
