@@ -12,7 +12,7 @@ output = "file"                      # console or file (CLP uses file to keep CL
 file_path = "../logs/clp.log"
 
 [mqtt]
-url = "mqtt://localhost:1884"
+url = "mqtt://localhost:1883"
 username = "simonll4"
 password = "123"
 

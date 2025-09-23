@@ -1,0 +1,7 @@
+2025-09-23T04:25:33.171Z [DEBUG] request_initiated | id=mfw1y3g3jepqa4du39p command=help agent=mqttAgent args_count=undefined timeout_ms=5000
+2025-09-23T04:25:33.173Z [INFO] request_sent | command=help id=mfw1y3g3jepqa4du39p agent=mqttAgent method=v5_responseTopic topic=request/commands/mqttAgent/help response_topic=response/commands/mqttAgent/mqttAgent/clp-5cce70f0d1ce6 payload={"id":"mfw1y3g3jepqa4du39p","args":{}}
+2025-09-23T04:25:33.175Z [INFO] subscribed | topic=response/commands/mqttAgent/mqttAgent/clp-5cce70f0d1ce6
+2025-09-23T04:25:33.220Z [DEBUG] response_received | id=mfw1y3g3jepqa4du39p command=help correlation_method=v5_correlation_data topic=response/commands/mqttAgent/mqttAgent/clp-5cce70f0d1ce6 response={"date":"2025-09-23T04:25:33.178Z","command":"help","name":"mqttAgent","id":"mfw1y3g3jepqa4du39p","payload":{"message":"OK","result":[{"command":"help","description":"Lista los comandos disponibles"},{"command":"ls","description":"Lista archivos/carpetas dentro del root del agente"}]}}
+2025-09-23T04:25:33.225Z [INFO] CLP client started successfully
+2025-09-23T04:25:42.236Z [DEBUG] request_initiated | id=mfw1yafwvffoi5p485 command=ls agent=mqttAgent args_count=undefined timeout_ms=5000
+2025-09-23T04:25:42.237Z [INFO] request_sent | command=ls id=mfw1yafwvffoi5p485 agent=mqttAgent method=v5_responseTopic topic=request/commands/mqttAgent/ls response_topic=response/commands/mqttAgent/mqttAgent/clp-5cce70f0d1ce6 payload={"id":"mfw1yafwvffoi5p485","args":{"path":""}}

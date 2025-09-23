@@ -347,8 +347,8 @@ export async function start() {
         console.log(warning(`Comando no reconocido: "${command}"`));
         console.log(info('Usa "help" para ver comandos disponibles'));
       }
-    } catch (error) {
-      console.log(error(`Error: ${error.message}`));
+    } catch (err) {
+      console.log(error(`Error: ${err.message}`));
     }
 
     readlineInterface.prompt();
