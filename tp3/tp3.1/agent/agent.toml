@@ -12,7 +12,7 @@ output = ""                          # console, file, or empty for both
 file_path = "../logs/agent.log"
 
 [mqtt]
-url = "mqtt://localhost:1883"
+url = "mqtt://localhost:1884"
 username = "simonll4"
 password = "123"
 

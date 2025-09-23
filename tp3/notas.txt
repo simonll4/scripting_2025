@@ -1,3 +1,0 @@
-- cada vez que un suscriptor se conecta a un broker tiene que mandarle un id (valor random tipicamente)
-- con clean=true borra sesiones existentes, siempre arranca una nueva
-- 

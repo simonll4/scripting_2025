@@ -6,3 +6,10 @@
 2025-09-23T04:27:32.304Z [DEBUG] connection_details | clientId=clp-2c4d61eb47d42 protocol_version=5 url=mqtt://localhost:1883 username=simonll4 keepalive=30 clean=true
 2025-09-23T04:28:03.226Z [INFO] connected | mqtt_version=5 clientId=clp-5b8128a45f8b3 sessionPresent=false
 2025-09-23T04:28:03.227Z [DEBUG] connection_details | clientId=clp-5b8128a45f8b3 protocol_version=5 url=mqtt://localhost:1883 username=simonll4 keepalive=30 clean=true
+2025-09-23T17:17:59.736Z [INFO] connected | mqtt_version=5 clientId=clp-3d4af8ff7dd5b sessionPresent=false
+2025-09-23T17:17:59.737Z [DEBUG] connection_details | clientId=clp-3d4af8ff7dd5b protocol_version=5 url=mqtt://localhost:1883 username=simonll4 keepalive=30 clean=true
+2025-09-23T17:18:27.201Z [INFO] connected | mqtt_version=5 clientId=clp-b3b746e3172aa sessionPresent=false
+2025-09-23T17:18:27.202Z [DEBUG] connection_details | clientId=clp-b3b746e3172aa protocol_version=5 url=mqtt://localhost:1883 username=simonll4 keepalive=30 clean=true
+2025-09-23T17:21:48.665Z [WARN] connect_v5_failed | message=Connection refused: Unacceptable protocol version
+2025-09-23T17:21:48.682Z [INFO] connected | mqtt_version=3.1.1 clientId=clp-b7aa56c902a8c sessionPresent=false
+2025-09-23T17:21:48.682Z [DEBUG] connection_details | clientId=clp-b7aa56c902a8c protocol_version=4 url=mqtt://localhost:1884 username=simonll4 keepalive=30 clean=true
