@@ -1,3 +1,6 @@
 {
-    "chatgpt.openOnStartup": false
+    "chatgpt.openOnStartup": false,
+    "files.watcherExclude": {
+        "**/target": true
+    }
 }

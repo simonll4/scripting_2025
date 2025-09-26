@@ -1,0 +1,441 @@
+{"level":"info","message":"Iniciando agente de webcam...","service":"webcam-agent","timestamp":"2025-09-25T22:40:14.514Z"}
+{"bitrate":1000,"destination":"rtmp://localhost:1935/webcam","framerate":30,"level":"info","message":"Configuración:","resolution":"640x480","service":"webcam-agent","timestamp":"2025-09-25T22:40:14.516Z","videoDevice":"/dev/video0"}
+{"level":"info","message":"Verificando prerequisitos...","service":"webcam-agent","timestamp":"2025-09-25T22:40:14.516Z"}
+{"level":"info","message":"✓ GStreamer disponible","service":"webcam-agent","timestamp":"2025-09-25T22:40:14.534Z"}
+{"level":"info","message":"✓ Dispositivo de video disponible: /dev/video0","service":"webcam-agent","timestamp":"2025-09-25T22:40:14.535Z"}
+{"level":"info","message":"Dispositivos de video disponibles:\nHP TrueVision HD Camera: HP Tru (usb-0000:00:14.0-5):\n\t/dev/video0\n\t/dev/video1\n\t/dev/media0\n\n","service":"webcam-agent","timestamp":"2025-09-25T22:40:14.634Z"}
+{"level":"info","message":"Iniciando pipeline GStreamer: gst-launch-1.0 v4l2src device=/dev/video0 ! image/jpeg,width=640,height=480,framerate=30/1 ! jpegdec ! videoconvert ! x264enc bitrate=1000 speed-preset=ultrafast tune=zerolatency key-int-max=60 ! flvmux streamable=true ! rtmpsink location=rtmp://localhost:1935/webcam sync=false","service":"webcam-agent","timestamp":"2025-09-25T22:40:14.635Z"}
+{"level":"info","message":"Pipeline iniciado exitosamente","service":"webcam-agent","timestamp":"2025-09-25T22:40:14.637Z"}
+{"level":"error","message":"Error en pipeline:","service":"webcam-agent","timestamp":"2025-09-25T22:43:30.376Z"}
+{"level":"info","message":"Intento de reconexión 1/5","service":"webcam-agent","timestamp":"2025-09-25T22:43:30.377Z"}
+{"level":"info","message":"Reiniciando pipeline...","service":"webcam-agent","timestamp":"2025-09-25T22:43:35.377Z"}
+{"level":"info","message":"Iniciando pipeline GStreamer: gst-launch-1.0 v4l2src device=/dev/video0 ! image/jpeg,width=640,height=480,framerate=30/1 ! jpegdec ! videoconvert ! x264enc bitrate=1000 speed-preset=ultrafast tune=zerolatency key-int-max=60 ! flvmux streamable=true ! rtmpsink location=rtmp://localhost:1935/webcam sync=false","service":"webcam-agent","timestamp":"2025-09-25T22:43:37.380Z"}
+{"level":"info","message":"Pipeline iniciado exitosamente","service":"webcam-agent","timestamp":"2025-09-25T22:43:37.382Z"}
+{"level":"error","message":"Error en pipeline:","service":"webcam-agent","timestamp":"2025-09-25T22:43:37.792Z"}
+{"level":"info","message":"Intento de reconexión 1/5","service":"webcam-agent","timestamp":"2025-09-25T22:43:37.793Z"}
+{"level":"error","message":"Error en pipeline:","service":"webcam-agent","timestamp":"2025-09-25T22:43:37.827Z"}
+{"level":"info","message":"Intento de reconexión 2/5","service":"webcam-agent","timestamp":"2025-09-25T22:43:37.828Z"}
+{"level":"info","message":"Reiniciando pipeline...","service":"webcam-agent","timestamp":"2025-09-25T22:43:42.797Z"}
+{"level":"info","message":"Reiniciando pipeline...","service":"webcam-agent","timestamp":"2025-09-25T22:43:42.828Z"}
+{"level":"info","message":"Iniciando pipeline GStreamer: gst-launch-1.0 v4l2src device=/dev/video0 ! image/jpeg,width=640,height=480,framerate=30/1 ! jpegdec ! videoconvert ! x264enc bitrate=1000 speed-preset=ultrafast tune=zerolatency key-int-max=60 ! flvmux streamable=true ! rtmpsink location=rtmp://localhost:1935/webcam sync=false","service":"webcam-agent","timestamp":"2025-09-25T22:43:44.799Z"}
+{"level":"info","message":"Pipeline iniciado exitosamente","service":"webcam-agent","timestamp":"2025-09-25T22:43:44.802Z"}
+{"level":"warn","message":"Pipeline ya está ejecutándose","service":"webcam-agent","timestamp":"2025-09-25T22:43:44.829Z"}
+{"level":"error","message":"Error en pipeline:","service":"webcam-agent","timestamp":"2025-09-25T22:43:45.280Z"}
+{"level":"info","message":"Intento de reconexión 1/5","service":"webcam-agent","timestamp":"2025-09-25T22:43:45.281Z"}
+{"level":"error","message":"Error en pipeline:","service":"webcam-agent","timestamp":"2025-09-25T22:43:45.309Z"}
+{"level":"info","message":"Intento de reconexión 2/5","service":"webcam-agent","timestamp":"2025-09-25T22:43:45.309Z"}
+{"level":"info","message":"Reiniciando pipeline...","service":"webcam-agent","timestamp":"2025-09-25T22:43:50.285Z"}
+{"level":"info","message":"Reiniciando pipeline...","service":"webcam-agent","timestamp":"2025-09-25T22:43:50.309Z"}
+{"level":"info","message":"Iniciando pipeline GStreamer: gst-launch-1.0 v4l2src device=/dev/video0 ! image/jpeg,width=640,height=480,framerate=30/1 ! jpegdec ! videoconvert ! x264enc bitrate=1000 speed-preset=ultrafast tune=zerolatency key-int-max=60 ! flvmux streamable=true ! rtmpsink location=rtmp://localhost:1935/webcam sync=false","service":"webcam-agent","timestamp":"2025-09-25T22:43:52.288Z"}
+{"level":"info","message":"Pipeline iniciado exitosamente","service":"webcam-agent","timestamp":"2025-09-25T22:43:52.292Z"}
+{"level":"warn","message":"Pipeline ya está ejecutándose","service":"webcam-agent","timestamp":"2025-09-25T22:43:52.310Z"}
+{"level":"error","message":"Error en pipeline:","service":"webcam-agent","timestamp":"2025-09-25T22:43:52.669Z"}
+{"level":"info","message":"Intento de reconexión 1/5","service":"webcam-agent","timestamp":"2025-09-25T22:43:52.670Z"}
+{"level":"error","message":"Error en pipeline:","service":"webcam-agent","timestamp":"2025-09-25T22:43:52.698Z"}
+{"level":"info","message":"Intento de reconexión 2/5","service":"webcam-agent","timestamp":"2025-09-25T22:43:52.699Z"}
+{"level":"info","message":"Reiniciando pipeline...","service":"webcam-agent","timestamp":"2025-09-25T22:43:57.674Z"}
+{"level":"info","message":"Reiniciando pipeline...","service":"webcam-agent","timestamp":"2025-09-25T22:43:57.699Z"}
+{"level":"info","message":"Iniciando pipeline GStreamer: gst-launch-1.0 v4l2src device=/dev/video0 ! image/jpeg,width=640,height=480,framerate=30/1 ! jpegdec ! videoconvert ! x264enc bitrate=1000 speed-preset=ultrafast tune=zerolatency key-int-max=60 ! flvmux streamable=true ! rtmpsink location=rtmp://localhost:1935/webcam sync=false","service":"webcam-agent","timestamp":"2025-09-25T22:43:59.676Z"}
+{"level":"info","message":"Pipeline iniciado exitosamente","service":"webcam-agent","timestamp":"2025-09-25T22:43:59.680Z"}
+{"level":"warn","message":"Pipeline ya está ejecutándose","service":"webcam-agent","timestamp":"2025-09-25T22:43:59.700Z"}
+{"level":"error","message":"Error en pipeline:","service":"webcam-agent","timestamp":"2025-09-25T22:44:00.076Z"}
+{"level":"info","message":"Intento de reconexión 1/5","service":"webcam-agent","timestamp":"2025-09-25T22:44:00.076Z"}
+{"level":"error","message":"Error en pipeline:","service":"webcam-agent","timestamp":"2025-09-25T22:44:00.106Z"}
+{"level":"info","message":"Intento de reconexión 2/5","service":"webcam-agent","timestamp":"2025-09-25T22:44:00.107Z"}
+{"level":"info","message":"Reiniciando pipeline...","service":"webcam-agent","timestamp":"2025-09-25T22:44:05.081Z"}
+{"level":"info","message":"Reiniciando pipeline...","service":"webcam-agent","timestamp":"2025-09-25T22:44:05.107Z"}
+{"level":"info","message":"Iniciando pipeline GStreamer: gst-launch-1.0 v4l2src device=/dev/video0 ! image/jpeg,width=640,height=480,framerate=30/1 ! jpegdec ! videoconvert ! x264enc bitrate=1000 speed-preset=ultrafast tune=zerolatency key-int-max=60 ! flvmux streamable=true ! rtmpsink location=rtmp://localhost:1935/webcam sync=false","service":"webcam-agent","timestamp":"2025-09-25T22:44:07.084Z"}
+{"level":"info","message":"Pipeline iniciado exitosamente","service":"webcam-agent","timestamp":"2025-09-25T22:44:07.086Z"}
+{"level":"warn","message":"Pipeline ya está ejecutándose","service":"webcam-agent","timestamp":"2025-09-25T22:44:07.108Z"}
+{"level":"error","message":"Error en pipeline:","service":"webcam-agent","timestamp":"2025-09-25T22:44:07.474Z"}
+{"level":"info","message":"Intento de reconexión 1/5","service":"webcam-agent","timestamp":"2025-09-25T22:44:07.475Z"}
+{"level":"error","message":"Error en pipeline:","service":"webcam-agent","timestamp":"2025-09-25T22:44:07.503Z"}
+{"level":"info","message":"Intento de reconexión 2/5","service":"webcam-agent","timestamp":"2025-09-25T22:44:07.503Z"}
+{"level":"info","message":"Reiniciando pipeline...","service":"webcam-agent","timestamp":"2025-09-25T22:44:12.479Z"}
+{"level":"info","message":"Reiniciando pipeline...","service":"webcam-agent","timestamp":"2025-09-25T22:44:12.503Z"}
+{"level":"info","message":"Iniciando pipeline GStreamer: gst-launch-1.0 v4l2src device=/dev/video0 ! image/jpeg,width=640,height=480,framerate=30/1 ! jpegdec ! videoconvert ! x264enc bitrate=1000 speed-preset=ultrafast tune=zerolatency key-int-max=60 ! flvmux streamable=true ! rtmpsink location=rtmp://localhost:1935/webcam sync=false","service":"webcam-agent","timestamp":"2025-09-25T22:44:14.482Z"}
+{"level":"info","message":"Pipeline iniciado exitosamente","service":"webcam-agent","timestamp":"2025-09-25T22:44:14.484Z"}
+{"level":"warn","message":"Pipeline ya está ejecutándose","service":"webcam-agent","timestamp":"2025-09-25T22:44:14.504Z"}
+{"level":"error","message":"Error en pipeline:","service":"webcam-agent","timestamp":"2025-09-25T22:44:14.878Z"}
+{"level":"info","message":"Intento de reconexión 1/5","service":"webcam-agent","timestamp":"2025-09-25T22:44:14.879Z"}
+{"level":"error","message":"Error en pipeline:","service":"webcam-agent","timestamp":"2025-09-25T22:44:14.909Z"}
+{"level":"info","message":"Intento de reconexión 2/5","service":"webcam-agent","timestamp":"2025-09-25T22:44:14.909Z"}
+{"level":"info","message":"Reiniciando pipeline...","service":"webcam-agent","timestamp":"2025-09-25T22:44:19.883Z"}
+{"level":"info","message":"Reiniciando pipeline...","service":"webcam-agent","timestamp":"2025-09-25T22:44:19.910Z"}
+{"level":"info","message":"Iniciando pipeline GStreamer: gst-launch-1.0 v4l2src device=/dev/video0 ! image/jpeg,width=640,height=480,framerate=30/1 ! jpegdec ! videoconvert ! x264enc bitrate=1000 speed-preset=ultrafast tune=zerolatency key-int-max=60 ! flvmux streamable=true ! rtmpsink location=rtmp://localhost:1935/webcam sync=false","service":"webcam-agent","timestamp":"2025-09-25T22:44:21.885Z"}
+{"level":"info","message":"Pipeline iniciado exitosamente","service":"webcam-agent","timestamp":"2025-09-25T22:44:21.888Z"}
+{"level":"warn","message":"Pipeline ya está ejecutándose","service":"webcam-agent","timestamp":"2025-09-25T22:44:21.911Z"}
+{"level":"error","message":"Error en pipeline:","service":"webcam-agent","timestamp":"2025-09-25T22:44:22.283Z"}
+{"level":"info","message":"Intento de reconexión 1/5","service":"webcam-agent","timestamp":"2025-09-25T22:44:22.284Z"}
+{"level":"error","message":"Error en pipeline:","service":"webcam-agent","timestamp":"2025-09-25T22:44:22.312Z"}
+{"level":"info","message":"Intento de reconexión 2/5","service":"webcam-agent","timestamp":"2025-09-25T22:44:22.312Z"}
+{"level":"info","message":"Reiniciando pipeline...","service":"webcam-agent","timestamp":"2025-09-25T22:44:27.289Z"}
+{"level":"info","message":"Reiniciando pipeline...","service":"webcam-agent","timestamp":"2025-09-25T22:44:27.313Z"}
+{"level":"info","message":"Iniciando pipeline GStreamer: gst-launch-1.0 v4l2src device=/dev/video0 ! image/jpeg,width=640,height=480,framerate=30/1 ! jpegdec ! videoconvert ! x264enc bitrate=1000 speed-preset=ultrafast tune=zerolatency key-int-max=60 ! flvmux streamable=true ! rtmpsink location=rtmp://localhost:1935/webcam sync=false","service":"webcam-agent","timestamp":"2025-09-25T22:44:29.292Z"}
+{"level":"info","message":"Pipeline iniciado exitosamente","service":"webcam-agent","timestamp":"2025-09-25T22:44:29.295Z"}
+{"level":"warn","message":"Pipeline ya está ejecutándose","service":"webcam-agent","timestamp":"2025-09-25T22:44:29.314Z"}
+{"level":"error","message":"Error en pipeline:","service":"webcam-agent","timestamp":"2025-09-25T22:44:29.709Z"}
+{"level":"info","message":"Intento de reconexión 1/5","service":"webcam-agent","timestamp":"2025-09-25T22:44:29.709Z"}
+{"level":"error","message":"Error en pipeline:","service":"webcam-agent","timestamp":"2025-09-25T22:44:29.737Z"}
+{"level":"info","message":"Intento de reconexión 2/5","service":"webcam-agent","timestamp":"2025-09-25T22:44:29.737Z"}
+{"level":"info","message":"Reiniciando pipeline...","service":"webcam-agent","timestamp":"2025-09-25T22:44:34.714Z"}
+{"level":"info","message":"Reiniciando pipeline...","service":"webcam-agent","timestamp":"2025-09-25T22:44:34.737Z"}
+{"level":"info","message":"Iniciando pipeline GStreamer: gst-launch-1.0 v4l2src device=/dev/video0 ! image/jpeg,width=640,height=480,framerate=30/1 ! jpegdec ! videoconvert ! x264enc bitrate=1000 speed-preset=ultrafast tune=zerolatency key-int-max=60 ! flvmux streamable=true ! rtmpsink location=rtmp://localhost:1935/webcam sync=false","service":"webcam-agent","timestamp":"2025-09-25T22:44:36.716Z"}
+{"level":"info","message":"Pipeline iniciado exitosamente","service":"webcam-agent","timestamp":"2025-09-25T22:44:36.719Z"}
+{"level":"warn","message":"Pipeline ya está ejecutándose","service":"webcam-agent","timestamp":"2025-09-25T22:44:36.738Z"}
+{"level":"error","message":"Error en pipeline:","service":"webcam-agent","timestamp":"2025-09-25T22:44:37.203Z"}
+{"level":"info","message":"Intento de reconexión 1/5","service":"webcam-agent","timestamp":"2025-09-25T22:44:37.203Z"}
+{"level":"error","message":"Error en pipeline:","service":"webcam-agent","timestamp":"2025-09-25T22:44:37.233Z"}
+{"level":"info","message":"Intento de reconexión 2/5","service":"webcam-agent","timestamp":"2025-09-25T22:44:37.233Z"}
+{"level":"info","message":"Reiniciando pipeline...","service":"webcam-agent","timestamp":"2025-09-25T22:44:42.208Z"}
+{"level":"info","message":"Reiniciando pipeline...","service":"webcam-agent","timestamp":"2025-09-25T22:44:42.234Z"}
+{"level":"info","message":"Iniciando pipeline GStreamer: gst-launch-1.0 v4l2src device=/dev/video0 ! image/jpeg,width=640,height=480,framerate=30/1 ! jpegdec ! videoconvert ! x264enc bitrate=1000 speed-preset=ultrafast tune=zerolatency key-int-max=60 ! flvmux streamable=true ! rtmpsink location=rtmp://localhost:1935/webcam sync=false","service":"webcam-agent","timestamp":"2025-09-25T22:44:44.210Z"}
+{"level":"info","message":"Pipeline iniciado exitosamente","service":"webcam-agent","timestamp":"2025-09-25T22:44:44.214Z"}
+{"level":"warn","message":"Pipeline ya está ejecutándose","service":"webcam-agent","timestamp":"2025-09-25T22:44:44.235Z"}
+{"level":"error","message":"Error en pipeline:","service":"webcam-agent","timestamp":"2025-09-25T22:44:44.606Z"}
+{"level":"info","message":"Intento de reconexión 1/5","service":"webcam-agent","timestamp":"2025-09-25T22:44:44.607Z"}
+{"level":"error","message":"Error en pipeline:","service":"webcam-agent","timestamp":"2025-09-25T22:44:44.637Z"}
+{"level":"info","message":"Intento de reconexión 2/5","service":"webcam-agent","timestamp":"2025-09-25T22:44:44.637Z"}
+{"level":"info","message":"Reiniciando pipeline...","service":"webcam-agent","timestamp":"2025-09-25T22:44:49.611Z"}
+{"level":"info","message":"Reiniciando pipeline...","service":"webcam-agent","timestamp":"2025-09-25T22:44:49.638Z"}
+{"level":"info","message":"Iniciando pipeline GStreamer: gst-launch-1.0 v4l2src device=/dev/video0 ! image/jpeg,width=640,height=480,framerate=30/1 ! jpegdec ! videoconvert ! x264enc bitrate=1000 speed-preset=ultrafast tune=zerolatency key-int-max=60 ! flvmux streamable=true ! rtmpsink location=rtmp://localhost:1935/webcam sync=false","service":"webcam-agent","timestamp":"2025-09-25T22:44:51.613Z"}
+{"level":"info","message":"Pipeline iniciado exitosamente","service":"webcam-agent","timestamp":"2025-09-25T22:44:51.617Z"}
+{"level":"warn","message":"Pipeline ya está ejecutándose","service":"webcam-agent","timestamp":"2025-09-25T22:44:51.639Z"}
+{"level":"error","message":"Error en pipeline:","service":"webcam-agent","timestamp":"2025-09-25T22:44:52.007Z"}
+{"level":"info","message":"Intento de reconexión 1/5","service":"webcam-agent","timestamp":"2025-09-25T22:44:52.008Z"}
+{"level":"error","message":"Error en pipeline:","service":"webcam-agent","timestamp":"2025-09-25T22:44:52.038Z"}
+{"level":"info","message":"Intento de reconexión 2/5","service":"webcam-agent","timestamp":"2025-09-25T22:44:52.038Z"}
+{"level":"info","message":"Deteniendo agente de webcam...","service":"webcam-agent","timestamp":"2025-09-25T22:44:55.461Z"}
+{"level":"info","message":"Iniciando agente de webcam...","service":"webcam-agent","timestamp":"2025-09-25T22:49:42.666Z"}
+{"bitrate":1000,"destination":"rtmp://localhost:1935/webcam","framerate":30,"level":"info","message":"Configuración:","resolution":"640x480","service":"webcam-agent","timestamp":"2025-09-25T22:49:42.670Z","videoDevice":"/dev/video0"}
+{"level":"info","message":"Verificando prerequisitos...","service":"webcam-agent","timestamp":"2025-09-25T22:49:42.671Z"}
+{"level":"info","message":"✓ GStreamer disponible","service":"webcam-agent","timestamp":"2025-09-25T22:49:42.697Z"}
+{"level":"info","message":"✓ Dispositivo de video disponible: /dev/video0","service":"webcam-agent","timestamp":"2025-09-25T22:49:42.698Z"}
+{"level":"info","message":"Dispositivos de video disponibles:\nHP TrueVision HD Camera: HP Tru (usb-0000:00:14.0-5):\n\t/dev/video0\n\t/dev/video1\n\t/dev/media0\n\n","service":"webcam-agent","timestamp":"2025-09-25T22:49:42.706Z"}
+{"level":"info","message":"Iniciando pipeline GStreamer: gst-launch-1.0 v4l2src device=/dev/video0 ! image/jpeg,width=640,height=480,framerate=30/1 ! jpegdec ! videoconvert ! x264enc bitrate=1000 speed-preset=ultrafast tune=zerolatency key-int-max=60 ! flvmux streamable=true ! rtmpsink location=rtmp://localhost:1935/webcam sync=false","service":"webcam-agent","timestamp":"2025-09-25T22:49:42.707Z"}
+{"level":"info","message":"Pipeline iniciado exitosamente","service":"webcam-agent","timestamp":"2025-09-25T22:49:42.711Z"}
+{"level":"error","message":"Error en pipeline:","service":"webcam-agent","timestamp":"2025-09-25T22:49:43.100Z"}
+{"level":"info","message":"Intento de reconexión 1/5","service":"webcam-agent","timestamp":"2025-09-25T22:49:43.101Z"}
+{"level":"error","message":"Error en pipeline:","service":"webcam-agent","timestamp":"2025-09-25T22:49:43.128Z"}
+{"level":"info","message":"Intento de reconexión 2/5","service":"webcam-agent","timestamp":"2025-09-25T22:49:43.129Z"}
+{"level":"info","message":"Reiniciando pipeline...","service":"webcam-agent","timestamp":"2025-09-25T22:49:48.106Z"}
+{"level":"info","message":"Reiniciando pipeline...","service":"webcam-agent","timestamp":"2025-09-25T22:49:48.129Z"}
+{"level":"info","message":"Iniciando pipeline GStreamer: gst-launch-1.0 v4l2src device=/dev/video0 ! image/jpeg,width=640,height=480,framerate=30/1 ! jpegdec ! videoconvert ! x264enc bitrate=1000 speed-preset=ultrafast tune=zerolatency key-int-max=60 ! flvmux streamable=true ! rtmpsink location=rtmp://localhost:1935/webcam sync=false","service":"webcam-agent","timestamp":"2025-09-25T22:49:50.108Z"}
+{"level":"info","message":"Pipeline iniciado exitosamente","service":"webcam-agent","timestamp":"2025-09-25T22:49:50.111Z"}
+{"level":"warn","message":"Pipeline ya está ejecutándose","service":"webcam-agent","timestamp":"2025-09-25T22:49:50.129Z"}
+{"level":"error","message":"Error en pipeline:","service":"webcam-agent","timestamp":"2025-09-25T22:49:50.499Z"}
+{"level":"info","message":"Intento de reconexión 1/5","service":"webcam-agent","timestamp":"2025-09-25T22:49:50.499Z"}
+{"level":"error","message":"Error en pipeline:","service":"webcam-agent","timestamp":"2025-09-25T22:49:50.527Z"}
+{"level":"info","message":"Intento de reconexión 2/5","service":"webcam-agent","timestamp":"2025-09-25T22:49:50.527Z"}
+{"level":"info","message":"Reiniciando pipeline...","service":"webcam-agent","timestamp":"2025-09-25T22:49:55.504Z"}
+{"level":"info","message":"Reiniciando pipeline...","service":"webcam-agent","timestamp":"2025-09-25T22:49:55.528Z"}
+{"level":"info","message":"Iniciando pipeline GStreamer: gst-launch-1.0 v4l2src device=/dev/video0 ! image/jpeg,width=640,height=480,framerate=30/1 ! jpegdec ! videoconvert ! x264enc bitrate=1000 speed-preset=ultrafast tune=zerolatency key-int-max=60 ! flvmux streamable=true ! rtmpsink location=rtmp://localhost:1935/webcam sync=false","service":"webcam-agent","timestamp":"2025-09-25T22:49:57.505Z"}
+{"level":"info","message":"Pipeline iniciado exitosamente","service":"webcam-agent","timestamp":"2025-09-25T22:49:57.510Z"}
+{"level":"warn","message":"Pipeline ya está ejecutándose","service":"webcam-agent","timestamp":"2025-09-25T22:49:57.529Z"}
+{"level":"error","message":"Error en pipeline:","service":"webcam-agent","timestamp":"2025-09-25T22:49:57.901Z"}
+{"level":"info","message":"Intento de reconexión 1/5","service":"webcam-agent","timestamp":"2025-09-25T22:49:57.901Z"}
+{"level":"error","message":"Error en pipeline:","service":"webcam-agent","timestamp":"2025-09-25T22:49:57.929Z"}
+{"level":"info","message":"Intento de reconexión 2/5","service":"webcam-agent","timestamp":"2025-09-25T22:49:57.930Z"}
+{"level":"info","message":"Reiniciando pipeline...","service":"webcam-agent","timestamp":"2025-09-25T22:50:02.905Z"}
+{"level":"info","message":"Reiniciando pipeline...","service":"webcam-agent","timestamp":"2025-09-25T22:50:02.930Z"}
+{"level":"info","message":"Iniciando pipeline GStreamer: gst-launch-1.0 v4l2src device=/dev/video0 ! image/jpeg,width=640,height=480,framerate=30/1 ! jpegdec ! videoconvert ! x264enc bitrate=1000 speed-preset=ultrafast tune=zerolatency key-int-max=60 ! flvmux streamable=true ! rtmpsink location=rtmp://localhost:1935/webcam sync=false","service":"webcam-agent","timestamp":"2025-09-25T22:50:04.907Z"}
+{"level":"info","message":"Pipeline iniciado exitosamente","service":"webcam-agent","timestamp":"2025-09-25T22:50:04.911Z"}
+{"level":"warn","message":"Pipeline ya está ejecutándose","service":"webcam-agent","timestamp":"2025-09-25T22:50:04.931Z"}
+{"level":"error","message":"Error en pipeline:","service":"webcam-agent","timestamp":"2025-09-25T22:50:05.306Z"}
+{"level":"info","message":"Intento de reconexión 1/5","service":"webcam-agent","timestamp":"2025-09-25T22:50:05.307Z"}
+{"level":"error","message":"Error en pipeline:","service":"webcam-agent","timestamp":"2025-09-25T22:50:05.338Z"}
+{"level":"info","message":"Intento de reconexión 2/5","service":"webcam-agent","timestamp":"2025-09-25T22:50:05.338Z"}
+{"level":"info","message":"Reiniciando pipeline...","service":"webcam-agent","timestamp":"2025-09-25T22:50:10.312Z"}
+{"level":"info","message":"Reiniciando pipeline...","service":"webcam-agent","timestamp":"2025-09-25T22:50:10.339Z"}
+{"level":"info","message":"Iniciando pipeline GStreamer: gst-launch-1.0 v4l2src device=/dev/video0 ! image/jpeg,width=640,height=480,framerate=30/1 ! jpegdec ! videoconvert ! x264enc bitrate=1000 speed-preset=ultrafast tune=zerolatency key-int-max=60 ! flvmux streamable=true ! rtmpsink location=rtmp://localhost:1935/webcam sync=false","service":"webcam-agent","timestamp":"2025-09-25T22:50:12.314Z"}
+{"level":"info","message":"Pipeline iniciado exitosamente","service":"webcam-agent","timestamp":"2025-09-25T22:50:12.317Z"}
+{"level":"warn","message":"Pipeline ya está ejecutándose","service":"webcam-agent","timestamp":"2025-09-25T22:50:12.340Z"}
+{"level":"error","message":"Error en pipeline:","service":"webcam-agent","timestamp":"2025-09-25T22:50:12.707Z"}
+{"level":"info","message":"Intento de reconexión 1/5","service":"webcam-agent","timestamp":"2025-09-25T22:50:12.708Z"}
+{"level":"error","message":"Error en pipeline:","service":"webcam-agent","timestamp":"2025-09-25T22:50:12.736Z"}
+{"level":"info","message":"Intento de reconexión 2/5","service":"webcam-agent","timestamp":"2025-09-25T22:50:12.736Z"}
+{"level":"info","message":"Reiniciando pipeline...","service":"webcam-agent","timestamp":"2025-09-25T22:50:17.713Z"}
+{"level":"info","message":"Reiniciando pipeline...","service":"webcam-agent","timestamp":"2025-09-25T22:50:17.736Z"}
+{"level":"info","message":"Iniciando pipeline GStreamer: gst-launch-1.0 v4l2src device=/dev/video0 ! image/jpeg,width=640,height=480,framerate=30/1 ! jpegdec ! videoconvert ! x264enc bitrate=1000 speed-preset=ultrafast tune=zerolatency key-int-max=60 ! flvmux streamable=true ! rtmpsink location=rtmp://localhost:1935/webcam sync=false","service":"webcam-agent","timestamp":"2025-09-25T22:50:19.715Z"}
+{"level":"info","message":"Pipeline iniciado exitosamente","service":"webcam-agent","timestamp":"2025-09-25T22:50:19.718Z"}
+{"level":"warn","message":"Pipeline ya está ejecutándose","service":"webcam-agent","timestamp":"2025-09-25T22:50:19.737Z"}
+{"level":"error","message":"Error en pipeline:","service":"webcam-agent","timestamp":"2025-09-25T22:50:20.198Z"}
+{"level":"info","message":"Intento de reconexión 1/5","service":"webcam-agent","timestamp":"2025-09-25T22:50:20.198Z"}
+{"level":"error","message":"Error en pipeline:","service":"webcam-agent","timestamp":"2025-09-25T22:50:20.226Z"}
+{"level":"info","message":"Intento de reconexión 2/5","service":"webcam-agent","timestamp":"2025-09-25T22:50:20.226Z"}
+{"level":"info","message":"Reiniciando pipeline...","service":"webcam-agent","timestamp":"2025-09-25T22:50:25.203Z"}
+{"level":"info","message":"Reiniciando pipeline...","service":"webcam-agent","timestamp":"2025-09-25T22:50:25.227Z"}
+{"level":"info","message":"Iniciando pipeline GStreamer: gst-launch-1.0 v4l2src device=/dev/video0 ! image/jpeg,width=640,height=480,framerate=30/1 ! jpegdec ! videoconvert ! x264enc bitrate=1000 speed-preset=ultrafast tune=zerolatency key-int-max=60 ! flvmux streamable=true ! rtmpsink location=rtmp://localhost:1935/webcam sync=false","service":"webcam-agent","timestamp":"2025-09-25T22:50:27.205Z"}
+{"level":"info","message":"Pipeline iniciado exitosamente","service":"webcam-agent","timestamp":"2025-09-25T22:50:27.209Z"}
+{"level":"warn","message":"Pipeline ya está ejecutándose","service":"webcam-agent","timestamp":"2025-09-25T22:50:27.228Z"}
+{"level":"error","message":"Error en pipeline:","service":"webcam-agent","timestamp":"2025-09-25T22:50:27.596Z"}
+{"level":"info","message":"Intento de reconexión 1/5","service":"webcam-agent","timestamp":"2025-09-25T22:50:27.596Z"}
+{"level":"error","message":"Error en pipeline:","service":"webcam-agent","timestamp":"2025-09-25T22:50:27.624Z"}
+{"level":"info","message":"Intento de reconexión 2/5","service":"webcam-agent","timestamp":"2025-09-25T22:50:27.624Z"}
+{"level":"info","message":"Reiniciando pipeline...","service":"webcam-agent","timestamp":"2025-09-25T22:50:32.601Z"}
+{"level":"info","message":"Reiniciando pipeline...","service":"webcam-agent","timestamp":"2025-09-25T22:50:32.624Z"}
+{"level":"info","message":"Iniciando pipeline GStreamer: gst-launch-1.0 v4l2src device=/dev/video0 ! image/jpeg,width=640,height=480,framerate=30/1 ! jpegdec ! videoconvert ! x264enc bitrate=1000 speed-preset=ultrafast tune=zerolatency key-int-max=60 ! flvmux streamable=true ! rtmpsink location=rtmp://localhost:1935/webcam sync=false","service":"webcam-agent","timestamp":"2025-09-25T22:50:34.603Z"}
+{"level":"info","message":"Pipeline iniciado exitosamente","service":"webcam-agent","timestamp":"2025-09-25T22:50:34.606Z"}
+{"level":"warn","message":"Pipeline ya está ejecutándose","service":"webcam-agent","timestamp":"2025-09-25T22:50:34.624Z"}
+{"level":"info","message":"Deteniendo agente de webcam...","service":"webcam-agent","timestamp":"2025-09-25T22:50:51.378Z"}
+{"level":"info","message":"Iniciando agente de webcam...","service":"webcam-agent","timestamp":"2025-09-25T23:08:19.554Z"}
+{"bitrate":1000,"destination":"rtmp://localhost:1935/webcam","framerate":30,"level":"info","message":"Configuración:","resolution":"640x480","service":"webcam-agent","timestamp":"2025-09-25T23:08:19.558Z","videoDevice":"/dev/video0"}
+{"level":"info","message":"Verificando prerequisitos...","service":"webcam-agent","timestamp":"2025-09-25T23:08:19.559Z"}
+{"level":"info","message":"✓ GStreamer disponible","service":"webcam-agent","timestamp":"2025-09-25T23:08:19.585Z"}
+{"level":"info","message":"✓ Dispositivo de video disponible: /dev/video0","service":"webcam-agent","timestamp":"2025-09-25T23:08:19.586Z"}
+{"level":"info","message":"Dispositivos de video disponibles:\nHP TrueVision HD Camera: HP Tru (usb-0000:00:14.0-5):\n\t/dev/video0\n\t/dev/video1\n\t/dev/media0\n\n","service":"webcam-agent","timestamp":"2025-09-25T23:08:19.596Z"}
+{"level":"info","message":"Iniciando pipeline GStreamer: gst-launch-1.0 v4l2src device=/dev/video0 ! image/jpeg,width=640,height=480,framerate=30/1 ! jpegdec ! videoconvert ! x264enc bitrate=1000 speed-preset=ultrafast tune=zerolatency key-int-max=60 ! flvmux streamable=true ! rtmpsink location=rtmp://localhost:1935/webcam sync=false","service":"webcam-agent","timestamp":"2025-09-25T23:08:19.597Z"}
+{"level":"info","message":"Pipeline iniciado exitosamente","service":"webcam-agent","timestamp":"2025-09-25T23:08:19.600Z"}
+{"level":"info","message":"Deteniendo agente de webcam...","service":"webcam-agent","timestamp":"2025-09-25T23:14:56.766Z"}
+{"level":"info","message":"Iniciando agente de webcam...","service":"webcam-agent","timestamp":"2025-09-25T23:15:10.024Z"}
+{"bitrate":1000,"destination":"rtmp://localhost:1935/webcam","framerate":30,"level":"info","message":"Configuración:","resolution":"640x480","service":"webcam-agent","timestamp":"2025-09-25T23:15:10.026Z","videoDevice":"/dev/video0"}
+{"level":"info","message":"Verificando prerequisitos...","service":"webcam-agent","timestamp":"2025-09-25T23:15:10.027Z"}
+{"level":"info","message":"✓ GStreamer disponible","service":"webcam-agent","timestamp":"2025-09-25T23:15:10.049Z"}
+{"level":"info","message":"✓ Dispositivo de video disponible: /dev/video0","service":"webcam-agent","timestamp":"2025-09-25T23:15:10.050Z"}
+{"level":"info","message":"Dispositivos de video disponibles:\nHP TrueVision HD Camera: HP Tru (usb-0000:00:14.0-5):\n\t/dev/video0\n\t/dev/video1\n\t/dev/media0\n\n","service":"webcam-agent","timestamp":"2025-09-25T23:15:10.058Z"}
+{"level":"info","message":"Iniciando pipeline GStreamer: gst-launch-1.0 v4l2src device=/dev/video0 ! image/jpeg,width=640,height=480,framerate=30/1 ! jpegdec ! videoconvert ! x264enc bitrate=1000 speed-preset=ultrafast tune=zerolatency key-int-max=60 ! flvmux streamable=true ! rtmpsink location=rtmp://localhost:1935/webcam sync=false","service":"webcam-agent","timestamp":"2025-09-25T23:15:10.059Z"}
+{"level":"info","message":"Pipeline iniciado exitosamente","service":"webcam-agent","timestamp":"2025-09-25T23:15:10.062Z"}
+{"level":"info","message":"Deteniendo agente de webcam...","service":"webcam-agent","timestamp":"2025-09-25T23:15:48.577Z"}
+{"level":"info","message":"Iniciando agente de webcam...","service":"webcam-agent","timestamp":"2025-09-26T02:27:02.774Z"}
+{"bitrate":1000,"destination":"rtmp://localhost:1935/webcam","framerate":30,"level":"info","message":"Configuración:","resolution":"640x480","service":"webcam-agent","timestamp":"2025-09-26T02:27:02.780Z","videoDevice":"/dev/video0"}
+{"level":"info","message":"Verificando prerequisitos...","service":"webcam-agent","timestamp":"2025-09-26T02:27:02.781Z"}
+{"level":"info","message":"✓ GStreamer disponible","service":"webcam-agent","timestamp":"2025-09-26T02:27:03.006Z"}
+{"level":"info","message":"✓ Dispositivo de video disponible: /dev/video0","service":"webcam-agent","timestamp":"2025-09-26T02:27:03.007Z"}
+{"level":"info","message":"Dispositivos de video disponibles:\nHP TrueVision HD Camera: HP Tru (usb-0000:00:14.0-5):\n\t/dev/video0\n\t/dev/video1\n\t/dev/media0\n\n","service":"webcam-agent","timestamp":"2025-09-26T02:27:03.014Z"}
+{"level":"info","message":"Iniciando pipeline GStreamer: gst-launch-1.0 v4l2src device=/dev/video0 ! image/jpeg,width=640,height=480,framerate=30/1 ! jpegdec ! videoconvert ! x264enc bitrate=1000 speed-preset=ultrafast tune=zerolatency key-int-max=60 ! flvmux streamable=true ! rtmpsink location=rtmp://localhost:1935/webcam sync=false","service":"webcam-agent","timestamp":"2025-09-26T02:27:03.015Z"}
+{"level":"info","message":"Pipeline iniciado exitosamente","service":"webcam-agent","timestamp":"2025-09-26T02:27:03.018Z"}
+{"level":"info","message":"Deteniendo agente de webcam...","service":"webcam-agent","timestamp":"2025-09-26T02:27:31.094Z"}
+{"level":"info","message":"Iniciando agente de webcam...","service":"webcam-agent","timestamp":"2025-09-26T02:30:52.350Z"}
+{"bitrate":1000,"destination":"rtmp://localhost:1935/webcam","framerate":30,"level":"info","message":"Configuración:","resolution":"640x480","service":"webcam-agent","timestamp":"2025-09-26T02:30:52.353Z","videoDevice":"/dev/video0"}
+{"level":"info","message":"Verificando prerequisitos...","service":"webcam-agent","timestamp":"2025-09-26T02:30:52.354Z"}
+{"level":"info","message":"✓ GStreamer disponible","service":"webcam-agent","timestamp":"2025-09-26T02:30:52.379Z"}
+{"level":"info","message":"✓ Dispositivo de video disponible: /dev/video0","service":"webcam-agent","timestamp":"2025-09-26T02:30:52.380Z"}
+{"level":"info","message":"Dispositivos de video disponibles:\nHP TrueVision HD Camera: HP Tru (usb-0000:00:14.0-5):\n\t/dev/video0\n\t/dev/video1\n\t/dev/media0\n\n","service":"webcam-agent","timestamp":"2025-09-26T02:30:52.388Z"}
+{"level":"info","message":"Iniciando pipeline GStreamer: gst-launch-1.0 v4l2src device=/dev/video0 ! image/jpeg,width=640,height=480,framerate=30/1 ! jpegdec ! videoconvert ! x264enc bitrate=1000 speed-preset=ultrafast tune=zerolatency key-int-max=60 ! flvmux streamable=true ! rtmpsink location=rtmp://localhost:1935/webcam sync=false","service":"webcam-agent","timestamp":"2025-09-26T02:30:52.389Z"}
+{"level":"info","message":"Pipeline iniciado exitosamente","service":"webcam-agent","timestamp":"2025-09-26T02:30:52.393Z"}
+{"level":"info","message":"Deteniendo agente de webcam...","service":"webcam-agent","timestamp":"2025-09-26T02:34:18.669Z"}
+{"level":"info","message":"Iniciando agente de webcam...","service":"webcam-agent","timestamp":"2025-09-26T02:34:32.102Z"}
+{"bitrate":1000,"destination":"rtmp://localhost:1935/webcam","framerate":30,"level":"info","message":"Configuración:","resolution":"640x480","service":"webcam-agent","timestamp":"2025-09-26T02:34:32.105Z","videoDevice":"/dev/video0"}
+{"level":"info","message":"Verificando prerequisitos...","service":"webcam-agent","timestamp":"2025-09-26T02:34:32.106Z"}
+{"level":"info","message":"✓ GStreamer disponible","service":"webcam-agent","timestamp":"2025-09-26T02:34:32.130Z"}
+{"level":"info","message":"✓ Dispositivo de video disponible: /dev/video0","service":"webcam-agent","timestamp":"2025-09-26T02:34:32.131Z"}
+{"level":"info","message":"Dispositivos de video disponibles:\nHP TrueVision HD Camera: HP Tru (usb-0000:00:14.0-5):\n\t/dev/video0\n\t/dev/video1\n\t/dev/media0\n\n","service":"webcam-agent","timestamp":"2025-09-26T02:34:32.138Z"}
+{"level":"info","message":"Iniciando pipeline GStreamer: gst-launch-1.0 v4l2src device=/dev/video0 ! image/jpeg,width=640,height=480,framerate=30/1 ! jpegdec ! videoconvert ! x264enc bitrate=1000 speed-preset=ultrafast tune=zerolatency key-int-max=60 ! flvmux streamable=true ! rtmpsink location=rtmp://localhost:1935/webcam sync=false","service":"webcam-agent","timestamp":"2025-09-26T02:34:32.139Z"}
+{"level":"info","message":"Pipeline iniciado exitosamente","service":"webcam-agent","timestamp":"2025-09-26T02:34:32.141Z"}
+{"level":"info","message":"Deteniendo agente de webcam...","service":"webcam-agent","timestamp":"2025-09-26T02:56:03.604Z"}
+{"level":"info","message":"Iniciando agente de webcam...","service":"webcam-agent","timestamp":"2025-09-26T02:58:45.945Z"}
+{"bitrate":1000,"destination":"rtmp://localhost:1935/webcam","framerate":30,"level":"info","message":"Configuración:","resolution":"640x480","service":"webcam-agent","timestamp":"2025-09-26T02:58:45.949Z","videoDevice":"/dev/video0"}
+{"level":"info","message":"Verificando prerequisitos...","service":"webcam-agent","timestamp":"2025-09-26T02:58:45.950Z"}
+{"level":"info","message":"✓ GStreamer disponible","service":"webcam-agent","timestamp":"2025-09-26T02:58:45.979Z"}
+{"level":"info","message":"✓ Dispositivo de video disponible: /dev/video0","service":"webcam-agent","timestamp":"2025-09-26T02:58:45.981Z"}
+{"level":"info","message":"Dispositivos de video disponibles:\nHP TrueVision HD Camera: HP Tru (usb-0000:00:14.0-5):\n\t/dev/video0\n\t/dev/video1\n\t/dev/media0\n\n","service":"webcam-agent","timestamp":"2025-09-26T02:58:45.989Z"}
+{"level":"info","message":"Iniciando pipeline GStreamer: gst-launch-1.0 v4l2src device=/dev/video0 ! image/jpeg,width=640,height=480,framerate=30/1 ! jpegdec ! videoconvert ! x264enc bitrate=1000 speed-preset=ultrafast tune=zerolatency key-int-max=60 ! flvmux streamable=true ! rtmpsink location=rtmp://localhost:1935/webcam sync=false","service":"webcam-agent","timestamp":"2025-09-26T02:58:45.990Z"}
+{"level":"info","message":"Pipeline iniciado exitosamente","service":"webcam-agent","timestamp":"2025-09-26T02:58:45.995Z"}
+{"level":"info","message":"Deteniendo agente de webcam...","service":"webcam-agent","timestamp":"2025-09-26T03:01:10.296Z"}
+{"level":"info","message":"Iniciando agente de webcam...","service":"webcam-agent","timestamp":"2025-09-26T03:01:24.116Z"}
+{"bitrate":1000,"destination":"rtmp://localhost:1935/webcam","framerate":30,"level":"info","message":"Configuración:","resolution":"640x480","service":"webcam-agent","timestamp":"2025-09-26T03:01:24.119Z","videoDevice":"/dev/video0"}
+{"level":"info","message":"Verificando prerequisitos...","service":"webcam-agent","timestamp":"2025-09-26T03:01:24.120Z"}
+{"level":"info","message":"✓ GStreamer disponible","service":"webcam-agent","timestamp":"2025-09-26T03:01:24.150Z"}
+{"level":"info","message":"✓ Dispositivo de video disponible: /dev/video0","service":"webcam-agent","timestamp":"2025-09-26T03:01:24.151Z"}
+{"level":"info","message":"Dispositivos de video disponibles:\nHP TrueVision HD Camera: HP Tru (usb-0000:00:14.0-5):\n\t/dev/video0\n\t/dev/video1\n\t/dev/media0\n\n","service":"webcam-agent","timestamp":"2025-09-26T03:01:24.162Z"}
+{"level":"info","message":"Iniciando pipeline GStreamer: gst-launch-1.0 v4l2src device=/dev/video0 ! image/jpeg,width=640,height=480,framerate=30/1 ! jpegdec ! videoconvert ! x264enc bitrate=1000 speed-preset=ultrafast tune=zerolatency key-int-max=60 ! flvmux streamable=true ! rtmpsink location=rtmp://localhost:1935/webcam sync=false","service":"webcam-agent","timestamp":"2025-09-26T03:01:24.162Z"}
+{"level":"info","message":"Pipeline iniciado exitosamente","service":"webcam-agent","timestamp":"2025-09-26T03:01:24.166Z"}
+{"level":"info","message":"Deteniendo agente de webcam...","service":"webcam-agent","timestamp":"2025-09-26T03:04:47.557Z"}
+{"level":"info","message":"Iniciando agente de webcam...","service":"webcam-agent","timestamp":"2025-09-26T03:05:01.268Z"}
+{"bitrate":1000,"destination":"rtmp://localhost:1935/webcam","framerate":30,"level":"info","message":"Configuración:","resolution":"640x480","service":"webcam-agent","timestamp":"2025-09-26T03:05:01.273Z","videoDevice":"/dev/video0"}
+{"level":"info","message":"Verificando prerequisitos...","service":"webcam-agent","timestamp":"2025-09-26T03:05:01.275Z"}
+{"level":"info","message":"✓ GStreamer disponible","service":"webcam-agent","timestamp":"2025-09-26T03:05:01.318Z"}
+{"level":"info","message":"✓ Dispositivo de video disponible: /dev/video0","service":"webcam-agent","timestamp":"2025-09-26T03:05:01.320Z"}
+{"level":"info","message":"Dispositivos de video disponibles:\nHP TrueVision HD Camera: HP Tru (usb-0000:00:14.0-5):\n\t/dev/video0\n\t/dev/video1\n\t/dev/media0\n\n","service":"webcam-agent","timestamp":"2025-09-26T03:05:01.335Z"}
+{"level":"info","message":"Iniciando pipeline GStreamer: gst-launch-1.0 v4l2src device=/dev/video0 ! image/jpeg,width=640,height=480,framerate=30/1 ! jpegdec ! videoconvert ! x264enc bitrate=1000 speed-preset=ultrafast tune=zerolatency key-int-max=30 bframes=0 cabac=false dct8x8=false ! flvmux streamable=true ! rtmpsink location=rtmp://localhost:1935/webcam sync=false","service":"webcam-agent","timestamp":"2025-09-26T03:05:01.337Z"}
+{"level":"info","message":"Pipeline iniciado exitosamente","service":"webcam-agent","timestamp":"2025-09-26T03:05:01.343Z"}
+{"level":"error","message":"Error en pipeline:","service":"webcam-agent","timestamp":"2025-09-26T03:05:01.754Z"}
+{"level":"info","message":"Intento de reconexión 1/5","service":"webcam-agent","timestamp":"2025-09-26T03:05:01.755Z"}
+{"level":"error","message":"Error en pipeline:","service":"webcam-agent","timestamp":"2025-09-26T03:05:01.783Z"}
+{"level":"info","message":"Intento de reconexión 2/5","service":"webcam-agent","timestamp":"2025-09-26T03:05:01.784Z"}
+{"level":"info","message":"Reiniciando pipeline...","service":"webcam-agent","timestamp":"2025-09-26T03:05:06.760Z"}
+{"level":"info","message":"Reiniciando pipeline...","service":"webcam-agent","timestamp":"2025-09-26T03:05:06.784Z"}
+{"level":"info","message":"Iniciando pipeline GStreamer: gst-launch-1.0 v4l2src device=/dev/video0 ! image/jpeg,width=640,height=480,framerate=30/1 ! jpegdec ! videoconvert ! x264enc bitrate=1000 speed-preset=ultrafast tune=zerolatency key-int-max=30 bframes=0 cabac=false dct8x8=false ! flvmux streamable=true ! rtmpsink location=rtmp://localhost:1935/webcam sync=false","service":"webcam-agent","timestamp":"2025-09-26T03:05:08.768Z"}
+{"level":"info","message":"Pipeline iniciado exitosamente","service":"webcam-agent","timestamp":"2025-09-26T03:05:08.775Z"}
+{"level":"warn","message":"Pipeline ya está ejecutándose","service":"webcam-agent","timestamp":"2025-09-26T03:05:08.792Z"}
+{"level":"error","message":"Error en pipeline:","service":"webcam-agent","timestamp":"2025-09-26T03:05:09.275Z"}
+{"level":"info","message":"Intento de reconexión 1/5","service":"webcam-agent","timestamp":"2025-09-26T03:05:09.276Z"}
+{"level":"error","message":"Error en pipeline:","service":"webcam-agent","timestamp":"2025-09-26T03:05:09.306Z"}
+{"level":"info","message":"Intento de reconexión 2/5","service":"webcam-agent","timestamp":"2025-09-26T03:05:09.307Z"}
+{"level":"info","message":"Reiniciando pipeline...","service":"webcam-agent","timestamp":"2025-09-26T03:05:14.280Z"}
+{"level":"info","message":"Reiniciando pipeline...","service":"webcam-agent","timestamp":"2025-09-26T03:05:14.308Z"}
+{"level":"info","message":"Iniciando pipeline GStreamer: gst-launch-1.0 v4l2src device=/dev/video0 ! image/jpeg,width=640,height=480,framerate=30/1 ! jpegdec ! videoconvert ! x264enc bitrate=1000 speed-preset=ultrafast tune=zerolatency key-int-max=30 bframes=0 cabac=false dct8x8=false ! flvmux streamable=true ! rtmpsink location=rtmp://localhost:1935/webcam sync=false","service":"webcam-agent","timestamp":"2025-09-26T03:05:16.282Z"}
+{"level":"info","message":"Pipeline iniciado exitosamente","service":"webcam-agent","timestamp":"2025-09-26T03:05:16.286Z"}
+{"level":"warn","message":"Pipeline ya está ejecutándose","service":"webcam-agent","timestamp":"2025-09-26T03:05:16.308Z"}
+{"level":"error","message":"Error en pipeline:","service":"webcam-agent","timestamp":"2025-09-26T03:05:16.689Z"}
+{"level":"info","message":"Intento de reconexión 1/5","service":"webcam-agent","timestamp":"2025-09-26T03:05:16.690Z"}
+{"level":"error","message":"Error en pipeline:","service":"webcam-agent","timestamp":"2025-09-26T03:05:16.718Z"}
+{"level":"info","message":"Intento de reconexión 2/5","service":"webcam-agent","timestamp":"2025-09-26T03:05:16.719Z"}
+{"level":"info","message":"Reiniciando pipeline...","service":"webcam-agent","timestamp":"2025-09-26T03:05:21.695Z"}
+{"level":"info","message":"Reiniciando pipeline...","service":"webcam-agent","timestamp":"2025-09-26T03:05:21.719Z"}
+{"level":"info","message":"Iniciando pipeline GStreamer: gst-launch-1.0 v4l2src device=/dev/video0 ! image/jpeg,width=640,height=480,framerate=30/1 ! jpegdec ! videoconvert ! x264enc bitrate=1000 speed-preset=ultrafast tune=zerolatency key-int-max=30 bframes=0 cabac=false dct8x8=false ! flvmux streamable=true ! rtmpsink location=rtmp://localhost:1935/webcam sync=false","service":"webcam-agent","timestamp":"2025-09-26T03:05:23.698Z"}
+{"level":"info","message":"Pipeline iniciado exitosamente","service":"webcam-agent","timestamp":"2025-09-26T03:05:23.701Z"}
+{"level":"warn","message":"Pipeline ya está ejecutándose","service":"webcam-agent","timestamp":"2025-09-26T03:05:23.719Z"}
+{"level":"error","message":"Error en pipeline:","service":"webcam-agent","timestamp":"2025-09-26T03:05:24.202Z"}
+{"level":"info","message":"Intento de reconexión 1/5","service":"webcam-agent","timestamp":"2025-09-26T03:05:24.203Z"}
+{"level":"error","message":"Error en pipeline:","service":"webcam-agent","timestamp":"2025-09-26T03:05:24.233Z"}
+{"level":"info","message":"Intento de reconexión 2/5","service":"webcam-agent","timestamp":"2025-09-26T03:05:24.234Z"}
+{"level":"info","message":"Reiniciando pipeline...","service":"webcam-agent","timestamp":"2025-09-26T03:05:29.208Z"}
+{"level":"info","message":"Reiniciando pipeline...","service":"webcam-agent","timestamp":"2025-09-26T03:05:29.234Z"}
+{"level":"info","message":"Iniciando pipeline GStreamer: gst-launch-1.0 v4l2src device=/dev/video0 ! image/jpeg,width=640,height=480,framerate=30/1 ! jpegdec ! videoconvert ! x264enc bitrate=1000 speed-preset=ultrafast tune=zerolatency key-int-max=30 bframes=0 cabac=false dct8x8=false ! flvmux streamable=true ! rtmpsink location=rtmp://localhost:1935/webcam sync=false","service":"webcam-agent","timestamp":"2025-09-26T03:05:31.210Z"}
+{"level":"info","message":"Pipeline iniciado exitosamente","service":"webcam-agent","timestamp":"2025-09-26T03:05:31.213Z"}
+{"level":"warn","message":"Pipeline ya está ejecutándose","service":"webcam-agent","timestamp":"2025-09-26T03:05:31.236Z"}
+{"level":"error","message":"Error en pipeline:","service":"webcam-agent","timestamp":"2025-09-26T03:05:31.601Z"}
+{"level":"info","message":"Intento de reconexión 1/5","service":"webcam-agent","timestamp":"2025-09-26T03:05:31.602Z"}
+{"level":"error","message":"Error en pipeline:","service":"webcam-agent","timestamp":"2025-09-26T03:05:31.630Z"}
+{"level":"info","message":"Intento de reconexión 2/5","service":"webcam-agent","timestamp":"2025-09-26T03:05:31.631Z"}
+{"level":"info","message":"Reiniciando pipeline...","service":"webcam-agent","timestamp":"2025-09-26T03:05:36.607Z"}
+{"level":"info","message":"Reiniciando pipeline...","service":"webcam-agent","timestamp":"2025-09-26T03:05:36.631Z"}
+{"level":"info","message":"Iniciando pipeline GStreamer: gst-launch-1.0 v4l2src device=/dev/video0 ! image/jpeg,width=640,height=480,framerate=30/1 ! jpegdec ! videoconvert ! x264enc bitrate=1000 speed-preset=ultrafast tune=zerolatency key-int-max=30 bframes=0 cabac=false dct8x8=false ! flvmux streamable=true ! rtmpsink location=rtmp://localhost:1935/webcam sync=false","service":"webcam-agent","timestamp":"2025-09-26T03:05:38.609Z"}
+{"level":"info","message":"Pipeline iniciado exitosamente","service":"webcam-agent","timestamp":"2025-09-26T03:05:38.612Z"}
+{"level":"warn","message":"Pipeline ya está ejecutándose","service":"webcam-agent","timestamp":"2025-09-26T03:05:38.632Z"}
+{"level":"error","message":"Error en pipeline:","service":"webcam-agent","timestamp":"2025-09-26T03:05:39.012Z"}
+{"level":"info","message":"Intento de reconexión 1/5","service":"webcam-agent","timestamp":"2025-09-26T03:05:39.012Z"}
+{"level":"error","message":"Error en pipeline:","service":"webcam-agent","timestamp":"2025-09-26T03:05:39.041Z"}
+{"level":"info","message":"Intento de reconexión 2/5","service":"webcam-agent","timestamp":"2025-09-26T03:05:39.042Z"}
+{"level":"info","message":"Reiniciando pipeline...","service":"webcam-agent","timestamp":"2025-09-26T03:05:44.017Z"}
+{"level":"info","message":"Reiniciando pipeline...","service":"webcam-agent","timestamp":"2025-09-26T03:05:44.042Z"}
+{"level":"info","message":"Iniciando pipeline GStreamer: gst-launch-1.0 v4l2src device=/dev/video0 ! image/jpeg,width=640,height=480,framerate=30/1 ! jpegdec ! videoconvert ! x264enc bitrate=1000 speed-preset=ultrafast tune=zerolatency key-int-max=30 bframes=0 cabac=false dct8x8=false ! flvmux streamable=true ! rtmpsink location=rtmp://localhost:1935/webcam sync=false","service":"webcam-agent","timestamp":"2025-09-26T03:05:46.019Z"}
+{"level":"info","message":"Pipeline iniciado exitosamente","service":"webcam-agent","timestamp":"2025-09-26T03:05:46.022Z"}
+{"level":"warn","message":"Pipeline ya está ejecutándose","service":"webcam-agent","timestamp":"2025-09-26T03:05:46.043Z"}
+{"level":"error","message":"Error en pipeline:","service":"webcam-agent","timestamp":"2025-09-26T03:05:46.425Z"}
+{"level":"info","message":"Intento de reconexión 1/5","service":"webcam-agent","timestamp":"2025-09-26T03:05:46.425Z"}
+{"level":"error","message":"Error en pipeline:","service":"webcam-agent","timestamp":"2025-09-26T03:05:46.454Z"}
+{"level":"info","message":"Intento de reconexión 2/5","service":"webcam-agent","timestamp":"2025-09-26T03:05:46.454Z"}
+{"level":"info","message":"Deteniendo agente de webcam...","service":"webcam-agent","timestamp":"2025-09-26T03:05:46.962Z"}
+{"level":"info","message":"Iniciando agente de webcam...","service":"webcam-agent","timestamp":"2025-09-26T03:06:01.819Z"}
+{"bitrate":1000,"destination":"rtmp://localhost:1935/webcam","framerate":30,"level":"info","message":"Configuración:","resolution":"640x480","service":"webcam-agent","timestamp":"2025-09-26T03:06:01.823Z","videoDevice":"/dev/video0"}
+{"level":"info","message":"Verificando prerequisitos...","service":"webcam-agent","timestamp":"2025-09-26T03:06:01.824Z"}
+{"level":"info","message":"✓ GStreamer disponible","service":"webcam-agent","timestamp":"2025-09-26T03:06:01.854Z"}
+{"level":"info","message":"✓ Dispositivo de video disponible: /dev/video0","service":"webcam-agent","timestamp":"2025-09-26T03:06:01.856Z"}
+{"level":"info","message":"Dispositivos de video disponibles:\nHP TrueVision HD Camera: HP Tru (usb-0000:00:14.0-5):\n\t/dev/video0\n\t/dev/video1\n\t/dev/media0\n\n","service":"webcam-agent","timestamp":"2025-09-26T03:06:01.864Z"}
+{"level":"info","message":"Iniciando pipeline GStreamer: gst-launch-1.0 v4l2src device=/dev/video0 ! image/jpeg,width=640,height=480,framerate=30/1 ! jpegdec ! videoconvert ! x264enc bitrate=1000 speed-preset=ultrafast tune=zerolatency key-int-max=30 bframes=0 cabac=false dct8x8=false ! flvmux streamable=true ! rtmpsink location=rtmp://localhost:1935/webcam sync=false","service":"webcam-agent","timestamp":"2025-09-26T03:06:01.865Z"}
+{"level":"info","message":"Pipeline iniciado exitosamente","service":"webcam-agent","timestamp":"2025-09-26T03:06:01.870Z"}
+{"level":"error","message":"Error en pipeline:","service":"webcam-agent","timestamp":"2025-09-26T03:06:02.267Z"}
+{"level":"info","message":"Intento de reconexión 1/5","service":"webcam-agent","timestamp":"2025-09-26T03:06:02.269Z"}
+{"level":"error","message":"Error en pipeline:","service":"webcam-agent","timestamp":"2025-09-26T03:06:02.295Z"}
+{"level":"info","message":"Intento de reconexión 2/5","service":"webcam-agent","timestamp":"2025-09-26T03:06:02.295Z"}
+{"level":"info","message":"Reiniciando pipeline...","service":"webcam-agent","timestamp":"2025-09-26T03:06:07.274Z"}
+{"level":"info","message":"Reiniciando pipeline...","service":"webcam-agent","timestamp":"2025-09-26T03:06:07.296Z"}
+{"level":"info","message":"Iniciando pipeline GStreamer: gst-launch-1.0 v4l2src device=/dev/video0 ! image/jpeg,width=640,height=480,framerate=30/1 ! jpegdec ! videoconvert ! x264enc bitrate=1000 speed-preset=ultrafast tune=zerolatency key-int-max=30 bframes=0 cabac=false dct8x8=false ! flvmux streamable=true ! rtmpsink location=rtmp://localhost:1935/webcam sync=false","service":"webcam-agent","timestamp":"2025-09-26T03:06:09.276Z"}
+{"level":"info","message":"Pipeline iniciado exitosamente","service":"webcam-agent","timestamp":"2025-09-26T03:06:09.280Z"}
+{"level":"warn","message":"Pipeline ya está ejecutándose","service":"webcam-agent","timestamp":"2025-09-26T03:06:09.296Z"}
+{"level":"error","message":"Error en pipeline:","service":"webcam-agent","timestamp":"2025-09-26T03:06:09.671Z"}
+{"level":"info","message":"Intento de reconexión 1/5","service":"webcam-agent","timestamp":"2025-09-26T03:06:09.672Z"}
+{"level":"error","message":"Error en pipeline:","service":"webcam-agent","timestamp":"2025-09-26T03:06:09.701Z"}
+{"level":"info","message":"Intento de reconexión 2/5","service":"webcam-agent","timestamp":"2025-09-26T03:06:09.701Z"}
+{"level":"info","message":"Reiniciando pipeline...","service":"webcam-agent","timestamp":"2025-09-26T03:06:14.676Z"}
+{"level":"info","message":"Reiniciando pipeline...","service":"webcam-agent","timestamp":"2025-09-26T03:06:14.703Z"}
+{"level":"info","message":"Iniciando pipeline GStreamer: gst-launch-1.0 v4l2src device=/dev/video0 ! image/jpeg,width=640,height=480,framerate=30/1 ! jpegdec ! videoconvert ! x264enc bitrate=1000 speed-preset=ultrafast tune=zerolatency key-int-max=30 bframes=0 cabac=false dct8x8=false ! flvmux streamable=true ! rtmpsink location=rtmp://localhost:1935/webcam sync=false","service":"webcam-agent","timestamp":"2025-09-26T03:06:16.678Z"}
+{"level":"info","message":"Pipeline iniciado exitosamente","service":"webcam-agent","timestamp":"2025-09-26T03:06:16.681Z"}
+{"level":"warn","message":"Pipeline ya está ejecutándose","service":"webcam-agent","timestamp":"2025-09-26T03:06:16.703Z"}
+{"level":"error","message":"Error en pipeline:","service":"webcam-agent","timestamp":"2025-09-26T03:06:17.080Z"}
+{"level":"info","message":"Intento de reconexión 1/5","service":"webcam-agent","timestamp":"2025-09-26T03:06:17.081Z"}
+{"level":"error","message":"Error en pipeline:","service":"webcam-agent","timestamp":"2025-09-26T03:06:17.112Z"}
+{"level":"info","message":"Intento de reconexión 2/5","service":"webcam-agent","timestamp":"2025-09-26T03:06:17.113Z"}
+{"level":"info","message":"Reiniciando pipeline...","service":"webcam-agent","timestamp":"2025-09-26T03:06:22.086Z"}
+{"level":"info","message":"Reiniciando pipeline...","service":"webcam-agent","timestamp":"2025-09-26T03:06:22.113Z"}
+{"level":"info","message":"Iniciando pipeline GStreamer: gst-launch-1.0 v4l2src device=/dev/video0 ! image/jpeg,width=640,height=480,framerate=30/1 ! jpegdec ! videoconvert ! x264enc bitrate=1000 speed-preset=ultrafast tune=zerolatency key-int-max=30 bframes=0 cabac=false dct8x8=false ! flvmux streamable=true ! rtmpsink location=rtmp://localhost:1935/webcam sync=false","service":"webcam-agent","timestamp":"2025-09-26T03:06:24.088Z"}
+{"level":"info","message":"Pipeline iniciado exitosamente","service":"webcam-agent","timestamp":"2025-09-26T03:06:24.092Z"}
+{"level":"warn","message":"Pipeline ya está ejecutándose","service":"webcam-agent","timestamp":"2025-09-26T03:06:24.114Z"}
+{"level":"error","message":"Error en pipeline:","service":"webcam-agent","timestamp":"2025-09-26T03:06:24.492Z"}
+{"level":"info","message":"Intento de reconexión 1/5","service":"webcam-agent","timestamp":"2025-09-26T03:06:24.493Z"}
+{"level":"error","message":"Error en pipeline:","service":"webcam-agent","timestamp":"2025-09-26T03:06:24.522Z"}
+{"level":"info","message":"Intento de reconexión 2/5","service":"webcam-agent","timestamp":"2025-09-26T03:06:24.523Z"}
+{"level":"info","message":"Reiniciando pipeline...","service":"webcam-agent","timestamp":"2025-09-26T03:06:29.498Z"}
+{"level":"info","message":"Reiniciando pipeline...","service":"webcam-agent","timestamp":"2025-09-26T03:06:29.523Z"}
+{"level":"info","message":"Deteniendo agente de webcam...","service":"webcam-agent","timestamp":"2025-09-26T03:06:30.468Z"}
+{"level":"info","message":"Iniciando agente de webcam...","service":"webcam-agent","timestamp":"2025-09-26T03:08:51.294Z"}
+{"bitrate":1000,"destination":"rtmp://localhost:1935/webcam","framerate":30,"level":"info","message":"Configuración:","resolution":"640x480","service":"webcam-agent","timestamp":"2025-09-26T03:08:51.300Z","videoDevice":"/dev/video0"}
+{"level":"info","message":"Verificando prerequisitos...","service":"webcam-agent","timestamp":"2025-09-26T03:08:51.302Z"}
+{"level":"info","message":"✓ GStreamer disponible","service":"webcam-agent","timestamp":"2025-09-26T03:08:51.338Z"}
+{"level":"info","message":"✓ Dispositivo de video disponible: /dev/video0","service":"webcam-agent","timestamp":"2025-09-26T03:08:51.339Z"}
+{"level":"info","message":"Dispositivos de video disponibles:\nHP TrueVision HD Camera: HP Tru (usb-0000:00:14.0-5):\n\t/dev/video0\n\t/dev/video1\n\t/dev/media0\n\n","service":"webcam-agent","timestamp":"2025-09-26T03:08:51.350Z"}
+{"level":"info","message":"Iniciando pipeline GStreamer: gst-launch-1.0 v4l2src device=/dev/video0 ! image/jpeg,width=640,height=480,framerate=30/1 ! jpegdec ! videoconvert ! x264enc bitrate=1000 speed-preset=ultrafast tune=zerolatency key-int-max=30 bframes=0 cabac=false dct8x8=false ! flvmux streamable=true ! rtmpsink location=rtmp://localhost:1935/webcam sync=false","service":"webcam-agent","timestamp":"2025-09-26T03:08:51.351Z"}
+{"level":"info","message":"Pipeline iniciado exitosamente","service":"webcam-agent","timestamp":"2025-09-26T03:08:51.354Z"}
+{"level":"error","message":"Error en pipeline:","service":"webcam-agent","timestamp":"2025-09-26T03:09:48.261Z"}
+{"level":"info","message":"Intento de reconexión 1/5","service":"webcam-agent","timestamp":"2025-09-26T03:09:48.262Z"}
+{"level":"info","message":"Reiniciando pipeline...","service":"webcam-agent","timestamp":"2025-09-26T03:09:53.265Z"}
+{"level":"info","message":"Iniciando pipeline GStreamer: gst-launch-1.0 v4l2src device=/dev/video0 ! image/jpeg,width=640,height=480,framerate=30/1 ! jpegdec ! videoconvert ! x264enc bitrate=1000 speed-preset=ultrafast tune=zerolatency key-int-max=30 bframes=0 cabac=false dct8x8=false ! flvmux streamable=true ! rtmpsink location=rtmp://localhost:1935/webcam sync=false","service":"webcam-agent","timestamp":"2025-09-26T03:09:55.267Z"}
+{"level":"info","message":"Pipeline iniciado exitosamente","service":"webcam-agent","timestamp":"2025-09-26T03:09:55.271Z"}
+{"level":"error","message":"Error en pipeline:","service":"webcam-agent","timestamp":"2025-09-26T03:12:35.856Z"}
+{"level":"info","message":"Intento de reconexión 1/5","service":"webcam-agent","timestamp":"2025-09-26T03:12:35.857Z"}
+{"level":"info","message":"Reiniciando pipeline...","service":"webcam-agent","timestamp":"2025-09-26T03:12:40.862Z"}
+{"level":"info","message":"Iniciando pipeline GStreamer: gst-launch-1.0 v4l2src device=/dev/video0 ! image/jpeg,width=640,height=480,framerate=30/1 ! jpegdec ! videoconvert ! x264enc bitrate=1000 speed-preset=ultrafast tune=zerolatency key-int-max=30 bframes=0 cabac=false dct8x8=false ! flvmux streamable=true ! rtmpsink location=rtmp://localhost:1935/webcam sync=false","service":"webcam-agent","timestamp":"2025-09-26T03:12:42.864Z"}
+{"level":"info","message":"Pipeline iniciado exitosamente","service":"webcam-agent","timestamp":"2025-09-26T03:12:42.868Z"}
+{"level":"error","message":"Error en pipeline:","service":"webcam-agent","timestamp":"2025-09-26T03:14:45.828Z"}
+{"level":"info","message":"Intento de reconexión 1/5","service":"webcam-agent","timestamp":"2025-09-26T03:14:45.828Z"}
+{"level":"info","message":"Reiniciando pipeline...","service":"webcam-agent","timestamp":"2025-09-26T03:14:50.834Z"}
+{"level":"info","message":"Iniciando pipeline GStreamer: gst-launch-1.0 v4l2src device=/dev/video0 ! image/jpeg,width=640,height=480,framerate=30/1 ! jpegdec ! videoconvert ! x264enc bitrate=1000 speed-preset=ultrafast tune=zerolatency key-int-max=30 bframes=0 cabac=false dct8x8=false ! flvmux streamable=true ! rtmpsink location=rtmp://localhost:1935/webcam sync=false","service":"webcam-agent","timestamp":"2025-09-26T03:14:52.836Z"}
+{"level":"info","message":"Pipeline iniciado exitosamente","service":"webcam-agent","timestamp":"2025-09-26T03:14:52.839Z"}
+{"level":"error","message":"Error en pipeline:","service":"webcam-agent","timestamp":"2025-09-26T03:18:30.224Z"}
+{"level":"info","message":"Intento de reconexión 1/5","service":"webcam-agent","timestamp":"2025-09-26T03:18:30.225Z"}
+{"level":"info","message":"Reiniciando pipeline...","service":"webcam-agent","timestamp":"2025-09-26T03:18:35.227Z"}
+{"level":"info","message":"Iniciando pipeline GStreamer: gst-launch-1.0 v4l2src device=/dev/video0 ! image/jpeg,width=640,height=480,framerate=30/1 ! jpegdec ! videoconvert ! x264enc bitrate=1000 speed-preset=ultrafast tune=zerolatency key-int-max=30 bframes=0 cabac=false dct8x8=false ! flvmux streamable=true ! rtmpsink location=rtmp://localhost:1935/webcam sync=false","service":"webcam-agent","timestamp":"2025-09-26T03:18:37.229Z"}
+{"level":"info","message":"Pipeline iniciado exitosamente","service":"webcam-agent","timestamp":"2025-09-26T03:18:37.232Z"}
+{"level":"error","message":"Error en pipeline:","service":"webcam-agent","timestamp":"2025-09-26T03:21:03.794Z"}
+{"level":"info","message":"Intento de reconexión 1/5","service":"webcam-agent","timestamp":"2025-09-26T03:21:03.795Z"}
+{"level":"info","message":"Reiniciando pipeline...","service":"webcam-agent","timestamp":"2025-09-26T03:21:08.797Z"}
+{"level":"info","message":"Iniciando pipeline GStreamer: gst-launch-1.0 v4l2src device=/dev/video0 ! image/jpeg,width=640,height=480,framerate=30/1 ! jpegdec ! videoconvert ! x264enc bitrate=1000 speed-preset=ultrafast tune=zerolatency key-int-max=30 bframes=0 cabac=false dct8x8=false ! flvmux streamable=true ! rtmpsink location=rtmp://localhost:1935/webcam sync=false","service":"webcam-agent","timestamp":"2025-09-26T03:21:10.799Z"}
+{"level":"info","message":"Pipeline iniciado exitosamente","service":"webcam-agent","timestamp":"2025-09-26T03:21:10.803Z"}
+{"level":"info","message":"Deteniendo agente de webcam...","service":"webcam-agent","timestamp":"2025-09-26T03:23:48.041Z"}
+{"level":"info","message":"Iniciando agente de webcam...","service":"webcam-agent","timestamp":"2025-09-26T03:24:01.224Z"}
+{"bitrate":1000,"destination":"rtmp://localhost:1935/webcam","framerate":30,"level":"info","message":"Configuración:","resolution":"640x480","service":"webcam-agent","timestamp":"2025-09-26T03:24:01.228Z","videoDevice":"/dev/video0"}
+{"level":"info","message":"Verificando prerequisitos...","service":"webcam-agent","timestamp":"2025-09-26T03:24:01.229Z"}
+{"level":"info","message":"✓ GStreamer disponible","service":"webcam-agent","timestamp":"2025-09-26T03:24:01.257Z"}
+{"level":"info","message":"✓ Dispositivo de video disponible: /dev/video0","service":"webcam-agent","timestamp":"2025-09-26T03:24:01.258Z"}
+{"level":"info","message":"Dispositivos de video disponibles:\nHP TrueVision HD Camera: HP Tru (usb-0000:00:14.0-5):\n\t/dev/video0\n\t/dev/video1\n\t/dev/media0\n\n","service":"webcam-agent","timestamp":"2025-09-26T03:24:01.266Z"}
+{"level":"info","message":"Iniciando pipeline GStreamer: gst-launch-1.0 v4l2src device=/dev/video0 ! image/jpeg,width=640,height=480,framerate=30/1 ! jpegdec ! videoconvert ! x264enc bitrate=1000 speed-preset=ultrafast tune=zerolatency key-int-max=30 bframes=0 cabac=false dct8x8=false ! flvmux streamable=true ! rtmpsink location=rtmp://localhost:1935/webcam sync=false","service":"webcam-agent","timestamp":"2025-09-26T03:24:01.267Z"}
+{"level":"info","message":"Pipeline iniciado exitosamente","service":"webcam-agent","timestamp":"2025-09-26T03:24:01.271Z"}
+{"level":"error","message":"Error en pipeline:","service":"webcam-agent","timestamp":"2025-09-26T03:26:23.723Z"}
+{"level":"info","message":"Intento de reconexión 1/5","service":"webcam-agent","timestamp":"2025-09-26T03:26:23.725Z"}
+{"level":"info","message":"Reiniciando pipeline...","service":"webcam-agent","timestamp":"2025-09-26T03:26:28.731Z"}
+{"level":"info","message":"Iniciando pipeline GStreamer: gst-launch-1.0 v4l2src device=/dev/video0 ! image/jpeg,width=640,height=480,framerate=30/1 ! jpegdec ! videoconvert ! x264enc bitrate=1000 speed-preset=ultrafast tune=zerolatency key-int-max=30 bframes=0 cabac=false dct8x8=false ! flvmux streamable=true ! rtmpsink location=rtmp://localhost:1935/webcam sync=false","service":"webcam-agent","timestamp":"2025-09-26T03:26:30.733Z"}
+{"level":"info","message":"Pipeline iniciado exitosamente","service":"webcam-agent","timestamp":"2025-09-26T03:26:30.736Z"}
+{"level":"info","message":"Deteniendo agente de webcam...","service":"webcam-agent","timestamp":"2025-09-26T03:28:11.491Z"}
+{"level":"info","message":"Iniciando agente de webcam...","service":"webcam-agent","timestamp":"2025-09-26T03:28:24.342Z"}
+{"bitrate":1000,"destination":"rtmp://localhost:1935/webcam","framerate":30,"level":"info","message":"Configuración:","resolution":"640x480","service":"webcam-agent","timestamp":"2025-09-26T03:28:24.346Z","videoDevice":"/dev/video0"}
+{"level":"info","message":"Verificando prerequisitos...","service":"webcam-agent","timestamp":"2025-09-26T03:28:24.347Z"}
+{"level":"info","message":"✓ GStreamer disponible","service":"webcam-agent","timestamp":"2025-09-26T03:28:24.380Z"}
+{"level":"info","message":"✓ Dispositivo de video disponible: /dev/video0","service":"webcam-agent","timestamp":"2025-09-26T03:28:24.381Z"}
+{"level":"info","message":"Dispositivos de video disponibles:\nHP TrueVision HD Camera: HP Tru (usb-0000:00:14.0-5):\n\t/dev/video0\n\t/dev/video1\n\t/dev/media0\n\n","service":"webcam-agent","timestamp":"2025-09-26T03:28:24.392Z"}
+{"level":"info","message":"Iniciando pipeline GStreamer: gst-launch-1.0 v4l2src device=/dev/video0 ! image/jpeg,width=640,height=480,framerate=30/1 ! jpegdec ! videoconvert ! x264enc bitrate=1000 speed-preset=ultrafast tune=zerolatency key-int-max=30 bframes=0 cabac=false dct8x8=false ! flvmux streamable=true ! rtmpsink location=rtmp://localhost:1935/webcam sync=false","service":"webcam-agent","timestamp":"2025-09-26T03:28:24.393Z"}
+{"level":"info","message":"Pipeline iniciado exitosamente","service":"webcam-agent","timestamp":"2025-09-26T03:28:24.397Z"}
+{"level":"error","message":"Error en pipeline:","service":"webcam-agent","timestamp":"2025-09-26T03:34:07.548Z"}
+{"level":"info","message":"Intento de reconexión 1/5","service":"webcam-agent","timestamp":"2025-09-26T03:34:07.550Z"}
+{"level":"info","message":"Reiniciando pipeline...","service":"webcam-agent","timestamp":"2025-09-26T03:34:12.556Z"}
+{"level":"info","message":"Iniciando pipeline GStreamer: gst-launch-1.0 v4l2src device=/dev/video0 ! image/jpeg,width=640,height=480,framerate=30/1 ! jpegdec ! videoconvert ! x264enc bitrate=1000 speed-preset=ultrafast tune=zerolatency key-int-max=30 bframes=0 cabac=false dct8x8=false ! flvmux streamable=true ! rtmpsink location=rtmp://localhost:1935/webcam sync=false","service":"webcam-agent","timestamp":"2025-09-26T03:34:14.558Z"}
+{"level":"info","message":"Pipeline iniciado exitosamente","service":"webcam-agent","timestamp":"2025-09-26T03:34:14.561Z"}
+{"level":"error","message":"Error en pipeline:","service":"webcam-agent","timestamp":"2025-09-26T03:34:14.830Z"}
+{"level":"info","message":"Intento de reconexión 1/5","service":"webcam-agent","timestamp":"2025-09-26T03:34:14.831Z"}
+{"level":"error","message":"Error en pipeline:","service":"webcam-agent","timestamp":"2025-09-26T03:34:14.860Z"}
+{"level":"info","message":"Intento de reconexión 2/5","service":"webcam-agent","timestamp":"2025-09-26T03:34:14.861Z"}
+{"level":"info","message":"Reiniciando pipeline...","service":"webcam-agent","timestamp":"2025-09-26T03:34:19.836Z"}
+{"level":"info","message":"Reiniciando pipeline...","service":"webcam-agent","timestamp":"2025-09-26T03:34:19.861Z"}
+{"level":"info","message":"Iniciando pipeline GStreamer: gst-launch-1.0 v4l2src device=/dev/video0 ! image/jpeg,width=640,height=480,framerate=30/1 ! jpegdec ! videoconvert ! x264enc bitrate=1000 speed-preset=ultrafast tune=zerolatency key-int-max=30 bframes=0 cabac=false dct8x8=false ! flvmux streamable=true ! rtmpsink location=rtmp://localhost:1935/webcam sync=false","service":"webcam-agent","timestamp":"2025-09-26T03:34:21.838Z"}
+{"level":"info","message":"Pipeline iniciado exitosamente","service":"webcam-agent","timestamp":"2025-09-26T03:34:21.841Z"}
+{"level":"warn","message":"Pipeline ya está ejecutándose","service":"webcam-agent","timestamp":"2025-09-26T03:34:21.861Z"}
+{"level":"error","message":"Error en pipeline:","service":"webcam-agent","timestamp":"2025-09-26T03:34:22.097Z"}
+{"level":"info","message":"Intento de reconexión 1/5","service":"webcam-agent","timestamp":"2025-09-26T03:34:22.097Z"}
+{"level":"error","message":"Error en pipeline:","service":"webcam-agent","timestamp":"2025-09-26T03:34:22.124Z"}
+{"level":"info","message":"Intento de reconexión 2/5","service":"webcam-agent","timestamp":"2025-09-26T03:34:22.125Z"}
+{"level":"info","message":"Reiniciando pipeline...","service":"webcam-agent","timestamp":"2025-09-26T03:34:27.102Z"}
+{"level":"info","message":"Reiniciando pipeline...","service":"webcam-agent","timestamp":"2025-09-26T03:34:27.125Z"}
+{"level":"info","message":"Iniciando pipeline GStreamer: gst-launch-1.0 v4l2src device=/dev/video0 ! image/jpeg,width=640,height=480,framerate=30/1 ! jpegdec ! videoconvert ! x264enc bitrate=1000 speed-preset=ultrafast tune=zerolatency key-int-max=30 bframes=0 cabac=false dct8x8=false ! flvmux streamable=true ! rtmpsink location=rtmp://localhost:1935/webcam sync=false","service":"webcam-agent","timestamp":"2025-09-26T03:34:29.106Z"}
+{"level":"info","message":"Pipeline iniciado exitosamente","service":"webcam-agent","timestamp":"2025-09-26T03:34:29.113Z"}
+{"level":"warn","message":"Pipeline ya está ejecutándose","service":"webcam-agent","timestamp":"2025-09-26T03:34:29.126Z"}
+{"level":"info","message":"Deteniendo agente de webcam...","service":"webcam-agent","timestamp":"2025-09-26T03:43:02.426Z"}
+{"level":"info","message":"Iniciando agente de webcam...","service":"webcam-agent","timestamp":"2025-09-26T04:35:09.981Z"}
+{"bitrate":1000,"destination":"rtmp://localhost:1935/webcam","framerate":30,"level":"info","message":"Configuración:","resolution":"640x480","service":"webcam-agent","timestamp":"2025-09-26T04:35:09.984Z","videoDevice":"/dev/video0"}
+{"level":"info","message":"Verificando prerequisitos...","service":"webcam-agent","timestamp":"2025-09-26T04:35:09.984Z"}
+{"level":"info","message":"✓ GStreamer disponible","service":"webcam-agent","timestamp":"2025-09-26T04:35:10.004Z"}
+{"level":"info","message":"✓ Dispositivo de video disponible: /dev/video0","service":"webcam-agent","timestamp":"2025-09-26T04:35:10.005Z"}
+{"level":"info","message":"Dispositivos de video disponibles:\nHP TrueVision HD Camera: HP Tru (usb-0000:00:14.0-5):\n\t/dev/video0\n\t/dev/video1\n\t/dev/media0\n\n","service":"webcam-agent","timestamp":"2025-09-26T04:35:10.012Z"}
+{"level":"info","message":"Iniciando pipeline GStreamer: gst-launch-1.0 v4l2src device=/dev/video0 ! image/jpeg,width=640,height=480,framerate=30/1 ! jpegdec ! videoconvert ! x264enc bitrate=1000 speed-preset=ultrafast tune=zerolatency key-int-max=30 bframes=0 cabac=false dct8x8=false ! flvmux streamable=true ! rtmpsink location=rtmp://localhost:1935/webcam sync=false","service":"webcam-agent","timestamp":"2025-09-26T04:35:10.013Z"}
+{"level":"info","message":"Pipeline iniciado exitosamente","service":"webcam-agent","timestamp":"2025-09-26T04:35:10.015Z"}
+{"level":"info","message":"Deteniendo agente de webcam...","service":"webcam-agent","timestamp":"2025-09-26T04:36:10.408Z"}

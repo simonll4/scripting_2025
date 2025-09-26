@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Webcam Live - WebRTC Ultra Low Latency</title>
+    <link rel="stylesheet" href="./assets/style.css" />
+  </head>
+  <body>
+    <div class="layout">
+      <header class="hero">
+        <h1>🚀 Streaming en Tiempo Real</h1>
+        <p class="hero__subtitle">
+          Reproducción WebRTC directa desde MediaMTX vía WHEP para conseguir latencias por debajo de 500&nbsp;ms.
+        </p>
+      </header>
+
+      <main class="grid">
+        <section class="player">
+          <div class="player__video">
+            <video id="webrtcPlayer" autoplay playsinline muted></video>
+            <div id="overlay" class="player__overlay"></div>
+          </div>
+
+          <div class="player__controls">
+            <button id="play" class="button button--primary">▶️ Conectar</button>
+            <button id="stop" class="button" disabled>⏹️ Desconectar</button>
+            <button id="fullscreen" class="button">🔲 Pantalla completa</button>
+            <button id="mute" class="button">🔈 Activar audio</button>
+          </div>
+
+          <div id="status" class="status status--idle">
+            Listo para conectar al stream.
+          </div>
+        </section>
+
+        <aside class="sidebar">
+          <section class="card">
+            <h2>Estado de la sesión</h2>
+            <dl class="stats">
+              <div>
+                <dt>Conexión</dt>
+                <dd id="stat-connection">Desconectado</dd>
+              </div>
+              <div>
+                <dt>Resolución</dt>
+                <dd id="stat-resolution">-</dd>
+              </div>
+              <div>
+                <dt>Bitrate</dt>
+                <dd id="stat-bitrate">-</dd>
+              </div>
+              <div>
+                <dt>FPS</dt>
+                <dd id="stat-fps">-</dd>
+              </div>
+              <div>
+                <dt>Codec</dt>
+                <dd id="stat-codec">H.264</dd>
+              </div>
+            </dl>
+          </section>
+
+          <section class="card">
+            <h2>Configuración de stream</h2>
+            <form id="streamForm" class="form">
+              <label class="form__label" for="streamPath">Path</label>
+              <input
+                class="form__input"
+                id="streamPath"
+                name="streamPath"
+                type="text"
+                autocomplete="off"
+                placeholder="webcam"
+              />
+
+              <label class="form__label" for="autoPlay">Autoconectar</label>
+              <input id="autoPlay" name="autoPlay" type="checkbox" checked />
+
+              <button class="button button--ghost" type="submit">
+                🔄 Aplicar
+              </button>
+            </form>
+          </section>
+
+          <section class="card">
+            <h2>Herramientas</h2>
+            <ul class="links">
+              <li><a href="/recordings/" target="_blank">📁 Grabaciones</a></li>
+              <li><a href="/" target="_blank">📂 Explorador</a></li>
+              <li><a href="https://github.com/bluenviron/mediamtx" target="_blank" rel="noopener">📚 Docs MediaMTX</a></li>
+            </ul>
+          </section>
+        </aside>
+      </main>
+
+      <footer class="footer">
+        <p>
+          Este reproductor usa <strong>WHEP</strong> para recibir WebRTC desde MediaMTX, ofreciendo la menor latencia posible en navegadores modernos.
+        </p>
+      </footer>
+    </div>
+
+    <script type="module" src="./assets/webrtc-player.js"></script>
+  </body>
+</html>

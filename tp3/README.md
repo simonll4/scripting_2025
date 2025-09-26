@@ -1,4 +1,4 @@
-# TP3 
+# TP3
 
 ## Estructura del Proyecto
 
@@ -15,6 +15,7 @@ tp3/
 Sistema distribuido que combina TCP y MQTT para captura automática de imágenes via webcam.
 
 **Componentes:**
+
 - **Agent-TCP**: Servidor que recibe comandos TCP y captura imágenes
 - **Scheduler**: Cliente que envía comandos periódicos
 - **Saver**: Suscriptor MQTT que almacena las imágenes
@@ -28,6 +29,7 @@ Sistema distribuido que combina TCP y MQTT para captura automática de imágenes
 Sistema de ejecución remota de comandos a través de MQTT con comunicación unicast.
 
 **Componentes:**
+
 - **Agent**: Servicio que ejecuta comandos remotos
 - **CLP**: Cliente de línea de comandos interactivo
 

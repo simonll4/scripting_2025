@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webcam Streaming Server - MediaMTX</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #1a1a1a;
+            color: white;
+            text-align: center;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: #4CAF50;
+            margin-bottom: 30px;
+        }
+        .card {
+            background-color: #2a2a2a;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+        .card h3 {
+            color: #4CAF50;
+            margin-top: 0;
+        }
+        a {
+            color: #4CAF50;
+            text-decoration: none;
+            font-size: 18px;
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            border: 2px solid #4CAF50;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+        a:hover {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .status {
+            background-color: #333;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #4CAF50;
+        }
+        code {
+            background-color: #333;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📹 Webcam Streaming Server</h1>
+        <p>Sistema de streaming en vivo usando MediaMTX y GStreamer</p>
+
+        <div class="card">
+            <h3>🎥 Ver Stream en Vivo</h3>
+            <p>Reproduce el stream de la webcam en tiempo real</p>
+            <a href="/web/player.html">🔴 Abrir Reproductor</a>
+        </div>
+
+        <div class="card">
+            <h3>📁 Grabaciones</h3>
+            <p>Accede a las grabaciones guardadas automáticamente</p>
+            <a href="/recordings/">📁 Ver Grabaciones</a>
+        </div>
+
+        <div class="card">
+            <h3>🔗 URLs de Streaming</h3>
+            <p><strong>HLS (Web):</strong> <code>http://localhost:8888/webcam/index.m3u8</code></p>
+            <p><strong>RTSP (VLC):</strong> <code>rtsp://localhost:8554/webcam</code></p>
+            <p><strong>RTMP (OBS):</strong> <code>rtmp://localhost:1935/webcam</code></p>
+        </div>
+
+        <div class="status">
+            <h3>ℹ️ Estado del Sistema</h3>
+            <p>✅ MediaMTX Server: Activo en puerto 8888 (HLS), 8554 (RTSP), 1935 (RTMP)</p>
+            <p>✅ Caddy Web Server: Activo en puerto 8080</p>
+            <p>📹 Stream: <span id="streamStatus">Verificando...</span></p>
+        </div>
+
+        <div class="card">
+            <h3>🛠️ Comandos para Streaming</h3>
+            <p><strong>Iniciar streaming manual:</strong></p>
+            <code style="display: block; margin: 10px 0; padding: 10px; background: #000;">
+                gst-launch-1.0 v4l2src device=/dev/video0 ! image/jpeg,width=640,height=480,framerate=30/1 ! jpegdec ! videoconvert ! x264enc bitrate=1000 speed-preset=ultrafast tune=zerolatency ! flvmux streamable=true ! rtmpsink location=rtmp://localhost:1935/webcam sync=false
+            </code>
+        </div>
+    </div>
+
+    <script>
+        // Verificar estado del stream
+        async function checkStreamStatus() {
+            try {
+                const response = await fetch('http://localhost:8888/webcam/index.m3u8');
+                const statusElement = document.getElementById('streamStatus');
+                
+                if (response.ok) {
+                    statusElement.textContent = '🔴 Activo';
+                    statusElement.style.color = '#4CAF50';
+                } else {
+                    statusElement.textContent = '⭕ Inactivo';
+                    statusElement.style.color = '#ff9800';
+                }
+            } catch (error) {
+                document.getElementById('streamStatus').textContent = '❌ Error de conexión';
+                document.getElementById('streamStatus').style.color = '#f44336';
+            }
+        }
+
+        // Verificar cada 5 segundos
+        checkStreamStatus();
+        setInterval(checkStreamStatus, 5000);
+    </script>
+</body>
+</html>

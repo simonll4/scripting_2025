@@ -1,0 +1,29 @@
+services:
+  mediamtx:
+    image: bluenviron/mediamtx:latest-ffmpeg
+    container_name: mediamtx
+    restart: unless-stopped
+    # Bridge + ports porque querías que "localhost" funcione desde tu host
+    ports:
+      - "8554:8554/tcp" # RTSP (pull de cámaras, y opcionalmente lectura)
+      - "1935:1935/tcp" # RTMP (push de streams)
+      - "8888:8888/tcp" # HLS (playback en navegador con hls.js)
+      - "8889:8889/tcp" # WebRTC (WHEP/WHIP/JSON API)
+      - "8189:8189/udp" # WebRTC media (UDP)
+      - "8189:8189/tcp" # WebRTC media fallback (TCP)
+    volumes:
+      - ./mediamtx.yml:/mediamtx.yml:ro
+      - ./recordings:/recordings
+      # Para que los nombres de archivos usen tu zona horaria local
+      - /etc/localtime:/etc/localtime:ro
+
+  web:
+    image: caddy:latest
+    container_name: web
+    restart: unless-stopped
+    ports:
+      - "8080:80/tcp" # UI local: http://localhost:8080
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - ./recordings:/srv/recordings:ro
+      - ./web:/srv/web:ro

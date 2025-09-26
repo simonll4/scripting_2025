@@ -1,0 +1,97 @@
+<!doctype html>
+<html>
+<head>
+    <title>WebRTC Test - WHEP</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        video { width: 100%; max-width: 640px; height: auto; }
+        .status { margin: 10px 0; padding: 10px; background: #f0f0f0; }
+        .error { background: #ffeeee; color: #cc0000; }
+        .success { background: #eeffee; color: #006600; }
+    </style>
+</head>
+<body>
+    <h1>WebRTC Stream Test (WHEP Protocol)</h1>
+    <div id="status" class="status">Iniciando...</div>
+    <video id="video" autoplay playsinline controls muted></video>
+    
+    <script>
+    (async () => {
+        const statusDiv = document.getElementById('status');
+        const videoElement = document.getElementById('video');
+        
+        function updateStatus(message, isError = false) {
+            console.log(message);
+            statusDiv.textContent = message;
+            statusDiv.className = 'status ' + (isError ? 'error' : 'success');
+        }
+        
+        try {
+            updateStatus('Creando peer connection...');
+            
+            // Configuración ICE con STUN
+            const pc = new RTCPeerConnection({
+                iceServers: [
+                    { urls: 'stun:stun.l.google.com:19302' }
+                ]
+            });
+            
+            // Agregar transceiver para recibir video
+            pc.addTransceiver('video', { direction: 'recvonly' });
+            
+            // Manejar stream recibido
+            pc.ontrack = (event) => {
+                updateStatus('Stream recibido, reproduciendo...');
+                videoElement.srcObject = event.streams[0];
+            };
+            
+            // Debug ICE
+            pc.onicecandidate = (event) => {
+                if (event.candidate) {
+                    console.log('ICE candidate:', event.candidate);
+                }
+            };
+            
+            pc.oniceconnectionstatechange = () => {
+                console.log('ICE state:', pc.iceConnectionState);
+                updateStatus(`ICE Connection: ${pc.iceConnectionState}`);
+            };
+            
+            updateStatus('Creando oferta SDP...');
+            const offer = await pc.createOffer();
+            await pc.setLocalDescription(offer);
+            
+            console.log('Oferta SDP generada:', offer.sdp);
+            updateStatus('Enviando oferta al servidor WHEP...');
+            
+            const response = await fetch('/webrtc/whep/webcam', {
+                method: 'POST',
+                headers: { 
+                    'Content-Type': 'application/sdp',
+                    'Accept': 'application/sdp'
+                },
+                body: offer.sdp
+            });
+            
+            console.log('Respuesta WHEP:', response.status, response.statusText);
+            
+            if (!response.ok) {
+                throw new Error(`WHEP failed: ${response.status} ${response.statusText}`);
+            }
+            
+            const answerSdp = await response.text();
+            console.log('Respuesta SDP del servidor:', answerSdp);
+            
+            const answer = { type: 'answer', sdp: answerSdp };
+            await pc.setRemoteDescription(answer);
+            
+            updateStatus('Conexión WebRTC establecida, esperando stream...');
+            
+        } catch (error) {
+            console.error('Error:', error);
+            updateStatus(`Error: ${error.message}`, true);
+        }
+    })();
+    </script>
+</body>
+</html>

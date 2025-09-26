@@ -1,0 +1,54 @@
+# Configuración MediaMTX para streaming de webcam
+
+# Configuración de logging
+logLevel: debug
+logDestinations: [stdout]
+logFile: ""
+
+# RTMP - para recibir streams desde agentes
+rtmp: yes
+rtmpAddress: :1935
+
+# HLS - para reproducir en navegador
+hls: yes
+hlsAddress: :8888
+
+# WebRTC - baja latencia
+webrtc: yes
+webrtcAddress: :8889
+webrtcEncryption: no
+webrtcServerKey: ""
+webrtcServerCert: ""
+webrtcAllowOrigin: "*"
+webrtcTrustedProxies: []
+# UDP listener (puerto principal para medios WebRTC)
+webrtcLocalUDPAddress: :8189
+# TCP fallback si UDP está bloqueado
+webrtcLocalTCPAddress: :8189
+webrtcIPsFromInterfaces: yes
+webrtcIPsFromInterfacesList: []
+# Anunciar hosts adicionales para ICE (LAN)
+webrtcAdditionalHosts: [127.0.0.1, localhost]
+# STUN para autodetectar IP pública
+webrtcICEServers2:
+  - url: stun:stun.l.google.com:19302
+
+# RTSP - protocolo de streaming
+rtspAddress: :8554
+
+# Configuración por defecto para todos los paths
+pathDefaults:
+  record: yes
+  recordPath: /recordings/%path/%Y-%m-%d_%H-%M-%S-%f
+  recordFormat: fmp4
+  recordSegmentDuration: 1m
+  recordDeleteAfter: 168h
+
+# Definición de paths/streams
+paths:
+  webcam:
+    # Configuración específica para WebRTC
+    runOnReady: ""
+    runOnNotReady: ""
+    # Configuración de recording (usa la configuración global)
+    record: yes
