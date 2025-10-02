@@ -40,7 +40,9 @@ async function main() {
   agent.on('streaming-started', () => {
     console.log('📹 Streaming de webcam activo');
     const status = agent.getStatus();
-    console.log(`📺 Stream disponible en: http://localhost:8080/web/player.html?path=${status.config.destination.split('/').pop()}`);
+    console.log(`📺 RTSP: rtsp://localhost:8554/webcam`);
+    console.log(`📺 HLS: http://localhost:8888/webcam/index.m3u8`);
+    console.log(`📺 WebRTC: http://localhost:8889/whep/webcam`);
   });
 
   agent.on('streaming-error', (error) => {

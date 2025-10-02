@@ -1,0 +1,33 @@
+
+> @tpfinal/session-store@1.0.0 start
+> node dist/index.js
+
+node:events:496
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::8080
+    at Server.setupListenHandle [as _listen2] (node:net:1939:16)
+    at listenInCluster (node:net:1996:12)
+    at Server.listen (node:net:2101:7)
+    at Function.listen (/home/simonll4/Desktop/scritping/tpfinal-v2/node_modules/express/lib/application.js:635:24)
+    at startServer (/home/simonll4/Desktop/scritping/tpfinal-v2/services/session-store/dist/index.js:93:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1975:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+  code: 'EADDRINUSE',
+  errno: -98,
+  syscall: 'listen',
+  address: '::',
+  port: 8080
+}
+
+Node.js v22.15.0
+npm error Lifecycle script `start` failed with error:
+npm error code 1
+npm error path /home/simonll4/Desktop/scritping/tpfinal-v2/services/session-store
+npm error workspace @tpfinal/session-store@1.0.0
+npm error location /home/simonll4/Desktop/scritping/tpfinal-v2/services/session-store
+npm error command failed
+npm error command sh -c node dist/index.js

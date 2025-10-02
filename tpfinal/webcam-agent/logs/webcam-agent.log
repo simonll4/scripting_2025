@@ -1,28 +1,26 @@
-
-> webcam-agent@1.0.0 start
-> node index.js
-
 🔧 Iniciando agente de webcam...
-[32minfo[39m: Iniciando agente de webcam... {"service":"webcam-agent","timestamp":"2025-09-26T04:35:09.981Z"}
-[32minfo[39m: Configuración: {"bitrate":1000,"destination":"rtmp://localhost:1935/webcam","framerate":30,"resolution":"640x480","service":"webcam-agent","timestamp":"2025-09-26T04:35:09.984Z","videoDevice":"/dev/video0"}
-[32minfo[39m: Verificando prerequisitos... {"service":"webcam-agent","timestamp":"2025-09-26T04:35:09.984Z"}
-[32minfo[39m: ✓ GStreamer disponible {"service":"webcam-agent","timestamp":"2025-09-26T04:35:10.004Z"}
-[32minfo[39m: ✓ Dispositivo de video disponible: /dev/video0 {"service":"webcam-agent","timestamp":"2025-09-26T04:35:10.005Z"}
+[32minfo[39m: Iniciando agente de webcam... {"service":"webcam-agent","timestamp":"2025-09-26T07:18:20.851Z"}
+[32minfo[39m: Configuración: {"bitrate":1000,"destination":"rtmp://localhost:1935/webcam","framerate":30,"resolution":"640x480","service":"webcam-agent","timestamp":"2025-09-26T07:18:20.855Z","videoDevice":"/dev/video0"}
+[32minfo[39m: Verificando prerequisitos... {"service":"webcam-agent","timestamp":"2025-09-26T07:18:20.856Z"}
+[32minfo[39m: ✓ GStreamer disponible {"service":"webcam-agent","timestamp":"2025-09-26T07:18:20.878Z"}
+[32minfo[39m: ✓ Dispositivo de video disponible: /dev/video0 {"service":"webcam-agent","timestamp":"2025-09-26T07:18:20.879Z"}
 [32minfo[39m: Dispositivos de video disponibles:
 HP TrueVision HD Camera: HP Tru (usb-0000:00:14.0-5):
 	/dev/video0
 	/dev/video1
 	/dev/media0
 
- {"service":"webcam-agent","timestamp":"2025-09-26T04:35:10.012Z"}
-[32minfo[39m: Iniciando pipeline GStreamer: gst-launch-1.0 v4l2src device=/dev/video0 ! image/jpeg,width=640,height=480,framerate=30/1 ! jpegdec ! videoconvert ! x264enc bitrate=1000 speed-preset=ultrafast tune=zerolatency key-int-max=30 bframes=0 cabac=false dct8x8=false ! flvmux streamable=true ! rtmpsink location=rtmp://localhost:1935/webcam sync=false {"service":"webcam-agent","timestamp":"2025-09-26T04:35:10.013Z"}
-[32minfo[39m: Pipeline iniciado exitosamente {"service":"webcam-agent","timestamp":"2025-09-26T04:35:10.015Z"}
+ {"service":"webcam-agent","timestamp":"2025-09-26T07:18:20.886Z"}
+[32minfo[39m: Iniciando pipeline GStreamer: gst-launch-1.0 v4l2src device=/dev/video0 ! videoconvert ! x264enc bitrate=1000 speed-preset=ultrafast tune=zerolatency key-int-max=30 bframes=0 cabac=false ! flvmux streamable=true ! rtmpsink location=rtmp://localhost:1935/webcam sync=false {"service":"webcam-agent","timestamp":"2025-09-26T07:18:20.887Z"}
+[32minfo[39m: Pipeline iniciado exitosamente {"service":"webcam-agent","timestamp":"2025-09-26T07:18:20.889Z"}
 📹 Streaming de webcam activo
-📺 Stream disponible en: http://localhost:8080/web/player.html?path=webcam
+📺 RTSP: rtsp://localhost:8554/webcam
+📺 HLS: http://localhost:8888/webcam/index.m3u8
+📺 WebRTC: http://localhost:8889/whep/webcam
 🚀 Agente de webcam iniciado
 
 Recibida señal SIGTERM, cerrando agente...
-[32minfo[39m: Deteniendo agente de webcam... {"service":"webcam-agent","timestamp":"2025-09-26T04:36:10.408Z"}
-[32minfo[39m: Deteniendo pipeline... {"service":"webcam-agent","timestamp":"2025-09-26T04:36:10.409Z"}
+[32minfo[39m: Deteniendo agente de webcam... {"service":"webcam-agent","timestamp":"2025-09-26T07:22:14.249Z"}
+[32minfo[39m: Deteniendo pipeline... {"service":"webcam-agent","timestamp":"2025-09-26T07:22:14.250Z"}
 ⏹️  Agente detenido
-[32minfo[39m: Agente detenido {"service":"webcam-agent","timestamp":"2025-09-26T04:36:10.409Z"}
+[32minfo[39m: Agente detenido {"service":"webcam-agent","timestamp":"2025-09-26T07:22:14.251Z"}

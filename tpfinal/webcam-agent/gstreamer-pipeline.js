@@ -22,41 +22,23 @@ class GStreamerPipeline extends EventEmitter {
     // URL de destino RTMP
     const rtmpUrl = `rtmp://${mediamtx.host}:${mediamtx.rtmpPort}/${mediamtx.streamPath}`;
 
-    // Pipeline GStreamer
+    // Pipeline GStreamer para RTMP
     let pipeline = [
       // Fuente de video (webcam)
       'v4l2src',
       `device=${videoDevice}`,
 
-      // Caps de entrada según formato
-      '!'
-    ];
-
-    if (video.format === 'MJPG') {
-      pipeline = pipeline.concat([
-        `image/jpeg,width=${video.width},height=${video.height},framerate=${video.framerate}/1`,
-        '!', 'jpegdec'
-      ]);
-    } else {
-      pipeline = pipeline.concat([
-        `video/x-raw,format=${video.format},width=${video.width},height=${video.height},framerate=${video.framerate}/1`
-      ]);
-    }
-
-    // Continuar con el resto del pipeline
-    pipeline = pipeline.concat([
-      // Conversión de formato
+      // Conversión de formato directa (sin caps específicos)
       '!', 'videoconvert',
 
-      // Encoder de video optimizado para WebRTC
+      // Encoder de video optimizado para streaming
       '!', encoding.videoCodec === 'x264' ? 'x264enc' : 'nvh264enc',
       `bitrate=${encoding.videoBitrate}`,
       `speed-preset=${encoding.preset}`,
       `tune=${encoding.tune}`,
-      'key-int-max=30', // Keyframes más frecuentes para WebRTC
+      'key-int-max=30', // Keyframes cada segundo a 30fps
       'bframes=0', // Sin B-frames para menor latencia
       'cabac=false', // Desactivar CABAC para compatibilidad
-      'dct8x8=false', // Desactivar DCT 8x8 para compatibilidad
 
       // Muxer FLV para RTMP
       '!', 'flvmux',
@@ -66,7 +48,7 @@ class GStreamerPipeline extends EventEmitter {
       '!', 'rtmpsink',
       `location=${rtmpUrl}`,
       'sync=false' // No sincronizar con reloj del sistema
-    ]);
+    ];
 
     return pipeline;
   }

@@ -1,0 +1,11 @@
+logLevel: info
+
+playback: yes
+playbackAddress: :9996
+
+paths:
+  all:
+    record: yes
+    recordFormat: fmp4
+    recordPath: /recordings/%path/%Y/%m/%d/%H/%M/%S-%f
+    recordSegmentDuration: 1h

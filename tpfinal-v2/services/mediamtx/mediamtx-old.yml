@@ -1,0 +1,83 @@
+# MediaMTX configuration for Computer Vision TP
+# Documentation: https://github.com/bluenviron/mediamtx
+
+# General settings
+logLevel: info
+logDestinations: [stdout]
+
+# API settings
+api: yes
+apiAddress: 0.0.0.0:9997
+
+# Metrics settings  
+metrics: yes
+metricsAddress: 0.0.0.0:9998
+
+# HLS settings
+hls: yes
+hlsAddress: 0.0.0.0:8888
+hlsEncryption: no
+hlsServerKey: server.key
+hlsServerCert: server.crt
+hlsAllowOrigin: "*"
+hlsSegmentCount: 10
+hlsSegmentDuration: 2s
+hlsPartDuration: 200ms
+hlsSegmentMaxSize: 50M
+hlsDirectory: /recordings
+hlsVariant: fmp4
+
+# RTSP settings
+rtsp: yes
+rtspAddress: 0.0.0.0:8554
+rtspProtocols: [tcp, udp]
+
+# RTMP settings
+rtmp: yes
+rtmpAddress: 0.0.0.0:1935
+rtmpEncryption: no
+
+# WebRTC settings
+webrtc: yes
+webrtcAddress: 0.0.0.0:8889
+
+# Path defaults
+pathDefaults:
+  # Source settings
+  source: no
+  sourceTimeout: 10s
+  sourceOnDemand: no
+  sourceOnDemandStartTimeout: 10s
+  sourceOnDemandCloseAfter: 10s
+  
+  # Recording settings
+  record: no
+  
+  # HLS settings per path
+  hlsDisabled: false
+  hlsVariant: fmp4
+  hlsSegmentCount: 10
+  hlsSegmentDuration: 2s
+  hlsPartDuration: 200ms
+  hlsSegmentMaxSize: 50M
+
+# Paths for sessions - pattern matching
+paths:
+  # Pattern for session streams from Edge Agent
+  "sess-~sessionId":  
+    source: no
+    hlsDisabled: false
+    hlsVariant: fmp4
+    hlsSegmentDuration: 2s
+    hlsSegmentCount: 15
+    record: no
+    
+  # Test stream path
+  test:
+    source: no
+    hlsDisabled: false
+    
+  # Webcam direct path (for testing)
+  webcam:
+    source: no  
+    hlsDisabled: false

@@ -1,0 +1,23 @@
+# Basic MediaMTX configuration - minimal setup
+logLevel: info
+
+# API
+api: yes
+apiAddress: :9997
+
+# HLS 
+hls: yes
+hlsAddress: :8888
+hlsAllowOrigin: "*"
+
+# RTSP
+rtsp: yes
+rtspAddress: :8554
+
+# RTMP  
+rtmp: yes
+rtmpAddress: :1935
+
+# WebRTC
+webrtc: yes
+webrtcAddress: :8889

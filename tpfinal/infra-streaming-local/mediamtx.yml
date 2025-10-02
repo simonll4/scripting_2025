@@ -1,0 +1,50 @@
+# Configuración MediaMTX para streaming de webcam
+
+# Configuración de logging
+logLevel: info
+logDestinations: [stdout]
+logFile: ""
+
+# RTSP - para ingesta y reproducción
+rtspAddress: :8554
+
+# HLS - para reproducir en navegador
+hls: yes
+hlsAddress: :8888
+hlsAllowOrigin: "*"
+
+# WebRTC - baja latencia con WHEP
+webrtc: yes
+webrtcAddress: :8889
+webrtcEncryption: no
+webrtcAllowOrigin: "*"
+webrtcLocalUDPAddress: :8189
+webrtcLocalTCPAddress: :8189
+webrtcIPsFromInterfaces: yes
+# Hosts adicionales para ICE (importante para LAN)
+webrtcAdditionalHosts: [127.0.0.1, localhost, 192.168.1.4]
+# STUN server público para casos complejos de NAT
+webrtcICEServers2:
+  - url: stun:stun.l.google.com:19302
+  - url: stun:stun1.l.google.com:19302
+
+# RTMP (opcional)
+rtmp: yes
+rtmpAddress: :1935
+
+# Configuración global de grabación
+pathDefaults:
+  record: yes
+  recordPath: /recordings/%path/%Y-%m-%d_%H-%M-%S-%f
+  recordFormat: fmp4
+  recordSegmentDuration: 30s
+  recordDeleteAfter: 168h
+
+# Definición de paths/streams
+paths:
+  webcam:
+    # Path principal para webcam
+    record: yes
+    # Habilitar HLS para este path específico
+    runOnReady: /bin/echo "Stream webcam ready"
+    runOnDemand: ""
