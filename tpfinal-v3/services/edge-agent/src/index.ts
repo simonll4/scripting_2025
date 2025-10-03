@@ -3,6 +3,7 @@ import { spawnSync } from "node:child_process";
 import { CONFIG } from "./config.js";
 import { openSession, closeSession } from "./sessionStoreClient.js";
 import { runFfmpeg } from "./ffmpegRunner.js";
+import { measureRtspOffset } from "./rtspTimeSync.js";
 
 const ensureFfmpegAvailable = (): void => {
   const check = spawnSync("ffmpeg", ["-version"], { stdio: "ignore" });
@@ -44,7 +45,14 @@ const parseCliOptions = (): RunOpts => {
   return opts;
 };
 
-const nowIso = (): string => new Date().toISOString();
+/**
+ * Genera timestamp ISO8601 con offset ajustado
+ */
+const adjustedTimestamp = (offsetSeconds: number): string => {
+  const now = new Date();
+  const adjusted = new Date(now.getTime() + offsetSeconds * 1000);
+  return adjusted.toISOString();
+};
 
 const runSession = async (options: RunOpts = {}): Promise<void> => {
   ensureFfmpegAvailable();
@@ -54,8 +62,23 @@ const runSession = async (options: RunOpts = {}): Promise<void> => {
 
   const sessionId = generateSessionId(CONFIG.deviceId);
   const streamPath = CONFIG.streamPath;
-  const rtspUrl = buildRtspUrl(CONFIG.mediamtxHost, CONFIG.mediamtxRtspPort, streamPath);
-  const startTs = nowIso();
+  const rtspUrl = buildRtspUrl(
+    CONFIG.mediamtxHost,
+    CONFIG.mediamtxRtspPort,
+    streamPath
+  );
+
+  // Nota: No se mide offset RTSP. Confiamos en sincronización de TZ del sistema (UTC)
+  const offsetSeconds = await measureRtspOffset({
+    host: CONFIG.mediamtxHost,
+    port: CONFIG.mediamtxRtspPort,
+    path: `/${streamPath}`,
+    samples: 5,
+    maxRttMs: 100,
+  });
+
+  // Timestamp de inicio (UTC sincronizado)
+  const startTs = adjustedTimestamp(offsetSeconds);
 
   console.log(
     JSON.stringify({
@@ -64,7 +87,7 @@ const runSession = async (options: RunOpts = {}): Promise<void> => {
       deviceId: CONFIG.deviceId,
       streamPath,
       rtspUrl,
-      startTs
+      startTs,
     })
   );
 
@@ -73,7 +96,7 @@ const runSession = async (options: RunOpts = {}): Promise<void> => {
     devId: CONFIG.deviceId,
     startTs,
     path: streamPath,
-    reason: CONFIG.sessionReason
+    reason: CONFIG.sessionReason,
   });
 
   let streamError: unknown = null;
@@ -90,12 +113,15 @@ const runSession = async (options: RunOpts = {}): Promise<void> => {
     console.error("Streaming failed", error);
   } finally {
     if (postRoll > 0) {
-      console.log(JSON.stringify({ event: "post_roll_wait", seconds: postRoll }));
+      console.log(
+        JSON.stringify({ event: "post_roll_wait", seconds: postRoll })
+      );
       await sleep(postRoll * 1000);
     }
   }
 
-  const endTs = nowIso();
+  // PASO 3: Timestamp de cierre ajustado (con el mismo offset)
+  const endTs = adjustedTimestamp(offsetSeconds);
 
   await closeSession(CONFIG.sessionStoreUrl, {
     sessionId,
@@ -110,7 +136,8 @@ const runSession = async (options: RunOpts = {}): Promise<void> => {
       deviceId: CONFIG.deviceId,
       startTs,
       endTs,
-      durationSeconds: (new Date(endTs).getTime() - new Date(startTs).getTime()) / 1000,
+      durationSeconds:
+        (new Date(endTs).getTime() - new Date(startTs).getTime()) / 1000,
       success: streamError === null,
     })
   );

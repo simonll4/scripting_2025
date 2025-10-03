@@ -10,7 +10,8 @@
     "simulate": "node dist/index.js simulate"
   },
   "dependencies": {
-    "dotenv": "^16.3.1"
+    "dotenv": "^16.3.1",
+    "net": "^1.0.2"
   },
   "devDependencies": {
     "@types/node": "^20.9.0",

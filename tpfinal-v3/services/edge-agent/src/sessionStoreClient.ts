@@ -12,13 +12,16 @@ type CloseSessionRequest = {
   postrollSec?: number;
 };
 
-const headers = { 'Content-Type': 'application/json' };
+const headers = { "Content-Type": "application/json" };
 
-export async function openSession(sessionStoreUrl: string, payload: OpenSessionRequest): Promise<void> {
+export async function openSession(
+  sessionStoreUrl: string,
+  payload: OpenSessionRequest
+): Promise<void> {
   const response = await fetch(`${sessionStoreUrl}/sessions/open`, {
-    method: 'POST',
+    method: "POST",
     headers,
-    body: JSON.stringify(payload)
+    body: JSON.stringify(payload),
   });
 
   if (!response.ok) {
@@ -27,11 +30,14 @@ export async function openSession(sessionStoreUrl: string, payload: OpenSessionR
   }
 }
 
-export async function closeSession(sessionStoreUrl: string, payload: CloseSessionRequest): Promise<void> {
+export async function closeSession(
+  sessionStoreUrl: string,
+  payload: CloseSessionRequest
+): Promise<void> {
   const response = await fetch(`${sessionStoreUrl}/sessions/close`, {
-    method: 'POST',
+    method: "POST",
     headers,
-    body: JSON.stringify(payload)
+    body: JSON.stringify(payload),
   });
 
   if (!response.ok) {

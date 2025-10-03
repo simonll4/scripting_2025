@@ -1,6 +1,0 @@
-
-> attribute-enricher@1.0.0 start
-> node dist/index.js
-
-{"timestamp":"2025-09-30T20:23:44.386Z","service":"attribute-enricher","event":"server_started","port":8091,"environment":"development"}
-{"timestamp":"2025-09-30T20:37:14.409Z","method":"GET","url":"/health","status":200,"duration":"8ms","userAgent":"curl/8.5.0","ip":"::1"}
